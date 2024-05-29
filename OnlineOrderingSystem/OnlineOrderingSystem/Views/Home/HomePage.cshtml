@@ -1,0 +1,13 @@
+﻿ @model Category
+@{
+    ViewData["Title"] = "HomePage";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <div class="CategorieMenu">
+
+        <partial name="../Categories/Index" model="@Model" />
+    </div>
+</div>

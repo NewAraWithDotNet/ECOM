@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.Identity
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OnlineOrderingSystem</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OnlineOrderingSystem.styles.css" asp-append-version="true" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="left">
+                <div class="logo">
+                    <img src="" alt="logo" />
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="userInfo">
+                        <div>
+                            <a class="nav-link text-dark" href="#">@User.Identity.Name</a>
+                        </div>
+
+                        <div>
+                            <img src="@ViewBag.Avatar" href="#" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="right">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="buttons">
+
+                        <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="nav-item">
+                            <button type="submit">Logout</button>
+                        </form>
+                        <div>
+                            <a asp-area="" asp-controller="Home" asp-action="HomePage">HOME</a>
+
+                            <a asp-area="" asp-controller="Categories" asp-action="Create">Catagories</a>
+                            <a asp-area="" asp-controller="Products" asp-action="Create">Product</a>
+
+                        </div>
+                    </div>
+                
+
+                }
+                else
+                {
+                    <div class="singin">
+                        <a asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                        <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                    </div>
+
+                }
+            </div>
+
+        </nav>
+
+    </header>
+
+    <div class="pageContainer">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - OnlineOrderingSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

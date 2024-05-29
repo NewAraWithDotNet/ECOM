@@ -1,0 +1,142 @@
+﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+a {
+    color: #0077cc;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
+.pageContainer {
+    max-width: 1366px;
+    height: calc(100vh - 200px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* ------------------------------- */
+nav {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    font-size: 20px;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    nav .left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        nav .left .logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        nav .left .userInfo {
+            display: flex;
+            align-items: center;
+        }
+
+            nav .left .userInfo img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-left: 10px;
+            }
+
+    nav .right {
+        margin-left: 20px;
+    }
+
+        nav .right .singin {
+            display: flex;
+            margin: 10px;
+            gap: 20px;
+            padding: 20px;
+        }
+        nav .right .buttons {
+            display: flex;
+            margin: 10px;
+            gap: 20px;
+            padding: 20px;
+            flex-direction:row-reverse;
+        }
+        nav .right a,
+        nav .right button {
+            text-decoration: none;
+            color: #000000;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        /* Style for the logout button */
+        nav .right button {
+            font-family: monospace;
+            background-color: #000000;
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+        }
+
+            nav .right button:hover {
+                background-color: #8e8e8e;
+                box-shadow: 0 0 0 5px #3b82f65f;
+                color: #fff;
+            }
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    nav .left .logo {
+        display: none;
+    }
+}
