@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PLAN B MERAKI_Academy\\Practice\\Stage alpha\\MVC-Login\\OnlineOrderingSystem\\OnlineOrderingSystem\\OnlineOrderingSystem.csproj": {}
+    "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\OnlineOrderingSystem.csproj": {}
   },
   "projects": {
-    "D:\\PLAN B MERAKI_Academy\\Practice\\Stage alpha\\MVC-Login\\OnlineOrderingSystem\\OnlineOrderingSystem\\OnlineOrderingSystem.csproj": {
+    "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\OnlineOrderingSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PLAN B MERAKI_Academy\\Practice\\Stage alpha\\MVC-Login\\OnlineOrderingSystem\\OnlineOrderingSystem\\OnlineOrderingSystem.csproj",
+        "projectUniqueName": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\OnlineOrderingSystem.csproj",
         "projectName": "OnlineOrderingSystem",
-        "projectPath": "D:\\PLAN B MERAKI_Academy\\Practice\\Stage alpha\\MVC-Login\\OnlineOrderingSystem\\OnlineOrderingSystem\\OnlineOrderingSystem.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\PLAN B MERAKI_Academy\\Practice\\Stage alpha\\MVC-Login\\OnlineOrderingSystem\\OnlineOrderingSystem\\obj\\",
+        "projectPath": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\OnlineOrderingSystem.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -47,21 +47,21 @@
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

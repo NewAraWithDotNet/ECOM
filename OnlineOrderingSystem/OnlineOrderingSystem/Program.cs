@@ -31,7 +31,7 @@ using (var scope = app.Services.CreateScope())
 {
 var services = scope.ServiceProvider;
  //await RoleInitializer.InitializeRoles(services);
-// await CreateAdmin.CreateAdminUser(services);
+ await CreateAdmin.CreateAdminUser(services);
 }
 
 

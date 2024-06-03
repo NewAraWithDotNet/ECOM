@@ -3,11 +3,10 @@
     ViewData["Title"] = "HomePage";
 }
 
-<h1>@ViewData["Title"]</h1>
 
 <div>
     <div class="CategorieMenu">
 
-        <partial name="../Categories/Index" model="@Model" />
+        <partial name="../Categories/Index" model="ViewBag.Categories" />
     </div>
 </div>

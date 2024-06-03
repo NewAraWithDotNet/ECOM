@@ -33,20 +33,18 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var category = _context.Categories.Include("Products")
+                             .FirstOrDefault(c => c.Id == id);
             if (category == null)
             {
                 return NotFound();
             }
-
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return PartialView("Details", category);
+            }
             return View(category);
         }
 
@@ -60,22 +58,22 @@ namespace OnlineOrderingSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category category)
         {
-            
-                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + category.ImageFile.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await category.ImageFile.CopyToAsync(fileStream);
-                }
+            string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
+            string uniqueFileName = Guid.NewGuid().ToString() + "_" + category.ImageFile.FileName;
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                category.Image = uniqueFileName;
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await category.ImageFile.CopyToAsync(fileStream);
+            }
 
-                _context.Add(category);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            
+            category.Image = uniqueFileName;
+
+            _context.Add(category);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
             return View(category);
         }
 

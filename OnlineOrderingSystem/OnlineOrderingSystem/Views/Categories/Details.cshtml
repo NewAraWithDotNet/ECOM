@@ -1,30 +1,43 @@
 ﻿@model OnlineOrderingSystem.Models.Category
-
 @{
-    ViewData["Title"] = "Details";
+    Layout = null;
 }
-
-<h1>Details</h1>
-
-<div>
-    <h4>Category</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<h2>@Model.Name</h2>
+<style>
+    .products{
+        width:800px;
+        height:600px;
+    }
+</style>
+@if (Model.Products != null && Model.Products.Any())
+{
+    <div class="products">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-md-3">
+                <div class="card mb-4 shadow-sm">
+                    @if (!string.IsNullOrEmpty(product.Image))
+                    {
+                        <img src="~/images/@product.Image" class="card-img-top" alt="@product.Name" />
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text"><strong>Price:</strong> @product.Price.ToString("C")</p>
+                        <p class="card-text"><strong>Category:</strong> @product.Category.Name</p>
+                        <div class="btn-group">
+                            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-sm btn-outline-secondary">View</a>
+                            <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
+                            <form asp-action="AddToCart" asp-controller="Carts" asp-route-id="@product.Id" method="post">
+                                <button type="submit">Add to Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No products available for this category.</p>
+}

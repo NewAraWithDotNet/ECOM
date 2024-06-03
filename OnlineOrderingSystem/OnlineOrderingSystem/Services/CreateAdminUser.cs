@@ -28,7 +28,7 @@ public static class CreateAdmin
                 Email = "admin@gmail.com",
                 Avatar = "https://i.ibb.co/nDKfswG/R.jpg"
             };
-            await userManager.CreateAsync(adminUser, "123456789");
+            await userManager.CreateAsync(adminUser, "Mm@123er53673");
 
             // Assign the admin role to the admin user
             await userManager.AddToRoleAsync(adminUser, "Admin");

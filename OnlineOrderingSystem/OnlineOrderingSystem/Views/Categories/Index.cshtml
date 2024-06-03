@@ -4,7 +4,6 @@
     Layout = null;
 }
 
-<h1>Index</h1>
 <script>
     const mobileScreen = window.matchMedia("(max-width: 990px )");
     $(document).ready(function () {
@@ -23,6 +22,20 @@
             } else {
                 $(".dashboard").toggleClass("dashboard-compact");
             }
+        });
+        $(".category-link").click(function (event) {
+            event.preventDefault();
+            var url = $(this).attr("href");
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (data) {
+                    $("#category-details-container").html(data);
+                },
+                error: function () {
+                    alert("Failed to load category details.");
+                }
+            });
         });
     });
 </script>
@@ -341,9 +354,22 @@
         overflow: hidden;
         background-color: rgba(236, 238, 239, 0.3);
     }
+   
 
+    .CategoriesContainer {
+        display:flex;
+        border:1px solid black ;
+        width:180px;
+        height:400px;
+        gap:10px
+
+    } 
+    .category-details-container {
+       height :500px;
+        border: 1px solid black;
+    }
 </style>
-<div class="col-lg-3">
+<div class="CategoriesContainer">
     <div class="hero__categories">
         <div class='dashboard-nav-dropdown'>
             <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
@@ -352,9 +378,14 @@
             <div class='dashboard-nav-dropdown-menu'>
                 @foreach (var category in Model)
                 {
-                    <a href="#" class="dashboard-nav-dropdown-item">@category.Name</a>
+                    <a href="@Url.Action("Details", "Categories", new { id = category.Id })"
+                       class="dashboard-nav-dropdown-item category-link"
+                       data-id="@category.Id">@category.Name</a>
                 }
             </div>
         </div>
+    </div>
+    <div id="category-details-container" class="category-details-container">
+        <!-- The partial view will be loaded here -->
     </div>
 </div>

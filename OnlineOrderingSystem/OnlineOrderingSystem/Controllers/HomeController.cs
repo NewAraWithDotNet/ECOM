@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OnlineOrderingSystem.Data;
 using OnlineOrderingSystem.Models;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -12,11 +13,12 @@ namespace OnlineOrderingSystem.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<User> _userManager; // Add UserManager dependency
-
-        public HomeController(ILogger<HomeController> logger, UserManager<User> userManager)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ILogger<HomeController> logger, UserManager<User> userManager, ApplicationDbContext context)
         {
             _logger = logger;
             _userManager = userManager; // Initialize UserManager
+            _context = context;
         }
 
         public IActionResult Index()
@@ -40,7 +42,8 @@ namespace OnlineOrderingSystem.Controllers
                 ViewBag.UserName = user.UserName;
                 ViewBag.Avatar = user.Avatar;
             }
-            
+            List<Category> categories = _context.Categories.ToList();
+            ViewBag.Categories = categories;
             return View();
         }
 

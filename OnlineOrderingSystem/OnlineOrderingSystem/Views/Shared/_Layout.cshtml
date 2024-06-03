@@ -42,13 +42,16 @@
                         </form>
                         <div>
                             <a asp-area="" asp-controller="Home" asp-action="HomePage">HOME</a>
-
-                            <a asp-area="" asp-controller="Categories" asp-action="Create">Catagories</a>
-                            <a asp-area="" asp-controller="Products" asp-action="Create">Product</a>
-
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a asp-area="" asp-controller="Categories" asp-action="Create">Categories</a>
+                                <a asp-area="" asp-controller="Products" asp-action="Create">Product</a>
+                                <a asp-area="" asp-controller="Carts" asp-action="Create">Carts</a>
+                                <a asp-area="" asp-controller="Orders" asp-action="Create">Orders</a>
+                                <a asp-area="" asp-controller="Payments" asp-action="Create">Payments</a>                            }
                         </div>
                     </div>
-                
+
 
                 }
                 else
