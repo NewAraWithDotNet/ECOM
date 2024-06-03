@@ -13,59 +13,58 @@
 <body>
 
     <header>
-        <nav>
-            <div class="left">
-                <div class="logo">
-                    <img src="" alt="logo" />
+        <div class="navbar"> 
+            <div class="desktop-navbar">
+                <!-- LEFT -->
+                <div class="left-section">
+                    <a href="/" class="logo-with-image">
+                        <img src="/logo.png" alt="Logo" class="logo-image">
+                        <div class="logo">LAMA</div>
+                    </a>
+                    <div class="nav-links">
+                        <a asp-area="" asp-controller="Home" asp-action="HomePage">HOME</a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-area="" asp-controller="Categories" asp-action="Create">Categories</a>
+                            <a asp-area="" asp-controller="Products" asp-action="Create">Product</a>
+                            <a asp-area="" asp-controller="Carts" asp-action="Create">Carts</a>
+                            <a asp-area="" asp-controller="Orders" asp-action="Create">Orders</a>
+                            <a asp-area="" asp-controller="Payments" asp-action="Create">Payments</a>
+                        }
+                    </div>
                 </div>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <div class="userInfo">
-                        <div>
-                            <a class="nav-link text-dark" href="#">@User.Identity.Name</a>
-                        </div>
-
-                        <div>
-                            <img src="@ViewBag.Avatar" href="#" />
-                        </div>
-                    </div>
-                }
-
-            </div>
-            <div class="right">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <div class="buttons">
-
-                        <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="nav-item">
-                            <button type="submit">Logout</button>
+                <!-- RIGHT -->
+                <div class="right-section">
+                    <div class="search-bar">
+                        <form class="search-form" onsubmit="handleSearch(event)">
+                            <input type="text"
+                                   name="name"
+                                   placeholder="Search"
+                                   class="search-input" />
+                            <button class="search-button">
+                                <img src="~/images/search.png" alt="Search" class="search-icon">
+                            </button>
                         </form>
-                        <div>
-                            <a asp-area="" asp-controller="Home" asp-action="HomePage">HOME</a>
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <a asp-area="" asp-controller="Categories" asp-action="Create">Categories</a>
-                                <a asp-area="" asp-controller="Products" asp-action="Create">Product</a>
-                                <a asp-area="" asp-controller="Carts" asp-action="Create">Carts</a>
-                                <a asp-area="" asp-controller="Orders" asp-action="Create">Orders</a>
-                                <a asp-area="" asp-controller="Payments" asp-action="Create">Payments</a>                            }
-                        </div>
                     </div>
-
-
-                }
-                else
-                {
-                    <div class="singin">
-                        <a asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                        <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                    <div class="nav-icons">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div>
+                                <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="nav-item">
+                                    <button type="submit">Logout</button>
+                                </form>
+                            </div>
+                        }else
+                        {
+                            <div class="singin">
+                                <a asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                                <a asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                            </div>
+                        }
                     </div>
-
-                }
+                </div>
             </div>
-
-        </nav>
-
+        </div>
     </header>
 
     <div class="pageContainer">

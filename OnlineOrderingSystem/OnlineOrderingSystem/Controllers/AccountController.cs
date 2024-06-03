@@ -1,7 +1,10 @@
 ﻿// Controllers/AccountController.cs
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineOrderingSystem.Models;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 public class AccountController : Controller
@@ -29,7 +32,12 @@ public class AccountController : Controller
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                return RedirectToAction("HomePage", "Home"); 
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    HttpContext.Session.SetString("UserId", user.Id); // Save user ID in session
+                }
+                return RedirectToAction("HomePage", "Home");
             }
             else
             {
@@ -37,6 +45,11 @@ public class AccountController : Controller
             }
         }
         return View(model);
+    }
+
+    private async Task SignInUser(Microsoft.AspNetCore.Identity.SignInResult result)
+    {
+        throw new NotImplementedException();
     }
 
     [HttpGet]
@@ -70,4 +83,5 @@ public class AccountController : Controller
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Home"); // Redirect to home page after logout
     }
+  
 }

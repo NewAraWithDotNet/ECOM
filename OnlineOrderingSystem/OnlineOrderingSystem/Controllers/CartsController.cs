@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineOrderingSystem.Data;
 using OnlineOrderingSystem.Models;
-using Microsoft.DotNet.MSIdentity;
 
 namespace OnlineOrderingSystem.Controllers
 {
@@ -48,9 +47,9 @@ namespace OnlineOrderingSystem.Controllers
         [Authorize]
         public IActionResult AddToCart(int productId)
         {
-           
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if(userId!=null)
+
+            var userId = HttpContext.Session.GetString("UserId");
+            if (userId!=null)
             {
                 var cart = _context.Carts.FirstOrDefault(c => c.UserId == int.Parse(userId));
 

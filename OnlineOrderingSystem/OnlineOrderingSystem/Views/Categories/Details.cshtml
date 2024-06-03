@@ -7,14 +7,23 @@
     .products{
         width:800px;
         height:600px;
+        display:flex;
+        gap:10p;
     }
+
+        .products .CardBody {
+           
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+        }
 </style>
 @if (Model.Products != null && Model.Products.Any())
 {
     <div class="products">
         @foreach (var product in Model.Products)
         {
-            <div class="col-md-3">
+            <div class="CardBody">
                 <div class="card mb-4 shadow-sm">
                     @if (!string.IsNullOrEmpty(product.Image))
                     {
