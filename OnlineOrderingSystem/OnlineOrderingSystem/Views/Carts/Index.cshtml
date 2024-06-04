@@ -1,35 +1,58 @@
-﻿@model IEnumerable<OnlineOrderingSystem.Models.Cart>
+﻿@model OnlineOrderingSystem.ViewModels.CartViewModel
 
-@{
-    ViewData["Title"] = "Index";
+<div class="container">
+    <h1 class="mt-5 mb-4">Your Cart</h1>
+    <p class="lead">User: @Model.UserName</p>
+
+    <div class="row">
+        @foreach (var item in Model.CartItems)
+        {
+           
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="~/images/@item.Image" class="card-img-top" alt="@item.ProductName" />
+                    }
+                   
+                    <div class="card-body">
+                        <h5 class="card-title">@item.ProductName</h5>
+                        <p class="card-text">Price: $@item.Price</p>
+                        <div class="form-group">
+                            <label for="quantity-@item.ProductId">Quantity:</label>
+                            <input type="number" class="form-control" id="quantity-@item.ProductId" value="@item.Quantity" data-product-id="@item.ProductId">
+                        </div>
+                        <p>Total Price: $<span class="total-price" id="total-price-@item.ProductId">@item.TotalPrice</span></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12 text-right">
+            <p class="lead">Total Cart Price: $<span id="total-cart-price">@Model.CartItems.Sum(item => item.TotalPrice)</span></p>
+        </div>
+        
+        <a asp-controller="Carts" asp-action="Checkout" class="btn btn-primary">Checkout</a>
+
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $('input[type="number"]').change(function () {
+            var productId = $(this).data('product-id');
+            var quantity = $(this).val();
+            var price = $('#total-price-' + productId).closest('.card-body').find('.card-text').text().replace('Price: $', '');
+            var totalPrice = parseFloat(price) * quantity;
+            $('#total-price-' + productId).text(totalPrice.toFixed(2));
+
+            var totalCartPrice = 0;
+            $('.total-price').each(function () {
+                totalCartPrice += parseFloat($(this).text());
+            });
+            $('#total-cart-price').text(totalCartPrice.toFixed(2));
+        });
+    </script>
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
