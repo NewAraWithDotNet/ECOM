@@ -4,10 +4,8 @@
 }
 <h2>@Model.Name</h2>
 
-
 @if (Model.Products != null && Model.Products.Any())
 {
-    
     <div class="row">
         @foreach (var product in Model.Products)
         {
@@ -24,20 +22,15 @@
                                 <p class="card-text"><strong>Price:</strong> @product.Price.ToString("C")</p>
                                 <p class="card-text"><strong>Category:</strong> @product.Category.Name</p>
                                 <div class="row">
-
                                     <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="col-md-4  btn btn-warning">View</a>
                                     <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="col-md-4 btn btn-info">Edit</a>
-                                    <a type="submit" asp-action="AddToCart" asp-controller="Carts" asp-route-id="@product.Id" method="post" class="col-md-4 btn btn-success">
-                                        Add
-                                    </a>
+                                    <button type="button" onclick="addToCart(@product.Id)" class="col-md-4 btn btn-success">Add</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         }
     </div>
 }
@@ -45,3 +38,23 @@ else
 {
     <p>No products available for this category.</p>
 }
+
+<script>
+    function addToCart(productId) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddToCart", "Carts")',
+            data: { id: productId },
+            success: function (response) {
+                if (response.success) {
+                    toastr.success(response.message);
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function () {
+                toastr.error("An error occurred while adding the product to the cart.");
+            }
+        });
+    }
+</script>
