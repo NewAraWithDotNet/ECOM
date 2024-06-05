@@ -44,9 +44,11 @@ namespace OnlineOrderingSystem.Controllers
 
                 var cartViewModel = new CartViewModel
                 {
-                    UserName = userCart.user.UserName,
+                    Email = userCart.user.Email,
+                    Avatar = userCart.user.Avatar,
                     CartItems = userCart.CartItems.Select(ci => new CartItemViewModel
                     {
+                        CartItemId = ci.Id,
                         ProductId = ci.ProductId,
                         ProductName = ci.Product.Name,
                         Quantity = ci.Quantity,
@@ -61,7 +63,7 @@ namespace OnlineOrderingSystem.Controllers
 
 
         public async Task<IActionResult> Checkout()
-        {
+        { 
             var currentUser = await _userManager.GetUserAsync(User);
             string userId = currentUser.Id;
 
@@ -77,7 +79,7 @@ namespace OnlineOrderingSystem.Controllers
             var cartItems = _context.CartItems.Where(ci => ci.Cart.UserId == currentUser.Id).ToList();
             _context.Orders.Add(order);
             foreach (var cartItem in cartItems)
-            {
+            { 
                 var orderItem = new OrderItem
                 {
                     Order = order,
@@ -93,7 +95,7 @@ namespace OnlineOrderingSystem.Controllers
             order.TotalPrice = order.OrderItems.Sum(oi => oi.Quantity * oi.Price);
 
 
-            _context.SaveChanges();
+
 
             _context.CartItems.RemoveRange(cartItems);
             _context.SaveChanges();

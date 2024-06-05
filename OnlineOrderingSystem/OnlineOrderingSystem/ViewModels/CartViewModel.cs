@@ -2,12 +2,15 @@
 {
     public class CartViewModel
     {
-        public string UserName { get; set; }
+        public string Email { get; set; }
+         public string Avatar { get; set; }
         public List<CartItemViewModel> CartItems { get; set; }
     }
 
     public class CartItemViewModel
     {
+        public int CartItemId { get; set; }
+
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Quantity { get; set; }

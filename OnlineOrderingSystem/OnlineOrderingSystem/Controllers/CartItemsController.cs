@@ -55,8 +55,7 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // POST: CartItems/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CartId,ProductId,Quantity")] CartItem cartItem)
@@ -91,8 +90,7 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // POST: CartItems/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CartId,ProductId,Quantity")] CartItem cartItem)
@@ -126,41 +124,40 @@ namespace OnlineOrderingSystem.Controllers
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", cartItem.ProductId);
             return View(cartItem);
         }
-
-        // GET: CartItems/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCartItem(int id, int quantity)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cartItem = await _context.CartItems
-                .Include(c => c.Cart)
-                .Include(c => c.Product)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var cartItem = _context.CartItems.Find(id);
             if (cartItem == null)
             {
                 return NotFound();
             }
 
-            return View(cartItem);
+            cartItem.Quantity = quantity;
+            _context.Update(cartItem);
+            _context.SaveChanges();
+
+            return Json(new { success = true });
         }
 
-        // POST: CartItems/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+
+        [HttpPost]
+        public IActionResult RemoveCartItem(int id)
         {
-            var cartItem = await _context.CartItems.FindAsync(id);
-            if (cartItem != null)
+            var orderItem = _context.CartItems.Find(id);
+            if (orderItem != null)
             {
-                _context.CartItems.Remove(cartItem);
+                _context.CartItems.Remove(orderItem);
+                _context.SaveChanges();
+                return Json(new { success = true });
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Json(new { success = false, message = "Item not found" });
         }
+
+
+
 
         private bool CartItemExists(int id)
         {

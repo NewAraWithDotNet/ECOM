@@ -1,5 +1,8 @@
-﻿@model OnlineOrderingSystem.ViewModels.CartViewModel
-
+﻿    @model OnlineOrderingSystem.ViewModels.CartViewModel
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+@{
+    var afToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
+}
 <div class="card">
     <div class="row">
         <div class="col-md-8 cart">
@@ -10,22 +13,32 @@
                 </div>
             </div>
             <div class="row border-top border-bottom">
+                @Html.AntiForgeryToken()
                 @foreach (var item in Model.CartItems)
                 {
-                    <div class="row main align-items-center">
+                    <div class="row flex-nowrap align-items-center main">
                         <div class="col-2">
                             <img src="~/images/@item.Image" class="img-fluid" alt="@item.ProductName" />
                         </div>
-                        <div class="col">
-                            <div class="row text-muted">CategoryName</div>
+                        <div class="col-2">
                             <div class="row">@item.ProductName</div>
                         </div>
-                        <div class="col">
-                            <label for="quantity-@item.ProductId">Quantity:</label>
-                            <input type="number" class="form-control quantity-input" id="quantity-@item.ProductId" value="@item.Quantity" data-product-id="@item.ProductId" min="1">
+                        <div class="col-4">
+                            <form asp-action="UpdateCartItem" method="post" class="updateCartItemForm">
+                                <div class="form-group">
+                                    <label asp-for="@item.Quantity" class="control-label">Quantity</label>
+                                    <input asp-for="@item.Quantity" class="form-control quantityInput" data-cart-item-id="@item.CartItemId" />
+                                    <span asp-validation-for="@item.Quantity" class="text-danger"></span>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col">
-                            <p>Total Price: $<span class="total-price" id="total-price-@item.ProductId">@item.TotalPrice.ToString("0.00")</span></p>
+                        <div class="col-2">
+                            $<span class="total-price" id="total-price-@item.ProductId">@item.TotalPrice.ToString("0.00")</span>
+                        </div>
+                        <div class="col-2">
+                            <a href="#" class="remove-cart-item" data-cart-item-id="@item.CartItemId">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
                         </div>
                     </div>
                 }
@@ -34,52 +47,77 @@
                 <a asp-area="" asp-controller="Home" asp-action="HomePage" class="nav-item nav-link active">
                     <span class="text-muted">Back to shop</span>
                 </a>
-               
             </div>
-
         </div>
         <div class="col-md-4 summary">
             <div><h5><b>Summary</b></h5></div>
             <hr>
-            <div class="row">
-                <div class="col" style="padding-left:0;">ITEMS @Model.CartItems.Count()</div>
-                <div class="col text-right">$@Model.CartItems.Sum(item => item.TotalPrice).ToString("0.00")</div>
+            <div class="col" style="padding-left:0;">
+                <img src="@Model.Avatar" alt="User Avatar" style="width:50px;height:50px;border-radius:50%;">
             </div>
-            <form>
-                <p>SHIPPING</p>
-                <select class="form-select">
-                    <option class="text-muted">Standard-Delivery- $5.00</option>
-                </select>
-                <p>GIVE CODE</p>
-                <input id="code" class="form-control" placeholder="Enter your code">
-            </form>
+            <div class="row">
+                <div class="col" style="padding-left:0;">USER EMAIL</div>
+                <div class="col text-right">@Model.Email</div>
+            </div>
+            <hr>
+         
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                 <div class="col">TOTAL PRICE</div>
                 <div class="col text-right">$<span id="total-cart-price">@Model.CartItems.Sum(item => item.TotalPrice).ToString("0.00")</span></div>
             </div>
-            <a asp-controller="Carts" asp-action="Checkout" class="btn btn-primary btn-block">Checkout</a>
+            <a asp-controller="Carts" asp-action="Checkout" class="btn btn-secondary btn-block">Checkout</a>
         </div>
+
     </div>
 </div>
 
-@section scripts {
-    <script>
-        $(document).ready(function () {
-            $('.quantity-input').on('change', function () {
-                var productId = $(this).data('product-id');
-                var quantity = $(this).val();
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-                var pricePerItem = parseFloat($(this).closest('.main').find('.total-price').data('price-per-item'));
+<script>
+    $(document).ready(function () {
+        $(".quantityInput").change(function () {
 
-                var totalPrice = pricePerItem * quantity;
-                $('#total-price-' + productId).text(totalPrice.toFixed(2));
+            var quantity = $(this).val();
+            var cartItemId = $(this).data('cart-item-id');
 
-                var totalCartPrice = 0;
-                $('.total-price').each(function () {
-                    totalCartPrice += parseFloat($(this).text());
-                });
-                $('#total-cart-price').text(totalCartPrice.toFixed(2));
+            $.ajax({
+                headers: {
+                    RequestVerificationToken: '@afToken'
+                },
+
+                url: '/CartItems/UpdateCartItem',
+                type: 'POST',
+                data: { id: cartItemId, quantity: quantity },
+                success: function (data) {
+                    toastr.info("success", "notice");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error updating cart item:", errorThrown, cartItemId);
+                }
             });
         });
-    </script>
-}
+        $(document).on('click', '.remove-cart-item', function (event) {
+            event.preventDefault(); 
+
+            var cartItemId = $(this).data('cart-item-id');
+
+            $.ajax({
+                headers: {
+                    RequestVerificationToken: '@afToken'
+                },
+                url: '/CartItems/RemoveCartItem',
+                type: 'POST',
+                data: { id: cartItemId },
+                success: function (data) {
+                    toastr.info("Item removed successfully", "Notice");
+                    
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error removing cart item:", errorThrown, cartItemId);
+                }
+            });
+        });
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

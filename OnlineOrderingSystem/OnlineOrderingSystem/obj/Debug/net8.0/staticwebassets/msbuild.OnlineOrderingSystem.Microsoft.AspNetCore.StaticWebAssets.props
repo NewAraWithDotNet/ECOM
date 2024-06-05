@@ -96,6 +96,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\295cc828-c732-4c00-bc5b-8cbc8000f7c1_Capture.PNG))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\33ac6b2d-e1e5-4301-bd39-43ce7549f0ec_wdwdwd.PNG))">
+      <SourceType>Package</SourceType>
+      <SourceId>OnlineOrderingSystem</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/OnlineOrderingSystem</BasePath>
+      <RelativePath>images/33ac6b2d-e1e5-4301-bd39-43ce7549f0ec_wdwdwd.PNG</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\33ac6b2d-e1e5-4301-bd39-43ce7549f0ec_wdwdwd.PNG))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\43486ecb-5182-4353-92d2-783142d3dd6f_22.PNG))">
       <SourceType>Package</SourceType>
       <SourceId>OnlineOrderingSystem</SourceId>

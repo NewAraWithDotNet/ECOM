@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineOrderingSystem.Data;
 using OnlineOrderingSystem.Models;
+using OnlineOrderingSystem.ViewModels;
 
 namespace OnlineOrderingSystem.Controllers
 {
@@ -26,23 +27,27 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // GET: Orders/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var order = _context.Orders
+                                .Include(o => o.User)
+                                .Include(o => o.OrderItems)
+                                    .ThenInclude(oi => oi.Product)
+                                .FirstOrDefault(o => o.Id == id);
 
-            var order = await _context.Orders
-                .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            return View(order);
-        }
+            var viewModel = new OrderViewModel
+            {
+                Order = order,
+                OrderItems = order.OrderItems
+            };
 
+            return View(viewModel);
+        }
         // GET: Orders/Create
         public IActionResult Create()
         {
