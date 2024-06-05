@@ -1,4 +1,4 @@
-﻿    @model OnlineOrderingSystem.ViewModels.CartViewModel
+﻿@model OnlineOrderingSystem.ViewModels.CartViewModel
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 @{
     var afToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
@@ -16,7 +16,7 @@
                 @Html.AntiForgeryToken()
                 @foreach (var item in Model.CartItems)
                 {
-                    <div class="row flex-nowrap align-items-center main">
+                    <div class="row flex-nowrap align-items-center main" data-cart-item-id="@item.CartItemId">
                         <div class="col-2">
                             <img src="~/images/@item.Image" class="img-fluid" alt="@item.ProductName" />
                         </div>
@@ -60,7 +60,7 @@
                 <div class="col text-right">@Model.Email</div>
             </div>
             <hr>
-         
+
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                 <div class="col">TOTAL PRICE</div>
                 <div class="col text-right">$<span id="total-cart-price">@Model.CartItems.Sum(item => item.TotalPrice).ToString("0.00")</span></div>
@@ -73,51 +73,67 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<script>
-    $(document).ready(function () {
-        $(".quantityInput").change(function () {
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.quantityInput').on('change', function () {
+                var cartItemId = $(this).data('cart-item-id');
+                var quantity = $(this).val();
 
-            var quantity = $(this).val();
-            var cartItemId = $(this).data('cart-item-id');
-
-            $.ajax({
-                headers: {
-                    RequestVerificationToken: '@afToken'
-                },
-
-                url: '/CartItems/UpdateCartItem',
-                type: 'POST',
-                data: { id: cartItemId, quantity: quantity },
-                success: function (data) {
-                    toastr.info("success", "notice");
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error("Error updating cart item:", errorThrown, cartItemId);
+                if (quantity <= 0) {
+                    removeCartItem(cartItemId);
+                } else {
+                    updateCartItem(cartItemId, quantity);
                 }
             });
-        });
-        $(document).on('click', '.remove-cart-item', function (event) {
-            event.preventDefault(); 
 
-            var cartItemId = $(this).data('cart-item-id');
-
-            $.ajax({
-                headers: {
-                    RequestVerificationToken: '@afToken'
-                },
-                url: '/CartItems/RemoveCartItem',
-                type: 'POST',
-                data: { id: cartItemId },
-                success: function (data) {
-                    toastr.info("Item removed successfully", "Notice");
-                    
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error("Error removing cart item:", errorThrown, cartItemId);
-                }
+            $('.remove-cart-item').on('click', function (e) {
+                e.preventDefault();
+                var cartItemId = $(this).data('cart-item-id');
+                removeCartItem(cartItemId);
             });
+
+            function updateCartItem(cartItemId, quantity) {
+                $.ajax({
+                    url: '@Url.Action("UpdateCartItem", "CartItems")',
+                    type: 'POST',
+                    data: {
+                        id: cartItemId,
+                        quantity: quantity,
+                        __RequestVerificationToken: '@afToken'
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                           
+                        } else {
+                            alert('Error updating cart item.');
+                        }
+                    }
+                });
+            }
+
+            function removeCartItem(cartItemId) {
+                $.ajax({
+                    url: '@Url.Action("RemoveCartItem", "CartItems")',
+                    type: 'POST',
+                    data: {
+                        id: cartItemId,
+                        __RequestVerificationToken: '@afToken'
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            $('div[data-cart-item-id="' + cartItemId + '"]').remove();
+                           
+                        } else {
+                            alert('Error removing cart item.');
+                        }
+                    }
+                });
+            }
         });
-    });
-</script>
+    </script>
+}
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
