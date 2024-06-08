@@ -61,9 +61,9 @@ namespace OnlineOrderingSystem.Controllers
             }
         }
 
-
-        public async Task<IActionResult> Checkout()
-        { 
+        [HttpPost]
+        public async Task<IActionResult> Checkout(string selectedPaymentMethod)
+        {
             var currentUser = await _userManager.GetUserAsync(User);
             string userId = currentUser.Id;
 
@@ -79,7 +79,7 @@ namespace OnlineOrderingSystem.Controllers
             var cartItems = _context.CartItems.Where(ci => ci.Cart.UserId == currentUser.Id).ToList();
             _context.Orders.Add(order);
             foreach (var cartItem in cartItems)
-            { 
+            {
                 var orderItem = new OrderItem
                 {
                     Order = order,
@@ -94,6 +94,16 @@ namespace OnlineOrderingSystem.Controllers
 
             order.TotalPrice = order.OrderItems.Sum(oi => oi.Quantity * oi.Price);
 
+            var payment = new Payment
+            {
+                Order = order,
+                Amount = order.TotalPrice,
+                PaymentDate = DateTime.Now,
+                PaymentMethod = selectedPaymentMethod,
+                Status = "Success",
+
+            };
+            _context.Payments.Add(payment);
 
 
 
@@ -152,6 +162,40 @@ namespace OnlineOrderingSystem.Controllers
         }
 
 
+        public async Task<IActionResult> Details()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            string userId = user.Id;
+            {
+                var userCart = _context.Carts
+                    .Include(c => c.user)
+                    .Include(c => c.CartItems)
+                        .ThenInclude(ci => ci.Product)
+                    .FirstOrDefault(c => c.UserId == userId);
+
+                if (userCart == null)
+                {
+                    return NotFound();
+                }
+
+                var cartViewModel = new CartViewModel
+                {
+                    Email = userCart.user.Email,
+                    Avatar = userCart.user.Avatar,
+                    CartItems = userCart.CartItems.Select(ci => new CartItemViewModel
+                    {
+                        CartItemId = ci.Id,
+                        ProductId = ci.ProductId,
+                        ProductName = ci.Product.Name,
+                        Quantity = ci.Quantity,
+                        Price = ci.Product.Price,
+                        Image = ci.Product.Image
+                    }).ToList()
+                };
+
+                return View(cartViewModel);
+            }
+        }
 
 
 

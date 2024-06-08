@@ -6,15 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - OnlineOrderingSystem</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @*   <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-    @* <link rel="stylesheet" href="~/OnlineOrderingSystem.styles.css" asp-append-version="true" /> *@
+
+    <!-- jQuery (already included once) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include Toastr CSS and JS files -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Toastr CSS and JS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="~/js/site.js"></script>
 </head>
+
 
 <body>
     <!-- Topbar Start -->
@@ -68,14 +76,15 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-               
+                <div id="cartModalContainer"></div>
+
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a href="" class="btn border">
                         <i class="fas fa-heart text-primary"></i>
                         <span class="badge">WishList</span>
                     </a>
-                    <a href="/Carts" class="btn border">
+                    <a href="#" id="cartLink" class="btn border">
                         <i class="fas fa-shopping-cart text-primary"></i>
                         <span class="badge">Cart</span>
                     </a>
@@ -206,7 +215,7 @@
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="img/payments.png" alt="">
+               @*  <img class="img-fluid" src="img/payments.png" alt=""> *@
             </div>
         </div>
     </div>
@@ -220,11 +229,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/easing/easing.min.js"></script>
     <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function closeCart() {
+        debugger;
+        document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+    };
+    </script>
 </body>
 </html>

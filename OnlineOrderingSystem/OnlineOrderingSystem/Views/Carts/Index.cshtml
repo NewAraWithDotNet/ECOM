@@ -1,80 +1,208 @@
 ﻿@model OnlineOrderingSystem.ViewModels.CartViewModel
+@{
+    Layout = null;
+}
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 @{
     var afToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
-<div class="card">
-    <div class="row">
-        <div class="col-md-8 cart">
-            <div class="title">
-                <div class="row">
-                    <div class="col"><h4><b>Shopping Cart</b></h4></div>
-                    <div class="col align-self-center text-right text-muted">@Model.CartItems.Count() items</div>
-                </div>
-            </div>
-            <div class="row border-top border-bottom">
-                @Html.AntiForgeryToken()
-                @foreach (var item in Model.CartItems)
-                {
-                    <div class="row flex-nowrap align-items-center main" data-cart-item-id="@item.CartItemId">
-                        <div class="col-2">
-                            <img src="~/images/@item.Image" class="img-fluid" alt="@item.ProductName" />
-                        </div>
-                        <div class="col-2">
-                            <div class="row">@item.ProductName</div>
-                        </div>
-                        <div class="col-4">
-                            <form asp-action="UpdateCartItem" method="post" class="updateCartItemForm">
-                                <div class="form-group">
-                                    <label asp-for="@item.Quantity" class="control-label">Quantity</label>
-                                    <input asp-for="@item.Quantity" class="form-control quantityInput" data-cart-item-id="@item.CartItemId" />
-                                    <span asp-validation-for="@item.Quantity" class="text-danger"></span>
+
+<style>
+    .cart-container {
+        position: absolute;
+        padding: 1rem;
+        border-radius: 0.375rem;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        background-color: white;
+        top: 3rem;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        z-index: 20;
+    }
+
+    .cart-title {
+        font-size: 1.25rem; /* Equivalent to text-xl */
+    }
+
+    .list-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem; /* Equivalent to gap-8 */
+    }
+
+    .item-container {
+        display: flex;
+        gap: 1rem; /* Equivalent to gap-4 */
+    }
+
+    .item-image {
+        object-fit: cover;
+        border-radius: 0.375rem; /* Equivalent to rounded-md */
+    }
+
+    .item-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .item-top {
+        /* No additional styles needed */
+    }
+
+    .item-title-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem; /* Equivalent to gap-8 */
+    }
+
+    .item-title {
+        font-weight: 600; /* Equivalent to font-semibold */
+    }
+
+    .item-price-container {
+        padding: 0.25rem; /* Equivalent to p-1 */
+        background-color: #f9fafb; /* Equivalent to bg-gray-50 */
+        border-radius: 0.125rem; /* Equivalent to rounded-sm */
+        display: flex;
+        align-items: center;
+        gap: 0.5rem; /* Equivalent to gap-2 */
+    }
+
+    .item-quantity {
+        font-size: 0.75rem; /* Equivalent to text-xs */
+        color: #10b981; /* Equivalent to text-green-500 */
+    }
+
+    .item-description {
+        font-size: 0.875rem; /* Equivalent to text-sm */
+        color: #6b7280; /* Equivalent to text-gray-500 */
+    }
+
+    .item-bottom {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.875rem; /* Equivalent to text-sm */
+    }
+
+    .item-remove {
+        color: #3b82f6; /* Equivalent to text-blue-500 */
+        cursor: pointer;
+    }
+
+    .subtotal-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 600; /* Equivalent to font-semibold */
+    }
+
+    .subtotal-text {
+        /* No additional styles needed */
+    }
+
+    .shipping-info {
+        color: #6b7280; /* Equivalent to text-gray-500 */
+        font-size: 0.875rem; /* Equivalent to text-sm */
+        margin-top: 0.5rem; /* Equivalent to mt-2 */
+        margin-bottom: 1rem; /* Equivalent to mb-4 */
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.875rem; /* Equivalent to text-sm */
+    }
+
+    .view-cart-button {
+        border-radius: 0.375rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d1d5db;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .checkout-button {
+        border-radius: 0.375rem; /* Equivalent to rounded-md */
+        padding: 0.75rem 1rem; /* Equivalent to py-3 px-4 */
+        background-color: black;
+        color: white;
+    }
+
+        .checkout-button:disabled {
+            cursor: not-allowed; /* Equivalent to disabled:cursor-not-allowed */
+            opacity: 0.75; /* Equivalent to disabled:opacity-75 */
+        }
+
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+<div class="cart-container" id="cartPartial">
+    @if (Model.CartItems.Any())
+    {
+        <h2 class="cart-title">Shopping Cart</h2>
+        <div class="list-container">
+            @foreach (var item in Model.CartItems)
+            {
+                <div class="item-container" key="@item.CartItemId">
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="~/images/@item.Image" alt="" width="72" height="96" class="item-image" />
+                    }
+                    <div class="item-details">
+                        <div class="item-top">
+                            <div class="item-title-container">
+                                <h3 class="item-title">@item.ProductName</h3>
+                                <div class="item-price-container">
+                                    @if (item.Quantity > 1)
+                                    {
+                                        <div class="item-quantity">@item.Quantity x </div>
+                                    }
+                                    $@item.Price
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            $<span class="total-price" id="total-price-@item.ProductId">@item.TotalPrice.ToString("0.00")</span>
-                        </div>
-                        <div class="col-2">
-                            <a href="#" class="remove-cart-item" data-cart-item-id="@item.CartItemId">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
+                        <div class="item-bottom">
+                            <span class="item-description">Qty. @item.Quantity</span>
+                            <div class="col-2">
+                                <a href="#" class="remove-cart-item" data-cart-item-id="@item.CartItemId">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                }
+                </div>
+            }
+        </div>
+        <div>
+            <div class="subtotal-container">
+                <span class="subtotal-text">Subtotal</span>
+                <span class="subtotal-text">$@Model.CartItems.Sum(item => item.TotalPrice).ToString("0.00")</span>
             </div>
-            <div class="back-to-shop">
-                <a asp-area="" asp-controller="Home" asp-action="HomePage" class="nav-item nav-link active">
-                    <span class="text-muted">Back to shop</span>
-                </a>
+            <p class="shipping-info">Shipping and taxes calculated at checkout.</p>
+            <div class="button-container">
+                <a class="view-cart-button" href="/Carts/Details">View Cart</a>
+                <button class="checkout-button">Checkout</button>
             </div>
         </div>
-        <div class="col-md-4 summary">
-            <div><h5><b>Summary</b></h5></div>
-            <hr>
-            <div class="col" style="padding-left:0;">
-                <img src="@Model.Avatar" alt="User Avatar" style="width:50px;height:50px;border-radius:50%;">
-            </div>
-            <div class="row">
-                <div class="col" style="padding-left:0;">USER EMAIL</div>
-                <div class="col text-right">@Model.Email</div>
-            </div>
-            <hr>
-
-            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col">TOTAL PRICE</div>
-                <div class="col text-right">$<span id="total-cart-price">@Model.CartItems.Sum(item => item.TotalPrice).ToString("0.00")</span></div>
-            </div>
-            <a asp-controller="Carts" asp-action="Checkout" class="btn btn-secondary btn-block">Checkout</a>
-        </div>
-
+    }
+    else
+    {
+        <div>Cart is Empty</div>
+    }
+    <div class="modal-footer">
+        <button type="button" onclick="closeCart()" id="closeCartBtn" class="btn btn-secondary closeCartBtn">Close</button>
     </div>
 </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 @section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
     <script>
         $(document).ready(function () {
             $('.quantityInput').on('change', function () {
@@ -105,7 +233,7 @@
                     },
                     success: function (response) {
                         if (response.success) {
-                           
+
                         } else {
                             alert('Error updating cart item.');
                         }
@@ -124,16 +252,22 @@
                     success: function (response) {
                         if (response.success) {
                             $('div[data-cart-item-id="' + cartItemId + '"]').remove();
-                           
+
                         } else {
                             alert('Error removing cart item.');
                         }
                     }
                 });
             }
+
+
         });
+
+
+        function closeCart() {
+            debugger;
+            document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+        }
     </script>
 }
 
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
