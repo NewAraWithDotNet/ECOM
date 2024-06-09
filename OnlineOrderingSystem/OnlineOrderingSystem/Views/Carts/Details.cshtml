@@ -156,13 +156,9 @@
                 }
             });
         }
-        $(".closeCartBtn").click(function () {
-            console.log("Close button clicked");
-            $("#cartPartial").hide();
-        });
+    
 
         $('#checkoutBtn').click(function () {
-            debugger;
             var selectedPMethod = $('input[name="selectedPaymentMethod"]:checked').val();
             console.log(selectedPMethod)
             if (selectedPMethod) {

@@ -10,7 +10,7 @@ $(document).ready(function () {
             type: "GET",
             success: function (data) {
                 $("#cartModalContainer").html(data);
-                $("#cartModal").modal("show");
+                $("#cartModalContainer").find("#cartPartial").show();
             },
             error: function (xhr, status, error) {
                 console.error(error);

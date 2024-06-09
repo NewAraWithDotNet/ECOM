@@ -17,7 +17,7 @@ namespace OnlineOrderingSystem.Controllers
         public HomeController(ILogger<HomeController> logger, UserManager<User> userManager, ApplicationDbContext context)
         {
             _logger = logger;
-            _userManager = userManager; // Initialize UserManager
+            _userManager = userManager; 
             _context = context;
         }
 

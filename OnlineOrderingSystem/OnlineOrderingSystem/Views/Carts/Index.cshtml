@@ -222,52 +222,14 @@
                 removeCartItem(cartItemId);
             });
 
-            function updateCartItem(cartItemId, quantity) {
-                $.ajax({
-                    url: '@Url.Action("UpdateCartItem", "CartItems")',
-                    type: 'POST',
-                    data: {
-                        id: cartItemId,
-                        quantity: quantity,
-                        __RequestVerificationToken: '@afToken'
-                    },
-                    success: function (response) {
-                        if (response.success) {
+         
 
-                        } else {
-                            alert('Error updating cart item.');
-                        }
-                    }
-                });
-            }
-
-            function removeCartItem(cartItemId) {
-                $.ajax({
-                    url: '@Url.Action("RemoveCartItem", "CartItems")',
-                    type: 'POST',
-                    data: {
-                        id: cartItemId,
-                        __RequestVerificationToken: '@afToken'
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            $('div[data-cart-item-id="' + cartItemId + '"]').remove();
-
-                        } else {
-                            alert('Error removing cart item.');
-                        }
-                    }
-                });
-            }
+           
+          
 
 
         });
 
-
-        function closeCart() {
-            debugger;
-            document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
-        }
     </script>
 }
 

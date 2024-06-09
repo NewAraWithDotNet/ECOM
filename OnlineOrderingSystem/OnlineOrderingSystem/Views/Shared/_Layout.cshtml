@@ -241,7 +241,7 @@
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         function closeCart() {
-        debugger;
+            $("#cartPartial").hide();
         document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
     };
     </script>
