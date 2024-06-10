@@ -37,6 +37,16 @@
                 }
             });
         });
+        $.ajax({
+            url: '@Url.Action("Edit", "Products")',
+            type: "GET",
+            success: function (data) {
+                $("#category-details-container").html(data);
+            },
+            error: function () {
+                alert("Failed to load products.");
+            }
+        });
     });
 </script>
 <style>
@@ -390,6 +400,7 @@
         </div>
         <div id="category-details-container" class="col-lg-9">
             <!-- The partial view will be loaded here -->
+       
         </div>
     </div>
 </div>

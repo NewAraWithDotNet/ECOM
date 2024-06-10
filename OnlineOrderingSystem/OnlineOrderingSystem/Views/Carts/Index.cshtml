@@ -142,7 +142,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-<div class="cart-container" id="cartPartial">
+<div class="cart-container" id="cart-container">
     @if (Model.CartItems.Any())
     {
         <h2 class="cart-title">Shopping Cart</h2>
@@ -201,35 +201,46 @@
 </div>
 
 
-@section Scripts {
-   
-    <script>
-        $(document).ready(function () {
-            $('.quantityInput').on('change', function () {
-                var cartItemId = $(this).data('cart-item-id');
-                var quantity = $(this).val();
-
-                if (quantity <= 0) {
-                    removeCartItem(cartItemId);
-                } else {
-                    updateCartItem(cartItemId, quantity);
-                }
-            });
-
-            $('.remove-cart-item').on('click', function (e) {
-                e.preventDefault();
-                var cartItemId = $(this).data('cart-item-id');
-                removeCartItem(cartItemId);
-            });
-
-         
-
-           
-          
-
-
+<script>
+    $(document).ready(function () {
+        $('.remove-cart-item').on('click', function (e) {
+            e.preventDefault();
+            var cartItemId = $(this).data('cart-item-id');
+            removeCartItem(cartItemId);
         });
+    });
 
-    </script>
-}
+    function removeCartItem(cartItemId) {
+        $.ajax({
+            url: '@Url.Action("RemoveCartItem", "CartItems")',
+            type: 'POST',
+            data: {
+                id: cartItemId,
+                __RequestVerificationToken: '@afToken'
+            },
+            success: function (response) {
+                if (response.success) {
+                    $('.item-container').filter(function () {
+                        return $(this).find('.remove-cart-item').data('cart-item-id') === cartItemId;
+                    }).remove();
 
+                    updateSubtotal();
+                } else {
+                    alert('Error removing cart item.');
+                }
+            }
+        });
+    }
+
+    function updateSubtotal() {
+        var subtotal = 0;
+        $('.item-container').each(function () {
+            var priceText = $(this).find('.item-price-container').text().trim();
+            var quantityText = $(this).find('.item-quantity').text().trim();
+            var quantity = quantityText ? parseInt(quantityText.split('x')[0]) : 1;
+            var price = parseFloat(priceText.replace('$', ''));
+            subtotal += quantity * price;
+        });
+        $('.subtotal-text').last().text('$' + subtotal.toFixed(2));
+    }
+</script>

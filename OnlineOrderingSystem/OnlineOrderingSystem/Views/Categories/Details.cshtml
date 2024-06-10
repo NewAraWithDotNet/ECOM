@@ -1,4 +1,8 @@
 ﻿@model OnlineOrderingSystem.Models.Category
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+@{
+    var afToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
+}
 @{
     Layout = null;
 }
@@ -44,10 +48,14 @@ else
         $.ajax({
             type: "POST",
             url: '@Url.Action("AddToCart", "Carts")',
-            data: { id: productId },
+            data: {
+                id: productId,
+                __RequestVerificationToken: '@afToken'
+            },
             success: function (response) {
                 if (response.success) {
-                    toastr.success(response.message);
+                    updateCart(response.cart);
+                    toastr.success("Product added to cart.");
                 } else {
                     toastr.error(response.message);
                 }
@@ -56,5 +64,17 @@ else
                 toastr.error("An error occurred while adding the product to the cart.");
             }
         });
+    }
+
+    function updateCart(cartViewModel) {
+        $('#cart-container').empty();
+        var cartHtml = '<h2>Shopping Cart</h2>';
+        cartHtml += '<div class="list-container">';
+        cartViewModel.cartItems.forEach(function (item) {
+            cartHtml += '<div class="item-container">';
+            cartHtml += '</div>';
+        });
+        cartHtml += '</div>';
+        $('#cart-container').html(cartHtml);
     }
 </script>

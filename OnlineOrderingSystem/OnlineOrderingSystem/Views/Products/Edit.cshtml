@@ -1,54 +1,51 @@
-﻿@model OnlineOrderingSystem.Models.Product
-
+﻿@model IEnumerable<OnlineOrderingSystem.Models.Product>
 @{
-    ViewData["Title"] = "Edit";
+    Layout = null;
 }
 
-<h1>Edit</h1>
-
-<h4>Product</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+    @foreach (var product in Model)
+    {
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-lg-12">
+                        @if (!string.IsNullOrEmpty(product.Image))
+                        {
+                            <img src="~/images/@product.Image" class="card-img-top" alt="@product.Name" />
+                        }
+                        <div class="col-lg-12">
+                            <h5 class="card-title">@product.Name</h5>
+                            <p class="card-text"><strong>Price:</strong> @product.Price.ToString("C")</p>
+                            <div class="row">
+                                <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="col-md-4 btn btn-warning">View</a>
+                                <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="col-md-4 btn btn-info">Edit</a>
+                                <button type="button" onclick="addToCart(@product.Id)" class="col-md-4 btn btn-success">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        </div>
+    }
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+<script>
+    function addToCart(productId) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddToCart", "Carts")',
+            data: { id: productId },
+            success: function (response) {
+                if (response.success) {
+                    toastr.success(response.message);
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function () {
+                toastr.error("An error occurred while adding the product to the cart.");
+            }
+        });
+    }
+</script>
