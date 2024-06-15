@@ -64,25 +64,81 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form action="" onsubmit="return false;">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" id="searchBox" class="form-control" placeholder="Search for products" onkeyup="searchProducts()">
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
                             </span>
                         </div>
                     </div>
+                    <div id="searchResults" class="mt-3">
+                        <!-- Search results will be displayed here -->
+                    </div>
                 </form>
             </div>
+
+            <script>
+                function searchProducts() {
+                    var query = $("#searchBox").val();
+                    console.log("Query:", query);
+                    $.ajax({
+                        url: '/Products/Search?query=' + query,
+                        method: 'POST',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            displayProducts(data);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error("There was an error with the AJAX request:", textStatus, errorThrown);
+                        }
+                    });
+                }
+
+                function displayProducts(products) {
+                    var $searchResults = $("#searchResults");
+                    console.log(products)
+                    $searchResults.empty(); // Clear previous results
+                    if (products.length > 0) {
+                        products.forEach(function (product) {
+                            var productHtml = `
+                                    <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                        <div class="card product-item border-0 mb-4">
+                                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                                                <img class="img-fluid w-100" src="~/images/${product.Image}" alt="${product.name}">
+                                            </div>
+                                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                                <a href="${product.DetailsUrl}" class="text-decoration-none">
+                                                                    <h6 class="text-truncate mb-3">${product.name}</h6>
+                                                </a>
+                                                <div class="d-flex justify-content-center">
+                                                    <h6><p class="card-text"><strong>Price:</strong> ${product.Price}</p></h6><h6 class="text-muted ml-2"></h6>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                                <a href="${product.DetailsUrl}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                            $searchResults.append(productHtml);
+                        });
+                    } else {
+                        $searchResults.html("<p>No products found</p>");
+                    }
+                }
+            </script>
+
+
+
             <div class="col-lg-3 col-6 text-right">
-                <div id="cartModalContainer"></div>
+                <div id="cartModalContainer"><!-- profile and cart show here--></div>
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="" class="btn border">
-                        <i class="fas fa-heart text-primary"></i>
-                        <span class="badge">WishList</span>
+                    <a href="#" class="btn border" id="UserLink">
+                        <i class="fas fa-user text-primary"></i>
+                        <span class="badge">Profile</span>
                     </a>
                     <a href="#" id="cartLink" class="btn border">
                         <i class="fas fa-shopping-cart text-primary"></i>
@@ -95,7 +151,7 @@
                             </button>
                         </form>
                     </div>
-                
+
 
                 }
                 else
@@ -114,38 +170,38 @@
     <!-- Navbar Start -->
     @if (User.Identity.IsAuthenticated)
     {
-         <div class="container-fluid mb-5">
-        <div class="row justify-content-center border-top px-xl-5">
-            <div class="col-lg-9">
-                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                    <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold">
-                            <span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper
-                        </h1>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a asp-area="" asp-controller="Home" asp-action="HomePage" class="nav-item nav-link active">HOME</a>
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <a class="nav-item nav-link" asp-area="" asp-controller="Categories" asp-action="Create">Categories</a>
-                                <a class="nav-item nav-link" asp-area="" asp-controller="Products" asp-action="Create">Product</a>
-                                <a class="nav-item nav-link" asp-area="" asp-controller="Orders" asp-action="Create">Orders</a>
-                                <a class="nav-item nav-link" asp-area="" asp-controller="Payments" asp-action="Create">Payments</a>
-                            }
+        <div class="container-fluid mb-5">
+            <div class="row justify-content-center border-top px-xl-5">
+                <div class="col-lg-9">
+                    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                        <a href="" class="text-decoration-none d-block d-lg-none">
+                            <h1 class="m-0 display-5 font-weight-semi-bold">
+                                <span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper
+                            </h1>
+                        </a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                            <div class="navbar-nav mr-auto py-0">
+                                <a asp-area="" asp-controller="Home" asp-action="HomePage" class="nav-item nav-link active">HOME</a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a class="nav-item nav-link" asp-area="" asp-controller="Categories" asp-action="Create">Categories</a>
+                                    <a class="nav-item nav-link" asp-area="" asp-controller="Products" asp-action="Create">Product</a>
+                                    <a class="nav-item nav-link" asp-area="" asp-controller="Orders" asp-action="MyOrder">Orders</a>
+                                    <a class="nav-item nav-link" asp-area="" asp-controller="Payments" asp-action="Create">Payments</a>
+                                }
+                            </div>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
             </div>
         </div>
-    </div>
     }
 
-   <!-- Navbar End -->
-    
+    <!-- Navbar End -->
+
 
     <div class="container-fluid">
         @RenderBody()
@@ -215,7 +271,7 @@
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
-               @*  <img class="img-fluid" src="img/payments.png" alt=""> *@
+                @*  <img class="img-fluid" src="img/payments.png" alt=""> *@
             </div>
         </div>
     </div>
@@ -238,12 +294,6 @@
     <!-- Template Javascript -->
     <script src="~/js/main.js"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
-    <script>
-        function closeCart() {
-            $("#cartPartial").hide();
-        document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
-    };
-    </script>
+
 </body>
 </html>

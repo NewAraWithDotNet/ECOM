@@ -56,7 +56,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession(); // Ensure session middleware is before authentication and authorization
+app.UseSession(); 
 
 app.UseAuthentication();
 app.UseAuthorization();

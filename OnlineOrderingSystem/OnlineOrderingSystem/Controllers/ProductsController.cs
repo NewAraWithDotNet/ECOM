@@ -90,12 +90,12 @@ namespace OnlineOrderingSystem.Controllers
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit()
         {
-          
+
             return View(await _context.Products.ToListAsync());
         }
 
         // POST: Products/Edit/5
-     
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edite(int id, [Bind("Id,Name,Description,Price,Image,CategoryId")] Product product)
@@ -130,22 +130,10 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(IEnumerable<Product> products)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var product = await _context.Products
-                .Include(p => p.Category)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return View(product);
+            return View(products);
         }
 
         // POST: Products/Delete/5
@@ -162,6 +150,22 @@ namespace OnlineOrderingSystem.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+
+        [HttpPost]
+        public IActionResult Search(string query)
+        {
+            if (!string.IsNullOrEmpty(query))
+            {
+                var products = _context.Products
+                    .Where(p => p.Name.Contains(query))
+                    .Select(p => new { p.Id, p.Name })
+                    .ToList();
+                return Ok(products);
+            }
+            return Ok(Enumerable.Empty<Product>());
+            }
+
 
         private bool ProductExists(int id)
         {

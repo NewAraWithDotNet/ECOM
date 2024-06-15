@@ -160,27 +160,29 @@
 
         $('#checkoutBtn').click(function () {
             var selectedPMethod = $('input[name="selectedPaymentMethod"]:checked').val();
-            console.log(selectedPMethod)
+            console.log(selectedPMethod);
             if (selectedPMethod) {
-
-
                 $.ajax({
                     url: 'Checkout/Carts?' + 'selectedPaymentMethod=' + selectedPMethod,
                     method: 'POST',
                     contentType: 'application/json',
-                    data: { selectedPaymentMethod: selectedPMethod },
+                    data: JSON.stringify({ selectedPaymentMethod: selectedPMethod }),
                     success: function (response) {
-                        console.log(response);
+                        if (response.orderId) {
+                            
+                            window.location.href = '/Orders/Details/' + response.orderId;
+                        } else {
+                            console.error('Order ID not found in response.');
+                        }
                     },
                     error: function (xhr, status, error) {
-                        console.error('There was a problem with the AJAX request:', selectedPaymentMethod);
-
+                        console.error('There was a problem with the AJAX request:', selectedPMethod);
                     }
                 });
             } else {
-
                 alert('Please select a payment method.');
             }
         });
+
 
     </script>

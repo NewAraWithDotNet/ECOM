@@ -17,7 +17,27 @@ $(document).ready(function () {
             }
         });
     });
-
     
+    $("#UserLink").click(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: "/Home/UserP",
+            type: "GET",
+            success: function (data) {
+                $("#cartModalContainer").html(data);
+                $("#cartModalContainer").find("#User-container").show();
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+
+    function addCloseButtonHandler() {
+        $("#cartModalContainer").on("click", "#closeModal", function () {
+            $("#cartModalContainer").hide(); 
+        });
+    }
 
 });

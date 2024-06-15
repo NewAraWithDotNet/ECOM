@@ -196,7 +196,7 @@
         <div>Cart is Empty</div>
     }
     <div class="modal-footer">
-        <button type="button" onclick="closeCart()" id="closeCartBtn" class="btn btn-secondary closeCartBtn">Close</button>
+        <button type="button" id="closeCartBtn" class="btn btn-secondary closeCartBtn">Close</button>
     </div>
 </div>
 
@@ -231,6 +231,11 @@
             }
         });
     }
+
+
+    $("#cartModalContainer").on("click", "#closeCartBtn", function () {
+        $("#cartModalContainer").hide(); 
+    });
 
     function updateSubtotal() {
         var subtotal = 0;

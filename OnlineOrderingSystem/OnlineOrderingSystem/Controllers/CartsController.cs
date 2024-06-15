@@ -65,15 +65,12 @@ namespace OnlineOrderingSystem.Controllers
         public async Task<IActionResult> Checkout(string selectedPaymentMethod)
         {
             var currentUser = await _userManager.GetUserAsync(User);
-            string userId = currentUser.Id;
-
             if (currentUser == null)
             {
-
-                return RedirectToAction("Login", "Account");
+                return Json(new { error = "User not logged in" });
             }
 
-
+            string userId = currentUser.Id;
             var order = new Order { UserId = userId, OrderDate = DateTime.Now, Status = "Pending" };
 
             var cartItems = _context.CartItems.Where(ci => ci.Cart.UserId == currentUser.Id).ToList();
@@ -85,12 +82,10 @@ namespace OnlineOrderingSystem.Controllers
                     Order = order,
                     ProductId = cartItem.ProductId,
                     Quantity = cartItem.Quantity,
-                    Price = _context.Products.FirstOrDefault(P => P.Id == cartItem.ProductId)!.Price!
+                    Price = _context.Products.FirstOrDefault(p => p.Id == cartItem.ProductId).Price
                 };
                 _context.OrderItems.Add(orderItem);
-
             }
-
 
             order.TotalPrice = order.OrderItems.Sum(oi => oi.Quantity * oi.Price);
 
@@ -100,17 +95,14 @@ namespace OnlineOrderingSystem.Controllers
                 Amount = order.TotalPrice,
                 PaymentDate = DateTime.Now,
                 PaymentMethod = selectedPaymentMethod,
-                Status = "Success",
-
+                Status = "Success"
             };
             _context.Payments.Add(payment);
 
-
-
             _context.CartItems.RemoveRange(cartItems);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Orders", new { orderId = order.Id });
+            return Json(new { orderId = order.Id });
         }
 
 

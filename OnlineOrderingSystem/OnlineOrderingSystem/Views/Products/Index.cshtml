@@ -4,11 +4,8 @@
     ViewData["Title"] = "Shop";
 }
 
-<h1>Shop</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New Product</a>
-</p>
+
 
 <div class="row">
     @foreach (var item in Model)
@@ -17,7 +14,7 @@
             <div class="card mb-4 shadow-sm">
                 @if (!string.IsNullOrEmpty(item.Image))
                 {
-                    <img src="~/images/@item.Image" class="card-img-top" alt="@item.Name" />
+                    <img src="~/images/@item.Image" class="card-img-top  embed-responsive" alt="@item.Name" />
                 }
                 <div class="card-body">
                     <h5 class="card-title">@item.Name</h5>
