@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<OnlineOrderingSystem.Models.User>
+
+@{
     Layout = null;
 }
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
@@ -6,133 +8,113 @@
     var afToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
 }
 <style>
-    .User-container {
+    .UserContainer {
         position: absolute;
         padding: 1rem;
         border-radius: 0.375rem;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         background-color: white;
-        top: 3rem;
         right: 0;
+        top: -1px;
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
         z-index: 20;
     }
-    /* Resetting default margin and padding */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+
+    .user-dropdown-ctrl-off {
+        display: none;
     }
 
-  
-    /* Header styles */
-    header {
-        text-align: center;
-        margin-bottom: 20px;
+    .inner {
+        padding: 10px;
+        background-color: #f9f9f9;
     }
 
-        header h1 {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-
-        header p {
-            font-size: 16px;
-            color: #666;
-        }
-
-    /* Navigation styles */
-    nav ul {
-        list-style-type: none;
-        text-align: center;
-    }
-
-        nav ul li {
-            display: inline-block;
-            margin-right: 20px;
-        }
-
-            nav ul li a {
-                text-decoration: none;
-                color: #333;
-                font-weight: bold;
-            }
-
-    /* Main section styles */
-    main {
+    .user-menu-info {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
 
-    section {
-        flex: 1;
-        margin-right: 20px;
+    .avatar img {
+        border-radius: 50%;
+        margin-right: 10px;
     }
 
-        section h2 {
-            font-size: 20px;
-            margin-bottom: 10px;
+    .name span {
+        display: block;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .name i {
+        display: block;
+        font-size: 0.9em;
+        color: #777;
+    }
+
+    .func {
+        margin-left: auto;
+    }
+
+    .user-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 10px 0;
+    }
+
+    .user-menu li {
+        border-bottom: 1px solid #eee;
+    }
+
+        .user-menu li a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
 
-        section ul {
-            list-style-type: none;
-        }
-
-            section ul li {
-                margin-bottom: 10px;
+            .user-menu li a:hover {
+                background-color: #eee;
             }
 
-                section ul li a {
-                    color: #333;
-                }
-
-    .notification-count {
-        background-color: #ff0000;
-        color: #fff;
-        padding: 5px 10px;
-        border-radius: 50%;
-    }
-
-    /* Footer styles */
-    footer {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-        footer p {
-            font-size: 18px;
-            color: #666;
-        }
+            .user-menu li a span {
+                margin-left: 10px;
+            }
 
 </style>
-<div class="User-container" id="User-container">
-    <header>
-        <h1>Maen22</h1>
-        <p>maannjar97@yahoo.com</p>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#">My Account</a></li>
-            <li><a href="#">My Orders</a></li>
-        </ul>
-    </nav>
- 
-        <div>
-            <h2>Account Options</h2>
-            <ul>
-                <li><a href="#">Top Up</a></li>
-                <li><a href="#">My Cards</a></li>
-                <li><a href="#">Transaction History</a></li>
-                <li><a href="#">My Coupons</a></li>
-                <li><a href="#">My Favorite</a></li>
-            </ul>
+
+<div class="UserContainer" id="User-container">
+    <div class="user-dropdown-ctrl-off"></div>
+    <div class="inner">
+        <div class="user-menu-info">
+            <div class="avatar">
+                <img width="36" height="36" class="lazyloaded" src="@ViewBag.Avatar" alt="Maen22">
+            </div>
+            <div class="name">
+                <span>@ViewBag.UserName</span>
+                <i>@ViewBag.Email</i>
+            </div>
+            <div class="func">
+                <div class="user-dropdown-ctrl-off close btw"><span icon-only="close"></span></div>
+            </div>
         </div>
-     
-   
-    <footer>
-        <p>★ My STAR</p>
-    </footer>
+        <div class="user-menu">
+            <ul>
+                <li><a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="MyAccount"><span>My Account</span></a></li>
+                <li><a class="nav-item nav-link" asp-area="" asp-controller="Orders" asp-action="Index"><span>My Orders</span></a></li>
+                <li><a href="" icon="request_quote"><span>Top Up</span></a></li>
+                <li><a href="" icon="credit_card" ga-data="2013" ga-data-playload="My Cards"><span>My Cards</span></a></li>
+                <li><a href="" icon="account_balance" ga-data="2014" ga-data-playload="Credit History"><span>Transaction History</span></a></li>
+                <li><a href="" icon="local_activity" ga-data="0000" ga-data-playload="My Coupons"><span>My Coupons</span></a></li>
+                <li><a href="" icon="stars" target="_blank" ga-data="2014" ga-data-playload="My STAR"><span>My STAR</span></a></li>
+                <li><a href="" icon="favorite_outline" ga-data="2012" ga-data-playload="My Favourite"><span>My Favorite</span></a></li>
+                <li><a href="" icon="notifications" data-msg-counter="2" ga-data="2015" ga-data-playload="Notifications"><span>Notifications</span></a></li>
+             </ul> 
+        </div>
+    </div>
 </div>

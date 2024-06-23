@@ -102,26 +102,3 @@
     
 })(jQuery);
 
-$(document).ready(function () {
-    $("#cartLink").click(function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: "/Carts/Index",
-            type: "GET",
-            success: function (data) {
-                $("#cartModalContainer").html(data);
-                $("#cartModal").modal("show");
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
-            }
-        });
-    });
-});
-<script>
-    $(document).ready(function () {
-        $("#cartLink").click(function () {
-            $("#cartPartial").toggle(); 
-        });
-    });
-</script>

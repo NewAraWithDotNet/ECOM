@@ -4,6 +4,8 @@
     Layout = null;
 }
 
+@* Main page Categores *@
+
 <script>
     const mobileScreen = window.matchMedia("(max-width: 990px )");
     $(document).ready(function () {
@@ -33,12 +35,12 @@
                     $("#category-details-container").html(data);
                 },
                 error: function () {
-                    alert("Failed to load category details.");
+                       alert("Failed to load category details.");
                 }
             });
         });
         $.ajax({
-            url: '@Url.Action("Edit", "Products")',
+            url: '@Url.Action("Wishlist", "Products")',
             type: "GET",
             success: function (data) {
                 $("#category-details-container").html(data);
@@ -47,7 +49,7 @@
                 alert("Failed to load products.");
             }
         });
-    });
+     });
 </script>
 <style>
     :root {
@@ -377,14 +379,12 @@
         height: 500px;
     }
 </style>
-<div class="container-fluid"> 
-    <div >
-
-    </div>
+<div class="container-fluid bg-light text-dark">
+    <
     <div class="row justify-content-center">
         <div class="col-lg-3 d-none d-lg-block">
-            <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                <h6 class="m-0">Categories</h6>
+            <a class="btn shadow-none d-flex align-items-center justify-content-between bg-dark w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                <h6 class="m-0 text-white">Categories</h6>
                 <i class="fa fa-angle-down text-dark"></i>
             </a>
             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">

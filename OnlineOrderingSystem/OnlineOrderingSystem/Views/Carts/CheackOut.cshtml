@@ -1,0 +1,188 @@
+﻿@model OnlineOrderingSystem.ViewModels.CartViewModel
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+@{
+    var afToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
+}
+@* //cheackOut Page
+ *@<div class="card">
+    <div class="row justify-content-center">
+        <div class="col-md-8 cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                    <div class="col align-self-center text-right text-muted">@Model.CartItems.Count() items</div>
+                </div>
+            </div>
+            <div class="row border-top border-bottom justify-content-center align-items-center">
+                @Html.AntiForgeryToken()
+                @foreach (var item in Model.CartItems)
+                {
+                    <div class="row main" data-cart-item-id="@item.CartItemId">
+                        <div class="col-2">
+                            <img src="~/images/@item.Image" class="img-fluid" alt="@item.ProductName" />
+                        </div>
+                        <div class="col-2">
+                            <div class="row">@item.ProductName</div>
+                        </div>
+                        <div class="col-4">
+                            <form asp-action="UpdateCartItem" method="post" class="updateCartItemForm">
+                                <div class="form-group">
+                                    <label asp-for="@item.Quantity" class="control-label">Quantity</label>
+                                    <input asp-for="@item.Quantity" class="form-control quantityInput" data-cart-item-id="@item.CartItemId" />
+                                    <span asp-validation-for="@item.Quantity" class="text-danger"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-2">
+                            $<span class="total-price" id="total-price-@item.ProductId">@item.TotalPrice.ToString("0.00")</span>
+                        </div>
+                        <div class="col-2">
+                            <a href="#" class="remove-cart-item" data-cart-item-id="@item.CartItemId">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="back-to-shop">
+                <a asp-area="" asp-controller="Home" asp-action="HomePage" class="nav-item nav-link active">
+                    <span class="text-muted">Back to shop</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-8 summary">
+            <hr>
+            <div class="col" style="padding-left:0;">
+                <img src="@Model.Avatar" alt="User Avatar" style="width:50px;height:50px;border-radius:50%;">
+            </div>
+            <div class="row">
+                <div class="col" style="padding-left:0;">USER EMAIL</div>
+                <div class="col text-right">@Model.Email</div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card ">
+                        <div class="card-header">
+                            <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                                <!-- Credit card form tabs -->
+                                <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                                    <li class="nav-item">
+                                        <input type="radio" id="credit-card-radio" name="selectedPaymentMethod" value="credit-card" checked>
+                                        <label for="credit-card-radio" class="nav-link"><i class="fas fa-credit-card mr-2"></i> Credit Card</label>
+                                    </li>
+                                    <li class="nav-item">
+                                        <input type="radio" id="paypal-radio" name="selectedPaymentMethod" value="paypal">
+                                        <label for="paypal-radio" class="nav-link"><i class="fab fa-paypal mr-2"></i> Paypal</label>
+                                    </li>
+                                    <li class="nav-item">
+                                        <input type="radio" id="cash-radio" name="selectedPaymentMethod" value="cash">
+                                        <label for="cash-radio" class="nav-link"><i class="fas fa-mobile-alt mr-2"></i> Cash</label>
+                                    </li>
+                                </ul>
+                            </div> 
+                            <div class="tab-content">
+                                <!-- credit card info-->
+                                <div id="credit-card" class="tab-pane fade show active pt-3">
+                                    <p>test</p>
+                                </div>
+                            </div> - End -->
+                            <!-- Paypal info -->
+                            <div id="paypal" class="tab-pane fade pt-3">
+                                <!-- Content for paypal tab -->
+                            </div> 
+                            <!-- bank transfer info -->
+                            <div id="net-banking" class="tab-pane fade pt-3">
+                                <!-- Content for net banking tab -->
+                            </div>
+                            <!-- End -->
+                            <a id="checkoutBtn" class="btn btn-secondary btn-block">Checkout-@Model.CartItems.Sum(item => item.TotalPrice).ToString("0.00")</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+
+
+
+        $('.remove-cart-item').on('click', function (e) {
+            e.preventDefault();
+            var cartItemId = $(this).data('cart-item-id');
+            removeCartItem(cartItemId);
+        });
+
+        function updateCartItem(cartItemId, quantity) {
+            $.ajax({
+                url: '@Url.Action("UpdateCartItem", "CartItems")',
+                type: 'POST',
+                data: {
+                    id: cartItemId,
+                    quantity: quantity,
+                    __RequestVerificationToken: '@afToken'
+                },
+                success: function (response) {
+                    if (response.success) {
+
+                    } else {
+                        alert('Error updating cart item.');
+                    }
+                }
+            });
+        }
+
+        function removeCartItem(cartItemId) {
+            $.ajax({
+                url: '@Url.Action("RemoveCartItem", "CartItems")',
+                type: 'POST',
+                data: {
+                    id: cartItemId,
+                    __RequestVerificationToken: '@afToken'
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $('div[data-cart-item-id="' + cartItemId + '"]').remove();
+
+                    } else {
+                        alert('Error removing cart item.');
+                    }
+                }
+            });
+        }
+
+
+        $('#checkoutBtn').click(function () {
+            var selectedPMethod = $('input[name="selectedPaymentMethod"]:checked').val();
+            if (selectedPMethod) {
+                $.ajax({
+                    url: 'Checkout/Carts?' + 'selectedPaymentMethod=' + selectedPMethod,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ selectedPaymentMethod: selectedPMethod }),
+                    success: function (response) {
+                        if (response.orderId) {
+                            
+                            window.location.href = '/Orders/OrderDetails/' + response.orderId;
+                        } else {
+                            console.error('Order ID not found in response.');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('There was a problem with the AJAX request:', selectedPMethod);
+                    }
+                });
+            } else {
+                alert('Please select a payment method.');
+            }
+        });
+
+
+    </script>

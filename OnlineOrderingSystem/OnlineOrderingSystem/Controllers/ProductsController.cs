@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -88,10 +89,25 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit()
+        public async Task<IActionResult> Wishlist()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return View(await _context.Products.ToListAsync());
+            var product = await _context.Products.ToListAsync();
+            var userWishlists = await _context.Wishlists
+                                              .Where(w => w.UserId == userId)
+                                              .ToListAsync();
+
+
+            var viewModel = new WishlistViewModel
+            {
+                Products = product,
+                
+                UserWishlists = userWishlists
+            };
+
+
+            return View(viewModel);
         }
 
         // POST: Products/Edit/5
@@ -159,12 +175,21 @@ namespace OnlineOrderingSystem.Controllers
             {
                 var products = _context.Products
                     .Where(p => p.Name.Contains(query))
-                    .Select(p => new { p.Id, p.Name })
+                    .Select(p => new
+                    {
+                        p.Id,
+                        p.Name,
+                        p.Description,
+                        p.Price,
+                        p.Image,
+                        p.CategoryId,
+                        CategoryName = p.Category.Name 
+                    })
                     .ToList();
                 return Ok(products);
             }
-            return Ok(Enumerable.Empty<Product>());
-            }
+            return Ok(Enumerable.Empty<object>());
+        }
 
 
         private bool ProductExists(int id)

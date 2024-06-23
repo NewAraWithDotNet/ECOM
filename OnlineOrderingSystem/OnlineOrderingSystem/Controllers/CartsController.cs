@@ -26,7 +26,7 @@ namespace OnlineOrderingSystem.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> CartMenu()
         {
             var user = await _userManager.GetUserAsync(User);
             string userId = user.Id;
@@ -154,7 +154,7 @@ namespace OnlineOrderingSystem.Controllers
         }
 
 
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> CheackOut()
         {
             var user = await _userManager.GetUserAsync(User);
             string userId = user.Id;

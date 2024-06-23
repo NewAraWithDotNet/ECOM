@@ -30,7 +30,7 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // GET: Orders/Details/5
-        public IActionResult Details(int id)
+        public IActionResult OrderDetails(int id)
         {
             var order = _context.Orders
                                 .Include(o => o.User)

@@ -1,0 +1,121 @@
+﻿@model WishlistViewModel
+@{
+    Layout = null;
+}
+
+
+
+<script>
+    function addToCart(productId) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("AddToCart", "Carts")',
+            data: { id: productId },
+            success: function (response) {
+                if (response.success) {
+                    toastr.success(response.message);
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function () {
+                toastr.error("An error occurred while adding the product to the cart.");
+            }
+        });
+    }
+
+    function toggleWishlist(productId) {
+        var btn = $('#btnWishlist_' + productId);
+        var icon = $('#iconWishlist_' + productId);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("ToggleWishlist", "Wishlists")',
+            data: { productId: productId },
+            success: function (response) {
+                if (response.success) {
+                    if (response.isAdded) {
+                        icon.removeClass('bi-calendar-heart').addClass('bi-calendar-heart-fill text-danger');
+                        toastr.success(response.message);
+                    } else {
+                        icon.removeClass('bi-calendar-heart-fill text-danger').addClass('bi-calendar-heart');
+                        toastr.success(response.message);
+                    }
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function () {
+                toastr.error("An error occurred while toggling the product in the wishlist.");
+            }
+        });
+    }
+</script>
+
+
+
+
+<style>
+    .btn-wishlist-added {
+        background-color: #ffc107 !important; 
+        color: #212529 !important; 
+    }
+</style>
+<div class="col-lg-9 col-md-12">
+    <div class="row pb-3">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="~/images/@product.Image" alt="@product.Name">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="text-decoration-none">
+                            <h6 class="text-truncate mb-3">@product.Name</h6>
+                        </a>
+                        <div class="d-flex justify-content-center">
+                            <h6><p class="card-text"><strong>Price:</strong> @product.Price.ToString("C")</p></h6>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+
+                        @{
+                            bool isInWishlist = Model.UserWishlists.Any(w => w.ProductId == product.Id);
+                            string iconClass = isInWishlist ? "bi bi-calendar-heart-fill text-danger" : "bi bi-calendar-heart";
+                        }
+
+                        <button id="btnWishlist_@product.Id" class="btn btn-sm text-dark p-0 ml-2" onclick="toggleWishlist(@product.Id)">
+                            <i id="iconWishlist_@product.Id" class="@iconClass">ADD</i>
+                        </button>
+
+                        <button type="button" onclick="addToCart(@product.Id)" class="btn btn-sm text-dark p-0 ml-2">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="col-12 pb-1">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mb-3">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

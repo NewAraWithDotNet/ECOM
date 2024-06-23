@@ -2,42 +2,45 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-$(document).ready(function () {
-    $("#cartLink").click(function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: "/Carts/Index",
-            type: "GET",
-            success: function (data) {
-                $("#cartModalContainer").html(data);
-                $("#cartModalContainer").find("#cartPartial").show();
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
-            }
+
+    $(document).ready(function () {
+        $("#cartLink").on('click', function (event) {
+            event.preventDefault();
+            console.log("UserLink clicked");
+
+
+            $.ajax({
+                url: "/Carts/CartMenu",
+                type: "GET",
+                success: function (data) {
+                    $("#cartModalContainer").html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    console.log("not work")
+                }
+            });
         });
+
+        $("#UserLink").on('click', function (event) {
+            event.preventDefault();
+            console.log("UserLink clicked");
+
+
+            $.ajax({
+                url: "/Home/UserP",
+                type: "GET",
+                success: function (data) {
+                    $("#ProfileModalContainer").html(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    console.log("not work")
+
+                }
+            });
+        });
+
+       
     });
-    
-    $("#UserLink").click(function (event) {
-        event.preventDefault();
-        $.ajax({
-            url: "/Home/UserP",
-            type: "GET",
-            success: function (data) {
-                $("#cartModalContainer").html(data);
-                $("#cartModalContainer").find("#User-container").show();
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
-            }
-        });
-    });
 
-
-    function addCloseButtonHandler() {
-        $("#cartModalContainer").on("click", "#closeModal", function () {
-            $("#cartModalContainer").hide(); 
-        });
-    }
-
-});
