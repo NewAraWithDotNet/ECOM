@@ -17,11 +17,11 @@
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         background-color: white;
         right: 0;
-        top:-1px;
+        top: -1px;
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        z-index: 20;
+        z-index:20;
     }
 
     .cart-title {
@@ -141,6 +141,7 @@
         }
 
 </style>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
@@ -188,7 +189,7 @@
             </div>
             <p class="shipping-info">Shipping and taxes calculated at checkout.</p>
             <div class="button-container">
-                <a class="view-cart-button" href="/Carts/CheackOut">View Cart</a>
+                <a class="view-cart-button" href="@Url.Action("CheackOut","Carts")">View Cart</a>
                 <button class="checkout-button">Checkout</button>
             </div>
         </div>
@@ -197,8 +198,9 @@
     {
         <div>Cart is Empty</div>
     }
-    
+
 </div>
+
 
 
 <script>
@@ -233,7 +235,7 @@
     }
 
 
-  
+
     function updateSubtotal() {
         var subtotal = 0;
         $('.item-container').each(function () {

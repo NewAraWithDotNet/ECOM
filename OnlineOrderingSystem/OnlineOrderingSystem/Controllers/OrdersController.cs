@@ -24,11 +24,11 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Orders.ToListAsync());
+            var orders = _context.Orders.Include(o => o.User).ToList();
+            return View(orders);
         }
-
         // GET: Orders/Details/5
         public IActionResult OrderDetails(int id)
         {

@@ -16,11 +16,11 @@ namespace OnlineOrderingSystem.Controllers
 
         public CartItemsController(ApplicationDbContext context)
         {
-            _context = context;
+             _context = context;
         }
 
-        // GET: CartItems
-        public async Task<IActionResult> Index()
+         // GET: CartItems
+         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.CartItems.Include(c => c.Cart).Include(c => c.Product);
             return View(await applicationDbContext.ToListAsync());

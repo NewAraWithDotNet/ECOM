@@ -46,12 +46,12 @@ namespace OnlineOrderingSystem.Controllers
                 return NotFound();
             }
 
-            return View(product);
+            return View("DetailsProducts", product);
         }
 
-        public IActionResult Create()
+        public IActionResult CreatProducts()
         {
-            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");
+            ViewBag.Categories =   new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -88,27 +88,24 @@ namespace OnlineOrderingSystem.Controllers
             }
         }
 
-        // GET: Products/Edit/5
         public async Task<IActionResult> Wishlist()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var product = await _context.Products.ToListAsync();
+            var products = await _context.Products.ToListAsync();
+
             var userWishlists = await _context.Wishlists
                                               .Where(w => w.UserId == userId)
+                                              .Include(w => w.Product) 
+                                              .Include(w => w.User)   
                                               .ToListAsync();
 
+            ViewBag.Products = products;
+            ViewBag.UserWishlists = userWishlists;
 
-            var viewModel = new WishlistViewModel
-            {
-                Products = product,
-                
-                UserWishlists = userWishlists
-            };
-
-
-            return View(viewModel);
+            return View();
         }
+
 
         // POST: Products/Edit/5
 
@@ -153,7 +150,7 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // POST: Products/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -161,11 +158,11 @@ namespace OnlineOrderingSystem.Controllers
             if (product != null)
             {
                 _context.Products.Remove(product);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Admin", "Index");
         }
+
 
 
         [HttpPost]

@@ -29,13 +29,14 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByEmailAsync(model.Email);
                 if (user != null)
                 {
-                    HttpContext.Session.SetString("UserId", user.Id); // Save user ID in session
+                    HttpContext.Session.SetString("UserId", user.Id); 
                 }
                 return RedirectToAction("HomePage", "Home");
             }
@@ -46,6 +47,7 @@ public class AccountController : Controller
         }
         return View(model);
     }
+
 
     private async Task SignInUser(Microsoft.AspNetCore.Identity.SignInResult result)
     {
@@ -63,7 +65,7 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-            var user = new User { UserName = model.Email, Email = model.Email };
+            var user = new User { UserName = model.UserName, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {

@@ -18,6 +18,25 @@ namespace OnlineOrderingSystem.Data
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
+        public DbSet<Conversation> Conversations { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Conversation>()
+                .HasOne(c => c.User1)
+                .WithMany()
+                .HasForeignKey(c => c.User1Id)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Conversation>()
+                .HasOne(c => c.User2)
+                .WithMany()
+                .HasForeignKey(c => c.User2Id)
+                .OnDelete(DeleteBehavior.Restrict);
+        }   
 
         internal Product GetProductById(int id)
         {

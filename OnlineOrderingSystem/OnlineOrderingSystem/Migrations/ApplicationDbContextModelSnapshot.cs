@@ -220,6 +220,62 @@ namespace OnlineOrderingSystem.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("OnlineOrderingSystem.Models.ChatMessage", b =>
+                {
+                    b.Property<int>("ChatMessageId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChatMessageId"));
+
+                    b.Property<int>("ConversationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SendAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ChatMessageId");
+
+                    b.HasIndex("ConversationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ChatMessages");
+                });
+
+            modelBuilder.Entity("OnlineOrderingSystem.Models.Conversation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("User1Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("User2Id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("User1Id");
+
+                    b.HasIndex("User2Id");
+
+                    b.ToTable("Conversations");
+                });
+
             modelBuilder.Entity("OnlineOrderingSystem.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -537,6 +593,44 @@ namespace OnlineOrderingSystem.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("OnlineOrderingSystem.Models.ChatMessage", b =>
+                {
+                    b.HasOne("OnlineOrderingSystem.Models.Conversation", "Conversation")
+                        .WithMany("Messages")
+                        .HasForeignKey("ConversationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineOrderingSystem.Models.User", "User")
+                        .WithMany("ChatMessages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Conversation");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("OnlineOrderingSystem.Models.Conversation", b =>
+                {
+                    b.HasOne("OnlineOrderingSystem.Models.User", "User1")
+                        .WithMany()
+                        .HasForeignKey("User1Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("OnlineOrderingSystem.Models.User", "User2")
+                        .WithMany()
+                        .HasForeignKey("User2Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User1");
+
+                    b.Navigation("User2");
+                });
+
             modelBuilder.Entity("OnlineOrderingSystem.Models.Order", b =>
                 {
                     b.HasOne("OnlineOrderingSystem.Models.User", "User")
@@ -629,9 +723,19 @@ namespace OnlineOrderingSystem.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("OnlineOrderingSystem.Models.Conversation", b =>
+                {
+                    b.Navigation("Messages");
+                });
+
             modelBuilder.Entity("OnlineOrderingSystem.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("OnlineOrderingSystem.Models.User", b =>
+                {
+                    b.Navigation("ChatMessages");
                 });
 #pragma warning restore 612, 618
         }

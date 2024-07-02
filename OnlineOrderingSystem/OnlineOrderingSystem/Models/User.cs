@@ -13,6 +13,7 @@ namespace OnlineOrderingSystem.Models
         [DisplayName("UserImage")]
         public IFormFile AvatarFile { get; set; }
 
+        public ICollection<ChatMessage> ChatMessages { get; set; }
 
     }
 }

@@ -35,7 +35,7 @@
             success: function (response) {
                 if (response.success) {
                     if (response.isAdded) {
-                        icon.removeClass('bi-calendar-heart').addClass('bi-calendar-heart-fill text-danger');
+                        icon.removeClass('fa fa-heart').addClass('fa fa-heart text-danger');
                         toastr.success(response.message);
                     } else {
                         icon.removeClass('bi-calendar-heart-fill text-danger').addClass('bi-calendar-heart');
@@ -63,7 +63,7 @@
 </style>
 <div class="col-lg-9 col-md-12">
     <div class="row pb-3">
-        @foreach (var product in Model.Products)
+        @foreach (var product in ViewBag.Products as List<Product>) 
         {
             <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
@@ -82,12 +82,13 @@
                         <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
 
                         @{
-                            bool isInWishlist = Model.UserWishlists.Any(w => w.ProductId == product.Id);
-                            string iconClass = isInWishlist ? "bi bi-calendar-heart-fill text-danger" : "bi bi-calendar-heart";
+                            var userWishlists = ViewBag.UserWishlists as List<Wishlist>; 
+                            bool isInWishlist = userWishlists != null && userWishlists.Any(w => w.ProductId == product.Id);
+                            string iconClass = isInWishlist ? "fa fa-heart text-danger" : "fa fa-heart";
                         }
 
                         <button id="btnWishlist_@product.Id" class="btn btn-sm text-dark p-0 ml-2" onclick="toggleWishlist(@product.Id)">
-                            <i id="iconWishlist_@product.Id" class="@iconClass">ADD</i>
+                            <i id="iconWishlist_@product.Id" class="@iconClass"></i>
                         </button>
 
                         <button type="button" onclick="addToCart(@product.Id)" class="btn btn-sm text-dark p-0 ml-2">Add to Cart</button>

@@ -1,0 +1,100 @@
+﻿@model OnlineOrderingSystem.Models.Conversation
+@{
+    var loggedInUserId = ViewBag.LoggedInUserId as string;
+    var conversations = ViewBag.Conversations as List<OnlineOrderingSystem.Models.Conversation>;
+}
+
+<div class="chatContiner">
+    <div class="chatsList">
+        <div class="mune">
+            <div class="online">
+                <h3>Online Users</h3>
+                <ul id="onlineUsersList"></ul>
+            </div>
+            <div class="Converstion">
+                <h3>conversations</h3>
+                <ul id="conversationsList">
+                    @foreach (var conversation in conversations)
+                    {
+                        if (conversation.User1Id == loggedInUserId || conversation.User2Id == loggedInUserId)
+                        {
+                            var otherUser = conversation.User1Id == loggedInUserId ? conversation.User2 : conversation.User1;
+                            <li class="conversationItem" data-other-user-id="@otherUser.UserName">@otherUser.UserName</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div id="Chats" class="chatbox">
+            @* <--CHAT WILL BE HERE  --> *@
+        </div>
+    </div>
+  
+</div>
+
+
+@section Scripts {
+
+    <script>
+        
+        $(".conversationItem").on('click', function (event) {
+            event.preventDefault();
+
+            var otherUserId = $(this).data('other-user-id'); 
+
+            $.ajax({
+                url: "/ChatMessages/Conversation",
+                type: "GET",
+                data: { user1: username, user2: otherUserId },
+                success: function (data) {
+                    $("#Chats").html(data);
+                    $("#chatSection").show(); s
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    console.log("Failed to load chat messages.");
+                }
+            });
+        });
+        function selectUser(user) {
+            $.ajax({
+                url: "ChatMessages/Conversation",
+                type: "GET",
+                data: { user1: username, user2: user },
+                success: function (data) {
+                    $("#Chats").html(data);
+                    document.getElementById('chatSection').style.display = 'block';
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    console.log("not work");
+                }
+            });
+        }
+    </script>
+
+
+}
+<style>
+   
+    .chatContiner{
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        gap:20px;
+        height:100vh;
+    }
+    .chatContiner li {
+        cursor: pointer;
+    }
+
+    .chatsList {
+        display:flex;
+        gap:20px;
+    }
+
+    .chatbox{
+        width:400px
+    }
+</style>
+

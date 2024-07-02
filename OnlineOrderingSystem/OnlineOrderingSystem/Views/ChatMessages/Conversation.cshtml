@@ -1,0 +1,160 @@
+﻿@model OnlineOrderingSystem.Models.Conversation
+@{
+    Layout = null;
+}
+<div class="chatContainer">
+    <h3>Chat</h3>
+    <div id="messagesList">
+        @foreach (var item in Model.Messages)
+        {
+            <div class="message @(item.User.UserName == User.Identity.Name ? "my-message" : "other-message")">
+                <strong>@item.User.UserName</strong>: <p>@item.Message</p> <em>@item.SendAt.ToString("HH:mm:ss")</em>
+            </div>
+        }
+    </div>
+    <div id="chatSection" class="inputChat">
+        <input type="text" id="messageInput" placeholder="Message" />
+        <button id="sendButton">Send</button>
+    </div>
+</div>
+
+<script>
+    const conversationId = @Model.Id;
+    var user1 = '@Model.User1';
+    var user2 = '@Model.User2';
+
+    if (user1 == username) {
+        console.log("User 1 is logged in.");
+    } else if (user2 == username) {
+        user2 = user1; 
+        console.log("User 2 is logged in", user2);
+    }
+
+    connection.on("ReceiveMessage", (senderUsername, message) => {
+        console.log("Received message:", message);
+        appendMessage(senderUsername, message);
+    });
+
+    function appendMessage(senderUsername, message) {
+        const messagesList = document.getElementById('messagesList');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${(senderUsername === username) ? 'my-message' : 'other-message'}`;
+        messageDiv.innerHTML = `<strong>${senderUsername}</strong>: <p>${message}</p> <em>${new Date().toLocaleTimeString()}</em>`;
+        messagesList.appendChild(messageDiv);
+        scrollToBottom();
+    }
+
+    document.getElementById('sendButton').addEventListener('click', () => {
+        const message = document.getElementById('messageInput').value.trim();
+
+        if (message) {
+            connection.invoke('SendMessage', conversationId, username, message, user2)
+                .catch(err => console.error(err));
+            document.getElementById('messageInput').value = '';
+            appendMessage(username, message)
+        }
+    });
+
+    function scrollToBottom() {
+        const messagesList = document.getElementById('messagesList');
+        messagesList.scrollTop = messagesList.scrollHeight;
+    }
+</script>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .chatContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        padding: 20px;
+        background-color: #f9f9f9;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        gap: 30px;
+        margin: auto;
+        width:400px;
+    }
+
+    .inputChat {
+        display: flex;
+        align-items: center;
+    }
+
+    h3 {
+        color: #555;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+    }
+
+    #messagesList {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .message {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        word-wrap: break-word;
+        max-width: 80%;
+    }
+
+    .my-message {
+        background-color: #d1ffd1;
+        align-self: flex-end;
+    }
+
+    .other-message {
+        background-color: #d1d1ff;
+        align-self: flex-start;
+    }
+
+    #chatSection {
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    #messageInput {
+        flex: 1;
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    #sendButton {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+    }
+
+        #sendButton:hover {
+            background-color: #0056b3;
+        }
+</style>

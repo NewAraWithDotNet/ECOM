@@ -1,70 +1,42 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\",
+  "WorkspaceRootPath": "D:\\ECOM\\OnlineOrderingSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\carts\\cheackout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\views\\carts\\cheackout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\home\\userp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\views\\home\\userp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\components\\topbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\views\\components\\topbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\ecom\\onlineorderingsystem\\onlineorderingsystem\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\products\\detailsproducts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\views\\products\\detailsproducts.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\ecom\\onlineorderingsystem\\onlineorderingsystem\\libman.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\libman.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\categories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\views\\categories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\carts\\cartmenu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\carts\\cartmenu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\views\\carts\\cartmenu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\products\\wishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\ecom\\onlineorderingsystem\\onlineorderingsystem\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\components\\navbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\views\\components\\navbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\home\\myaccount.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\views\\home\\myaccount.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\ecom\\onlineorderingsystem\\onlineorderingsystem\\views\\products\\wishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\views\\products\\wishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\controllers\\wishlistscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\controllers\\wishlistscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\viewmodels\\wishlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\viewmodels\\wishlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|d:\\plan b meraki_academy\\projects\\ecom\\onlineorderingsystem\\onlineorderingsystem\\migrations\\20240622140728_wishlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{829E8952-A51F-4911-9FD9-2F2BCB6F674D}|OnlineOrderingSystem\\OnlineOrderingSystem.csproj|solutionrelative:onlineorderingsystem\\migrations\\20240622140728_wishlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -73,215 +45,125 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 200,
-          "SelectedChildIndex": 4,
+          "DockedHeight": 266,
+          "SelectedChildIndex": 5,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "OrdersController.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\OrdersController.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Controllers\\OrdersController.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\OrdersController.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\Controllers\\OrdersController.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAgwCAAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T19:21:57.123Z",
+              "DocumentIndex": 3,
+              "Title": "libman.json",
+              "DocumentMoniker": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\libman.json",
+              "RelativeDocumentMoniker": "OnlineOrderingSystem\\libman.json",
+              "ToolTip": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\libman.json",
+              "RelativeToolTip": "OnlineOrderingSystem\\libman.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-02T10:05:08.178Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CartsController.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\CartsController.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Controllers\\CartsController.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\CartsController.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\Controllers\\CartsController.cs",
-              "ViewState": "AQIAAJIAAAAAAAAAAAAIwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T19:20:47.983Z",
+              "Title": "site.js",
+              "DocumentMoniker": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "OnlineOrderingSystem\\wwwroot\\js\\site.js",
+              "ToolTip": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "OnlineOrderingSystem\\wwwroot\\js\\site.js",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAYwAYAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-07-02T09:09:14.86Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CheackOut.cshtml",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Carts\\CheackOut.cshtml",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Carts\\CheackOut.cshtml",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Carts\\CheackOut.cshtml",
-              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Carts\\CheackOut.cshtml",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAAAKwAAABIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-22T19:18:21.031Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CartMenu.cshtml",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Carts\\CartMenu.cshtml",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Carts\\CartMenu.cshtml",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Carts\\CartMenu.cshtml",
-              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Carts\\CartMenu.cshtml",
-              "ViewState": "AQIAALkAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-22T19:18:19.271Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DetailsProducts.cshtml",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Products\\DetailsProducts.cshtml",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Products\\DetailsProducts.cshtml",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Products\\DetailsProducts.cshtml",
-              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Products\\DetailsProducts.cshtml",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-22T16:23:19.994Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PaymentsController.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\PaymentsController.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Controllers\\PaymentsController.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\PaymentsController.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\Controllers\\PaymentsController.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAcwBsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T16:03:34.472Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T15:29:33.373Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Controllers\\ProductsController.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\ProductsController.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\Controllers\\ProductsController.cs",
-              "ViewState": "AQIAAI4AAAAAAAAAAADwv2gAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T14:50:20.124Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "20240622140728_Wishlist.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Migrations\\20240622140728_Wishlist.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Migrations\\20240622140728_Wishlist.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Migrations\\20240622140728_Wishlist.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\Migrations\\20240622140728_Wishlist.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T14:07:28.958Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Categories\\Index.cshtml",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Categories\\Index.cshtml",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Categories\\Index.cshtml",
-              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Categories\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAIEBAABfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-22T13:38:10.651Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "style.css",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\css\\style.css",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\wwwroot\\css\\style.css",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\css\\style.css",
-              "RelativeToolTip": "OnlineOrderingSystem\\wwwroot\\css\\style.css",
-              "ViewState": "AQIAANAQAAAAAAAAAAAqwO8QAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-06-22T13:27:42.005Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Order.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Models\\Order.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Models\\Order.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Models\\Order.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\Models\\Order.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T13:21:45.09Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Wishlist.cshtml",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Products\\Wishlist.cshtml",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Products\\Wishlist.cshtml",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Products\\Wishlist.cshtml",
-              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Products\\Wishlist.cshtml",
-              "ViewState": "AQIAACsAAAAAAAAAAAAswEQAAAA9AAAA",
+              "Title": "Navbar.cshtml",
+              "DocumentMoniker": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Components\\Navbar.cshtml",
+              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Components\\Navbar.cshtml",
+              "ToolTip": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Components\\Navbar.cshtml",
+              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Components\\Navbar.cshtml",
+              "ViewState": "AQIAACEAAAAAAAAAAIBJwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-22T13:17:13.973Z",
+              "WhenOpened": "2024-07-02T08:49:26.666Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "WishlistsController.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\WishlistsController.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Controllers\\WishlistsController.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\WishlistsController.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\Controllers\\WishlistsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T13:20:34.575Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "WishlistViewModel.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\ViewModels\\WishlistViewModel.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\ViewModels\\WishlistViewModel.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\ViewModels\\WishlistViewModel.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\ViewModels\\WishlistViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T16:50:16.011Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Models\\Product.cs",
-              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Models\\Product.cs",
-              "ToolTip": "D:\\PLAN B MERAKI_Academy\\Projects\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Models\\Product.cs",
-              "RelativeToolTip": "OnlineOrderingSystem\\Models\\Product.cs",
+              "Title": "MyAccount.cshtml",
+              "DocumentMoniker": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Home\\MyAccount.cshtml",
+              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Home\\MyAccount.cshtml",
+              "ToolTip": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Home\\MyAccount.cshtml",
+              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Home\\MyAccount.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-02T08:48:49.421Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Wishlist.cshtml",
+              "DocumentMoniker": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Products\\Wishlist.cshtml",
+              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Products\\Wishlist.cshtml",
+              "ToolTip": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Products\\Wishlist.cshtml",
+              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Products\\Wishlist.cshtml",
+              "ViewState": "AQIAADcAAAAAAAAAAEBVwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-02T08:42:44.047Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserP.cshtml",
+              "DocumentMoniker": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Home\\UserP.cshtml",
+              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Home\\UserP.cshtml",
+              "ToolTip": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Home\\UserP.cshtml",
+              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Home\\UserP.cshtml",
+              "ViewState": "AQIAAMkAAAAAAAAAAAAAANAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-02T08:28:15.487Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CartMenu.cshtml",
+              "DocumentMoniker": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Carts\\CartMenu.cshtml",
+              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Carts\\CartMenu.cshtml",
+              "ToolTip": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Carts\\CartMenu.cshtml",
+              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Carts\\CartMenu.cshtml",
+              "ViewState": "AQIAAAIAAAAAAAAAAABRwL8AAABQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-02T08:24:20.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CartsController.cs",
+              "DocumentMoniker": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\CartsController.cs",
+              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Controllers\\CartsController.cs",
+              "ToolTip": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Controllers\\CartsController.cs",
+              "RelativeToolTip": "OnlineOrderingSystem\\Controllers\\CartsController.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAiwEgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T16:03:07.775Z"
+              "WhenOpened": "2024-07-02T08:05:11.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TopBar.cshtml",
+              "DocumentMoniker": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Components\\TopBar.cshtml",
+              "RelativeDocumentMoniker": "OnlineOrderingSystem\\Views\\Components\\TopBar.cshtml",
+              "ToolTip": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\Views\\Components\\TopBar.cshtml",
+              "RelativeToolTip": "OnlineOrderingSystem\\Views\\Components\\TopBar.cshtml",
+              "ViewState": "AQIAAH8AAAAAAAAAAADwv5QAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-01T11:24:57.09Z",
+              "EditorCaption": ""
             }
           ]
         }

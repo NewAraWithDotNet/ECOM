@@ -1,10 +1,10 @@
 ﻿@model OnlineOrderingSystem.Models.Product
 
 @{
-    ViewData["Title"] = "Create Product";
+    Layout = null;
 }
-@* Create Page Change it to admin soon
- *@<h1>Create Product</h1>
+
+<h1>Create Product</h1>
 
 <div class="row">
     <div class="col-md-4">
@@ -40,4 +40,6 @@
             </div>
         </form>
     </div>
+    <partial name="../Categories/Create" />
+
 </div>

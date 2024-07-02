@@ -29,37 +29,50 @@ namespace OnlineOrderingSystem.Controllers
         public async Task<IActionResult> CartMenu()
         {
             var user = await _userManager.GetUserAsync(User);
-            string userId = user.Id;
+
+            if (user == null)
             {
-                var userCart = _context.Carts
-                    .Include(c => c.user)
-                    .Include(c => c.CartItems)
-                        .ThenInclude(ci => ci.Product)
-                    .FirstOrDefault(c => c.UserId == userId);
+                return NotFound();
+            }
 
-                if (userCart == null)
-                {
-                    return NotFound();
-                }
+            string userId = user.Id;
+            var userCart = _context.Carts
+                .Include(c => c.user)
+                .Include(c => c.CartItems)
+                    .ThenInclude(ci => ci.Product)
+                .FirstOrDefault(c => c.UserId == userId);
 
-                var cartViewModel = new CartViewModel
+            if (userCart == null)
+            {
+                userCart = new Cart
                 {
-                    Email = userCart.user.Email,
-                    Avatar = userCart.user.Avatar,
-                    CartItems = userCart.CartItems.Select(ci => new CartItemViewModel
-                    {
-                        CartItemId = ci.Id,
-                        ProductId = ci.ProductId,
-                        ProductName = ci.Product.Name,
-                        Quantity = ci.Quantity,
-                        Price = ci.Product.Price,
-                        Image = ci.Product.Image
-                    }).ToList()
+                    UserId = userId,
+                    user = user,
+                    CartItems = new List<CartItem>()
                 };
 
-                return View(cartViewModel);
+                _context.Carts.Add(userCart);
+                await _context.SaveChangesAsync();
             }
+
+            var cartViewModel = new CartViewModel
+            {
+                Email = userCart.user?.Email,
+                Avatar = userCart.user?.Avatar,
+                CartItems = userCart.CartItems.Select(ci => new CartItemViewModel
+                {
+                    CartItemId = ci.Id,
+                    ProductId = ci.ProductId,
+                    ProductName = ci.Product.Name,
+                    Quantity = ci.Quantity,
+                    Price = ci.Product.Price,
+                    Image = ci.Product.Image
+                }).ToList()
+            };
+
+            return View(cartViewModel);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Checkout(string selectedPaymentMethod)

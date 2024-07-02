@@ -32,7 +32,8 @@ namespace OnlineOrderingSystem.Controllers
             {
                 return RedirectToAction(nameof(HomePage));
             }
-
+            List<Category> categories = _context.Categories.ToList();
+            ViewBag.Categories = categories;
             return View();
         }
 

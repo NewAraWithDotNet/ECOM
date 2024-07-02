@@ -17,7 +17,7 @@ namespace OnlineOrderingSystem.Controllers
 
         public WishlistsController(ApplicationDbContext context)
         {
-              _context = context;
+               _context = context;
         }
         public async Task<IActionResult> Index()
         {

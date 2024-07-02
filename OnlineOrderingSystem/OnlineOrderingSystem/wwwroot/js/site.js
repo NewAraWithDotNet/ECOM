@@ -6,20 +6,21 @@
     $(document).ready(function () {
         $("#cartLink").on('click', function (event) {
             event.preventDefault();
-            console.log("UserLink clicked");
+            console.log("Cart Link clicked");
 
-
-            $.ajax({
-                url: "/Carts/CartMenu",
-                type: "GET",
-                success: function (data) {
-                    $("#cartModalContainer").html(data);
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                    console.log("not work")
-                }
-            });
+            if ($("#cartModalContainer").html().trim().length === 0) {
+                $.ajax({
+                    url: "/Carts/CartMenu", 
+                    type: "GET",
+                    success: function (data) {
+                        $("#cartModalContainer").html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                        console.log("Error loading cart menu");
+                    }
+                });
+            }
         });
 
         $("#UserLink").on('click', function (event) {
@@ -41,6 +42,11 @@
             });
         });
 
-       
+
+
+
+
+
+
     });
 
