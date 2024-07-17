@@ -1,6 +1,8 @@
-﻿@{
+﻿
+@{
     Layout = null;
 }
+
 <div class="container-fluid">
     <div class="row bg-secondary py-2 px-xl-5">
         <div class="col-lg-6 d-none d-lg-block">
@@ -58,7 +60,6 @@
         <script>
             function searchProducts() {
                 var query = $("#searchBox").val();
-                console.log("Query:", query);
                 $.ajax({
                     url: '/Products/Search?query=' + query,
                     method: 'POST',
@@ -83,26 +84,26 @@
                         var productHtml = `
 
 
-                               <div class="SearchBar col-lg-6 col-6">
-                                <div class="SearchItem bg-light">
-                                   <div class="border p-0 product-pic">
-                                                                                                                                                        <img src="/images/${product.image}" alt="${product.name}" >
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="product-data">
-                                                                                                                                                                        <a href="${product.detailsUrl}" class="text-decoration-none">
-                                                                                                                                                                            <h6 class="text-truncate mb-3">${product.name}</h6>
-                                                                                                                                                                        </a>
-                                                                                                                                                                        <div class="d-flex justify-content-center">
-                                                                                                                                                                            <h6><strong>Price:</strong> ${product.price}</h6>
-                                                                                                                                                                        </div>
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="bg-light border product-button">
-                                                                                                                                                                        <a href="${product.detailsUrl}" class="btn btn-sm text-dark p-0">
-                                                                                                                                                                            <i class="fas fa-eye text-primary mr-1"></i>View Detail
-                                                                                                                                                                                 </a>
-                                                                                                                                                                    </div>
-                                                                                                                                                                </div>
-                                                                                                                                                           </div>`;
+                                           <div class="SearchBar col-lg-6 col-6">
+                                            <div class="SearchItem bg-light">
+                                               <div class="border p-0 product-pic">
+                                                                                                                                                                    <img src="/images/${product.image}" alt="${product.name}" >
+                                                                                                                                                                                </div>
+                                                                                                                                                                                <div class="product-data">
+                                                                                                                                                                                    <a href="${product.detailsUrl}" class="text-decoration-none">
+                                                                                                                                                                                        <h6 class="text-truncate mb-3">${product.name}</h6>
+                                                                                                                                                                                    </a>
+                                                                                                                                                                                    <div class="d-flex justify-content-center">
+                                                                                                                                                                                        <h6><strong>Price:</strong> ${product.price}</h6>
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                </div>
+                                                                                                                                                                                <div class="bg-light border product-button">
+                                                                                                                                                                                    <a href="${product.detailsUrl}" class="btn btn-sm text-dark p-0">
+                                                                                                                                                                                        <i class="fas fa-eye text-primary mr-1"></i>View Detail
+                                                                                                                                                                                             </a>
+                                                                                                                                                                                </div>
+                                                                                                                                                                            </div>
+                                                                                                                                                                       </div>`;
                         $searchResults.append(productHtml);
                     });
                 } else {
@@ -126,38 +127,27 @@
             $('.input-group-text').on('click', function () {
                 $("#searchResults").show();
             });
-        </script>
 
+        </script>
+      
 
 
         <div class="col-lg-3 col-6 text-right">
 
             @if (User.Identity.IsAuthenticated)
             {
-                <div class="dropdown btn" id="UserLink">
-                    <button class="btn btn-secondary dropdown-toggle bg-light text-dark" type="button" id="userDropdownMenuButton" data-toggle="dropdown">
-                        <i class="fas fa-user text-primary"></i>
-                        Profile
+                 <partial name="../Home/Userp"/>
+
+
+                <div class="dropdown" id="cartLink">
+                    <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown button
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="userDropdownMenuButton">
-                        <div id="ProfileModalContainer">
-                            <!-- profile shows here -->
-                        </div>
+                    <div class="dropdown-menu cartModalContainer" aria-labelledby="dropdownMenuButton">
                     </div>
+
                 </div>
 
-                <div class="dropdown btn " id="cartLink">
-                    <button class="btn btn-secondary dropdown-toggle bg-light text-dark" type="button" id="cartDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-shopping-cart text-primary"></i>
-                        Cart
-                    </button>
-                    <div  class="dropdown-menu" aria-labelledby="cartDropdownMenuButton">
-                        <div id="cartModalContainer"></div>
-                        <!-- cart shows here -->
-
-                    </div>
-                </div>
-                
 
             }
             else

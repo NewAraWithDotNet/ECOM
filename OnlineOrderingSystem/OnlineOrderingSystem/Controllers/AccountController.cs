@@ -32,27 +32,33 @@ public class AccountController : Controller
             var user = await _userManager.FindByEmailAsync(model.Email);
 
             var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, lockoutOnFailure: false);
-            if (result.Succeeded)
+            if (User.IsInRole("Admin"))
             {
-                if (user != null)
-                {
-                    HttpContext.Session.SetString("UserId", user.Id); 
-                }
-                return RedirectToAction("HomePage", "Home");
+                return RedirectToAction("Index", "Admin");
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Invalid login attempt");
+                if (result.Succeeded)
+                {
+                    if (user != null)
+                    {
+                        HttpContext.Session.SetString("UserId", user.Id);
+                    }
+                    return RedirectToAction("HomePage", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt");
+                }
             }
+
+
+
         }
         return View(model);
     }
 
 
-    private async Task SignInUser(Microsoft.AspNetCore.Identity.SignInResult result)
-    {
-        throw new NotImplementedException();
-    }
 
     [HttpGet]
     public IActionResult Register()
@@ -83,7 +89,7 @@ public class AccountController : Controller
     public async Task<IActionResult> Logout()
     {
         await _signInManager.SignOutAsync();
-        return RedirectToAction("Index", "Home"); // Redirect to home page after logout
+        return RedirectToAction("Index", "Home");
     }
-  
+
 }

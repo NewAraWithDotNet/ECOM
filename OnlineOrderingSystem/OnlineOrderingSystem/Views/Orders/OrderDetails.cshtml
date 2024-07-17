@@ -2,6 +2,7 @@
 
 @* save it 
  *@
+
 <div class="container mt-5">
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white">
@@ -27,6 +28,24 @@
                     <p><strong>Email:</strong> @Model.Order.User.Email</p>
                 </div>
             </div>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <form asp-action="ChangeOrderStatus" asp-controller="Orders" method="post">
+                    <input type="hidden" name="orderId" value="@Model.Order.Id" />
+                    <div class="form-group">
+                        <label for="status">Change Order Status</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="Pending">Pending</option>
+                            <option value="Processing">Processing</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Status</button>
+                </form>
+            }
 
             <h3 class="h5">Order Items</h3>
             <div class="table-responsive">
@@ -58,7 +77,6 @@
         </div>
     </div>
 </div>
-
 @functions {
     private string GetStatusClass(string status)
     {

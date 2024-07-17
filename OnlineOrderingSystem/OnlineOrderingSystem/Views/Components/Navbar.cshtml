@@ -21,9 +21,16 @@
                             <a asp-area="" asp-controller="Home" asp-action="HomePage" class="text-light nav-item nav-link">HOME</a>
                             <a asp-area="" asp-controller="ChatMessages" asp-action="Index" class="text-light nav-item nav-link">Chat</a>
 
-                            @if (User.IsInRole("Admin"))
+                            @if (User.Identity.IsAuthenticated)
                             {
-                                <a class="text-light nav-item nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                                if (User.IsInRole("Admin"))
+                                {
+                                    <a class="text-light nav-item nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                                }
+                                else
+                                {
+                                    <p>User is not in the Admin role.</p>
+                                }
                             }
                         </div>
 

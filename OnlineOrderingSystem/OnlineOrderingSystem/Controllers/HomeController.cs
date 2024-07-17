@@ -88,7 +88,7 @@ namespace OnlineOrderingSystem.Controllers
             {
                 CurrentUserName = user.UserName,
                 CurrentEmail = user.Email,
-                CurrentAvatar = user.Avatar
+                CurrentAvatar = user.Avatar,
             };
 
             return View(model);

@@ -251,6 +251,40 @@ namespace OnlineOrderingSystem.Migrations
                     b.ToTable("ChatMessages");
                 });
 
+            modelBuilder.Entity("OnlineOrderingSystem.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("OnlineOrderingSystem.Models.Conversation", b =>
                 {
                     b.Property<int>("Id")
@@ -377,9 +411,15 @@ namespace OnlineOrderingSystem.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("CommentsEnabled")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HowMany")
+                        .HasColumnType("int");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
@@ -612,6 +652,25 @@ namespace OnlineOrderingSystem.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("OnlineOrderingSystem.Models.Comment", b =>
+                {
+                    b.HasOne("OnlineOrderingSystem.Models.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineOrderingSystem.Models.User", "user")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("user");
+                });
+
             modelBuilder.Entity("OnlineOrderingSystem.Models.Conversation", b =>
                 {
                     b.HasOne("OnlineOrderingSystem.Models.User", "User1")
@@ -733,9 +792,16 @@ namespace OnlineOrderingSystem.Migrations
                     b.Navigation("OrderItems");
                 });
 
+            modelBuilder.Entity("OnlineOrderingSystem.Models.Product", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
             modelBuilder.Entity("OnlineOrderingSystem.Models.User", b =>
                 {
                     b.Navigation("ChatMessages");
+
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

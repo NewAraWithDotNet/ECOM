@@ -1,0 +1,11 @@
+﻿@model List<Comment>
+@{
+    Layout = null;
+}
+<div>
+    @foreach (var comment in Model)
+    {
+        <li>@comment.Content - <strong>@comment.user</strong></li>
+        <img src="@comment.user.Avatar" />
+    }
+</div>

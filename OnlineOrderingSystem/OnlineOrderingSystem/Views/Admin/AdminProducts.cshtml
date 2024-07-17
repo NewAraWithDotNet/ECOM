@@ -5,7 +5,7 @@
 
 
 <script>
- 
+
 </script>
 
 
@@ -29,7 +29,7 @@
                             <img class="img-fluid w-100" src="~/images/@product.Image" alt="@product.Name" style="max-width: 100px;">
                         </td>
                         <td>
-                            <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="text-decoration-none">
+                            <a href="#" class="text-decoration-none">
                                 @product.Name
                             </a>
                         </td>
@@ -37,8 +37,15 @@
                             @product.Price.ToString("C")
                         </td>
                         <td>
-                            <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-sm btn-primary">View Detail</a>
-
+                            <a href="@Url.Action("DetailsProducts", "Products", new { id = product.Id })" class="btn btn-sm btn-primary">View Detail</a>
+                    
+                            <form asp-action="ToggleCommentsEnabled" asp-controller="Products" asp-route-id="@product.Id" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-warning ml-2">
+                                    @(product.CommentsEnabled ? "Disable Comments" : "Enable Comments")
+                                </button>
+                            </form>
+                         
                             <form asp-action="DeleteConfirmed" asp-controller="Products" asp-route-id="@product.Id" method="post" class="d-inline">
                                 @Html.AntiForgeryToken()
                                 <button type="submit" class="btn btn-sm btn-secondary ml-2" onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>

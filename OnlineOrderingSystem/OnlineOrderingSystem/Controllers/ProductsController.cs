@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using OnlineOrderingSystem.Data;
 using OnlineOrderingSystem.Models;
+using OnlineOrderingSystem.ViewModels;
 
 namespace OnlineOrderingSystem.Controllers
 {
@@ -16,11 +20,14 @@ namespace OnlineOrderingSystem.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly UserManager<User> _userManager;
 
-        public ProductsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
+        public ProductsController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment, UserManager<User> userManager)
         {
             _context = context;
             _hostEnvironment = hostEnvironment;
+            _userManager = userManager;
+
         }
 
         // GET: Products
@@ -31,7 +38,7 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> DetailsProducts(int? id, int loadCount = 2)
         {
             if (id == null)
             {
@@ -40,18 +47,40 @@ namespace OnlineOrderingSystem.Controllers
 
             var product = await _context.Products
                 .Include(p => p.Category)
+                .Include(p => p.Comments)
+                .ThenInclude(c => c.user)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
                 return NotFound();
             }
 
+            var comments = product.Comments.Take(loadCount).ToList(); 
+            ViewBag.TotalComments = product.Comments.Count;
+            ViewBag.LoadCount = loadCount;
+            ViewBag.Comments = comments;
+
             return View("DetailsProducts", product);
+        }
+
+        [HttpGet]
+        public IActionResult GetMoreComments(int productId, int loadCount)
+        {
+            var comments = _context.Comments
+                .Where(c => c.ProductId == productId)
+                .Include(c => c.user)
+                .Skip(loadCount).Take(4).ToList();
+
+            return Ok(comments.Select(c => new
+            {
+                c.user.UserName, 
+                c.Content
+            }));
         }
 
         public IActionResult CreatProducts()
         {
-            ViewBag.Categories =   new SelectList(_context.Categories, "Id", "Name");
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -96,8 +125,8 @@ namespace OnlineOrderingSystem.Controllers
 
             var userWishlists = await _context.Wishlists
                                               .Where(w => w.UserId == userId)
-                                              .Include(w => w.Product) 
-                                              .Include(w => w.User)   
+                                              .Include(w => w.Product)
+                                              .Include(w => w.User)
                                               .ToListAsync();
 
             ViewBag.Products = products;
@@ -142,26 +171,6 @@ namespace OnlineOrderingSystem.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(IEnumerable<Product> products)
-        {
-
-            return View(products);
-        }
-
-        // POST: Products/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToAction("Admin", "Index");
-        }
 
 
 
@@ -180,7 +189,7 @@ namespace OnlineOrderingSystem.Controllers
                         p.Price,
                         p.Image,
                         p.CategoryId,
-                        CategoryName = p.Category.Name 
+                        CategoryName = p.Category.Name
                     })
                     .ToList();
                 return Ok(products);
@@ -188,6 +197,39 @@ namespace OnlineOrderingSystem.Controllers
             return Ok(Enumerable.Empty<object>());
         }
 
+        [HttpPost]
+
+        public async Task<IActionResult> CreateComment(string Content, int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Comment comment1 = new Comment();
+
+            comment1.DatePosted = DateTime.Now;
+            comment1.UserId = userId;
+            comment1.ProductId = id;
+            comment1.Product = product;
+            comment1.Content = Content;
+            _context.Add(comment1);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("DetailsProducts", "Products", new { id = id });
+        }
+
+        [HttpPost]
+        public IActionResult ToggleCommentsEnabled(int id)
+        {
+            var product = _context.Products.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.CommentsEnabled = !product.CommentsEnabled;
+            _context.SaveChanges();
+
+            return RedirectToAction("Index","Admin"); 
+        }
 
         private bool ProductExists(int id)
         {

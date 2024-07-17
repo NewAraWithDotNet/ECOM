@@ -4,25 +4,7 @@
 // Write your JavaScript code.
 
     $(document).ready(function () {
-        $("#cartLink").on('click', function (event) {
-            event.preventDefault();
-            console.log("Cart Link clicked");
-
-            if ($("#cartModalContainer").html().trim().length === 0) {
-                $.ajax({
-                    url: "/Carts/CartMenu", 
-                    type: "GET",
-                    success: function (data) {
-                        $("#cartModalContainer").html(data);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(error);
-                        console.log("Error loading cart menu");
-                    }
-                });
-            }
-        });
-
+  
         $("#UserLink").on('click', function (event) {
             event.preventDefault();
             console.log("UserLink clicked");
@@ -42,11 +24,19 @@
             });
         });
 
-
-
-
-
-
+        $('#cartLink').on('show.bs.dropdown', function () {
+            console.log("work")
+            $.ajax({
+                url: '/Carts/CartMenu', 
+                type: 'GET',
+                success: function (data) {
+                    $('.cartModalContainer').html(data); 
+                },
+                error: function () {
+                    console.error('Error loading CartMenu.');
+                }
+            });
+        });
 
     });
 

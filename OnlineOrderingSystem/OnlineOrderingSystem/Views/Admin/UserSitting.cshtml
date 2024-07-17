@@ -1,0 +1,70 @@
+﻿@model IEnumerable<User>
+@{
+    Layout = null;
+}
+<table>
+    <thead>
+        <tr>
+            <th>Avatar</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Id</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td><img src="@user.Avatar" alt="Avatar" width="50" height="50" /></td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.Id</td>
+                <td>
+                    <a href="@Url.Action("UserEdite?=",new {id=user.Id} )">Edit</a>
+                    <a>
+                        <a href="UserEdite?id=@user.Id">Edit</a>
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<style>
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        background-color: #fff;
+        border-collapse: collapse;
+    }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .table tbody + tbody {
+            border-top: 2px solid #dee2e6;
+        }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.075);
+    }
+
+</style>
