@@ -10,71 +10,136 @@
 
 @if (Model.Products != null && Model.Products.Any())
 {
-    <div class="row">
+   <div class="col-lg-9 col-md-12">
+    <div class="row pb-3">
         @foreach (var product in Model.Products)
         {
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="col-lg-12">
-                            @if (!string.IsNullOrEmpty(product.Image))
-                            {
-                                <img src="~/images/@product.Image" class="card-img-top" alt="@product.Name" />
-                            }
-                            <div class="col-lg-12">
-                                <h5 class="card-title">@product.Name</h5>
-                                <p class="card-text"><strong>Price:</strong> @product.Price.ToString("C")</p>
-                                <p class="card-text"><strong>Category:</strong> @product.Category.Name</p>
-                                <div class="row">
-                                    <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="col-md-4  btn btn-warning">View</a>
-                                    <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="col-md-4 btn btn-info">Edit</a>
-                                    <button type="button" onclick="addToCart(@product.Id)" class="col-md-4 btn btn-success">Add</button>
-                                </div>
-                            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                <div class="card product-item border-0 mb-4">
+                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                        <img class="img-fluid w-100" src="~/images/@product.Image" alt="@product.Name">
+                    </div>
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="text-decoration-none">
+                            <h6 class="text-truncate mb-3">@product.Name</h6>
+                        </a>
+                        <div class="d-flex justify-content-center">
+                            <h6><p class="card-text"><strong>Price:</strong> <span id="price-@product.Id">@product.Price.ToString("C")</span></p></h6>
                         </div>
+                        <div class="product-options">
+                            @if (product.ProductOptions != null && product.ProductOptions.Count > 0)
+                            {
+                                <p><strong>Options:</strong></p>
+                                <ul class="list-unstyled">
+                                    @foreach (var option in product.ProductOptions)
+                                    {
+                                        <li>
+                                            <input type="radio" name="option-@product.Id" value="@option.OptionPrice" data-product-id="@product.Id" data-option-id="@option.Id" onchange="updatePrice(@product.Id, @option.OptionPrice)"> @option.OptionName: @option.OptionPrice.ToString("C")
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+
+                    </div>
+                    <div class="card-footer d-flex justify-content-between bg-light border">
+                        <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+
+                        @{
+                            var userWishlists = ViewBag.UserWishlists as List<Wishlist>;
+                            bool isInWishlist = userWishlists != null && userWishlists.Any(w => w.ProductId == product.Id);
+                            string iconClass = isInWishlist ? "fa fa-heart text-danger" : "fa fa-heart";
+                        }
+
+                        <button id="btnWishlist_@product.Id" class="btn btn-sm text-dark p-0 ml-2" onclick="toggleWishlist(@product.Id)">
+                            <i id="iconWishlist_@product.Id" class="@iconClass"></i>
+                        </button>
+
+                        <button type="button" onclick="AddToCart(@product.Id)" class="btn btn-sm text-dark p-0 ml-2">Add to Cart</button>
                     </div>
                 </div>
             </div>
         }
     </div>
+    </div>
+
 }
 else
 {
     <p>No products available for this category.</p>
 }
 
+
+
+
+
 <script>
-    function addToCart(productId) {
+
+    function updatePrice(productId, optionPrice) {
+        var priceElement = document.getElementById('price-' + productId);
+        priceElement.textContent = optionPrice.toFixed(2);
+    }
+
+    function AddToCart(productId) {
+        var selectedOption = document.querySelector('input[name="option-' + productId + '"]:checked');
+        var optionId = selectedOption ? selectedOption.getAttribute('data-option-id') : null;
+        var optionPrice = selectedOption ? parseFloat(selectedOption.value) : null;
+
         $.ajax({
-            type: "POST",
             url: '@Url.Action("AddToCart", "Carts")',
+            type: 'POST',
             data: {
-                id: productId,
-                __RequestVerificationToken: '@afToken'
+                productId: productId,
+                optionId: optionId,
+                optionPrice: optionPrice
             },
             success: function (response) {
                 if (response.success) {
-                    updateCart(response.cart);
-                    toastr.success("Product added to cart.");
+                    toastr.success(response.message);
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function (error) {
+                toastr.error('Failed to add product to cart', error);
+            }
+        });
+    }
+
+    function toggleWishlist(productId) {
+        var btn = $('#btnWishlist_' + productId);
+        var icon = $('#iconWishlist_' + productId);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("ToggleWishlist", "Wishlists")',
+            data: { productId: productId },
+            success: function (response) {
+                if (response.success) {
+                    if (response.isAdded) {
+                        icon.removeClass('fa fa-heart').addClass('fa fa-heart text-danger');
+                        toastr.success(response.message);
+                    } else {
+                        icon.removeClass('bi-calendar-heart-fill text-danger').addClass('bi-calendar-heart');
+                        toastr.success(response.message);
+                    }
                 } else {
                     toastr.error(response.message);
                 }
             },
             error: function () {
-                toastr.error("An error occurred while adding the product to the cart.");
+                toastr.error("An error occurred while toggling the product in the wishlist.");
             }
         });
     }
-
-    function updateCart(cartViewModel) {
-        $('#cart-container').empty();
-        var cartHtml = '<h2>Shopping Cart</h2>';
-        cartHtml += '<div class="list-container">';
-        cartViewModel.cartItems.forEach(function (item) {
-            cartHtml += '<div class="item-container">';
-            cartHtml += '</div>';
-        });
-        cartHtml += '</div>';
-        $('#cart-container').html(cartHtml);
-    }
 </script>
+
+
+
+
+<style>
+    .btn-wishlist-added {
+        background-color: #ffc107 !important;
+        color: #212529 !important;
+    }
+</style>

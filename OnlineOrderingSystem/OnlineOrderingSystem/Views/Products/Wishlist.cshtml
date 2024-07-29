@@ -6,11 +6,25 @@
 
 
 <script>
-    function addToCart(productId) {
+
+    function updatePrice(productId, optionPrice) {
+        var priceElement = document.getElementById('price-' + productId);
+        priceElement.textContent = optionPrice.toFixed(2);
+    }
+
+    function AddToCart(productId) {
+        var selectedOption = document.querySelector('input[name="option-' + productId + '"]:checked');
+        var optionId = selectedOption ? selectedOption.getAttribute('data-option-id') : null;
+        var optionPrice = selectedOption ? parseFloat(selectedOption.value) : null;
+
         $.ajax({
-            type: "POST",
             url: '@Url.Action("AddToCart", "Carts")',
-            data: { id: productId },
+            type: 'POST',
+            data: {
+                productId: productId,
+                optionId: optionId,
+                optionPrice: optionPrice 
+            },
             success: function (response) {
                 if (response.success) {
                     toastr.success(response.message);
@@ -18,8 +32,8 @@
                     toastr.error(response.message);
                 }
             },
-            error: function () {
-                toastr.error("An error occurred while adding the product to the cart.");
+            error: function (error) {
+                toastr.error('Failed to add product to cart', error);
             }
         });
     }
@@ -75,14 +89,29 @@
                             <h6 class="text-truncate mb-3">@product.Name</h6>
                         </a>
                         <div class="d-flex justify-content-center">
-                            <h6><p class="card-text"><strong>Price:</strong> @product.Price.ToString("C")</p></h6>
+                            <h6><p class="card-text"><strong>Price:</strong> <span id="price-@product.Id">@product.Price.ToString("C")</span></p></h6>
                         </div>
+                        <div class="product-options">
+                            @if (product.ProductOptions != null && product.ProductOptions.Count > 0)
+                            {
+                                <p><strong>Options:</strong></p>
+                                <ul class="list-unstyled">
+                                    @foreach (var option in product.ProductOptions)
+                                    {
+                                        <li>
+                                            <input type="radio" name="option-@product.Id" value="@option.OptionPrice" data-product-id="@product.Id" data-option-id="@option.Id" onchange="updatePrice(@product.Id, @option.OptionPrice)"> @option.OptionName: @option.OptionPrice.ToString("C")
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="@Url.Action("DetailsProducts", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
 
                         @{
-                            var userWishlists = ViewBag.UserWishlists as List<Wishlist>; 
+                            var userWishlists = ViewBag.UserWishlists as List<Wishlist>;
                             bool isInWishlist = userWishlists != null && userWishlists.Any(w => w.ProductId == product.Id);
                             string iconClass = isInWishlist ? "fa fa-heart text-danger" : "fa fa-heart";
                         }
@@ -91,7 +120,7 @@
                             <i id="iconWishlist_@product.Id" class="@iconClass"></i>
                         </button>
 
-                        <button type="button" onclick="addToCart(@product.Id)" class="btn btn-sm text-dark p-0 ml-2">Add to Cart</button>
+                        <button type="button" onclick="AddToCart(@product.Id)" class="btn btn-sm text-dark p-0 ml-2">Add to Cart</button>
                     </div>
                 </div>
             </div>

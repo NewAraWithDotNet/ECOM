@@ -55,7 +55,7 @@ namespace OnlineOrderingSystem.Controllers
                 return NotFound();
             }
 
-            var comments = product.Comments.Take(loadCount).ToList(); 
+            var comments = product.Comments.Take(loadCount).ToList();
             ViewBag.TotalComments = product.Comments.Count;
             ViewBag.LoadCount = loadCount;
             ViewBag.Comments = comments;
@@ -73,55 +73,80 @@ namespace OnlineOrderingSystem.Controllers
 
             return Ok(comments.Select(c => new
             {
-                c.user.UserName, 
+                c.user.UserName,
                 c.Content
             }));
         }
-
-        public IActionResult CreatProducts()
+        public IActionResult CreateProduct()
         {
             ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
-        // GET: Products/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Product product)
+        public async Task<IActionResult> CreateProducts(Product product, IFormFile ImageFile, List<IFormFile> ImageFiles)
+
         {
-            try
+
+            // Handle cover image upload
+            if (ImageFile != null)
             {
-                if (product.ImageFile != null)
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
+                string uniqueFileName = Guid.NewGuid().ToString() + "_" + ImageFile.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await ImageFile.CopyToAsync(fileStream);
+                }
+
+                product.Image = uniqueFileName;
+            }
+
+            // Handle additional images upload
+            if (ImageFiles != null && ImageFiles.Count > 0)
+            {
+                foreach (var imageFile in ImageFiles)
                 {
                     string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + product.ImageFile.FileName;
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                        await product.ImageFile.CopyToAsync(fileStream);
+                        await imageFile.CopyToAsync(fileStream);
                     }
 
-                    product.Image = uniqueFileName;
+                    product.ProductImages.Add(new ProductImage { ImageUrl = uniqueFileName });
                 }
+            }
 
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
+            // Set the discount price if applicable
+            if (product.HasDiscount)
             {
-                ModelState.AddModelError(string.Empty, "An error occurred while creating the product. Please try again.");
-                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
-                return View(product);
+                product.DiscountPrice = product.Price - (product.Price * product.DiscountPrice / 100);
             }
+            else
+            {
+                product.DiscountPrice = product.Price;
+            }
+
+            _context.Products.Add(product);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Admin");
+
+
         }
+
 
         public async Task<IActionResult> Wishlist()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var products = await _context.Products.ToListAsync();
+            var products = await _context.Products
+                .Include(p => p.ProductOptions)
+                .ToListAsync();
 
             var userWishlists = await _context.Wishlists
                                               .Where(w => w.UserId == userId)
@@ -228,8 +253,30 @@ namespace OnlineOrderingSystem.Controllers
             product.CommentsEnabled = !product.CommentsEnabled;
             _context.SaveChanges();
 
-            return RedirectToAction("Index","Admin"); 
+            return RedirectToAction("Index", "Admin");
         }
+
+
+            public async Task<IActionResult> TopProuct()
+
+        {
+            var topProducts = await _context.Wishlists
+                .GroupBy(w => w.ProductId)
+                .OrderByDescending(g => g.Count())
+                .Select(g => g.Key)
+                .Take(10)
+                .ToListAsync();
+
+            var products = await _context.Products
+                .Where(p => topProducts.Contains(p.Id))
+                .ToListAsync();
+
+            return View(products);
+        }
+
+
+
+
 
         private bool ProductExists(int id)
         {

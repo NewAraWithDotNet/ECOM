@@ -1,0 +1,77 @@
+﻿@model OnlineOrderingSystem.ViewModels.ProductSearchViewModel
+
+@{
+    ViewBag.Title = "Product Search";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+
+<h2>Search Products</h2>
+
+<form asp-action="AdminSearch" asp-controller="Admin" method="get">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MinPrice" class="control-label"></label>
+        <input asp-for="MinPrice" class="form-control" type="number" step="0.01" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MaxPrice" class="control-label"></label>
+        <input asp-for="MaxPrice" class="form-control" type="number" step="0.01" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Category" class="control-label"></label>
+        <input asp-for="Category" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (Model != null && Model.Results != null)
+{
+    <h3>Search Results</h3>
+    <div class="row pb-3">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model.Results)
+                {
+                    <tr>
+                        <td>
+                            <img class="img-fluid w-100" src="~/images/@product.Image" alt="@product.Name" style="max-width: 100px;">
+                        </td>
+                        <td>
+                            <a href="#" class="text-decoration-none">
+                                @product.Name
+                            </a>
+                        </td>
+                        <td>
+                            @product.Price.ToString("C")
+                        </td>
+                        <td>
+                            <a href="@Url.Action("DetailsProducts", "Products", new { id = product.Id })" class="btn btn-sm btn-primary">View Detail</a>
+                            <form asp-action="ToggleCommentsEnabled" asp-controller="Products" asp-route-id="@product.Id" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-warning ml-2">
+                                    @(product.CommentsEnabled ? "Disable Comments" : "Enable Comments")
+                                </button>
+                            </form>
+                            <form asp-action="DeleteConfirmed" asp-controller="Products" asp-route-id="@product.Id" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-secondary ml-2" onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

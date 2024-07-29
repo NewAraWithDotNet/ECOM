@@ -41,6 +41,8 @@
                             <option value="Shipped">Shipped</option>
                             <option value="Delivered">Delivered</option>
                             <option value="Cancelled">Cancelled</option>
+                            <option value="Complete">Complete</option>
+
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Status</button>
@@ -84,7 +86,7 @@
         {
             case "Pending":
                 return "badge-warning border-warning";
-            case "Completed":
+            case "Complete":
                 return "badge-success border-success";
             case "Cancelled":
                 return "badge-danger border-danger";

@@ -44,6 +44,16 @@ namespace OnlineOrderingSystem.Controllers
             }
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var userWishlists =  _context.Wishlists
+                                                             .Where(w => w.UserId == userId)
+                                                             .Include(w => w.Product)
+                                                             .Include(w => w.User)
+                                                             .ToListAsync();
+
+                ViewBag.UserWishlists = userWishlists;
+
+
                 return PartialView("Details", category);
             }
             return View(category);

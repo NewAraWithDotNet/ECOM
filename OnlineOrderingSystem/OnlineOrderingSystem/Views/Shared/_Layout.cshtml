@@ -24,22 +24,52 @@
     <script src="~/js/site.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
 
+    <style>
+      
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #6c757d;
+        }
+    </style>
 </head>
 
 
 <body>
-    <!-- Topbar -->
-    <partial name="../Components/TopBar" />
+    <div class="wrapper">
+        <div class="content">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <!-- Topbar -->
+                <partial name="../Components/TopBar" />
+                <!-- Navbar -->
+                <partial name="../Components/Navbar" />
+            }
+            else
+            {
+                <partial name="../Components/TopLine" />
+            }
 
-    <!-- Navbar  -->
-    <partial name="../Components/Navbar" />
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </div>
 
-    <div class="container-fluid">
-        @RenderBody()
+        <!-- Footer Start -->
+        <div class="footer mt-auto">
+            <partial name="../Components/Footer" />
+        </div>
     </div>
-
-    <!-- Footer Start -->
-    <partial name="../Components/Footer" />
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>

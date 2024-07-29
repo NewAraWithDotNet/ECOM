@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography.Xml;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineOrderingSystem.Data;
+using OnlineOrderingSystem.Migrations;
 using OnlineOrderingSystem.Models;
 using OnlineOrderingSystem.ViewModels;
 
@@ -65,7 +67,7 @@ namespace OnlineOrderingSystem.Controllers
                     ProductId = ci.ProductId,
                     ProductName = ci.Product.Name,
                     Quantity = ci.Quantity,
-                    Price = ci.Product.Price,
+                    Price = ci.Price,
                     Image = ci.Product.Image
                 }).ToList()
             };
@@ -118,19 +120,16 @@ namespace OnlineOrderingSystem.Controllers
             return Json(new { orderId = order.Id });
         }
 
-
-
-
         [Authorize]
-        public async Task<IActionResult> AddToCart(int id)
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(int productId, int? optionId, decimal? optionPrice)
         {
             var user = await _userManager.GetUserAsync(User);
 
             if (user != null)
             {
                 string userId = user.Id;
-
-                var cart = _context.Carts.FirstOrDefault(c => c.UserId == userId);
+                var cart = _context.Carts.Include(c => c.CartItems).FirstOrDefault(c => c.UserId == userId);
 
                 if (cart == null)
                 {
@@ -142,22 +141,63 @@ namespace OnlineOrderingSystem.Controllers
                     _context.Carts.Add(cart);
                 }
 
-                var cartItem = _context.CartItems
-                    .FirstOrDefault(ci => ci.CartId == cart.Id && ci.ProductId == id);
+                var product = _context.Products.Include(p => p.ProductOptions).FirstOrDefault(p => p.Id == productId);
 
-                if (cartItem != null)
+                if (product == null)
                 {
-                    cartItem.Quantity += 1;
+                    return Json(new { success = false, message = "Product not found." });
+                }
+
+                if (product.ProductOptions.Any())
+                {
+                    // Product has options; check for item with specific option and price
+                    var existingCartItem = cart.CartItems
+                        .FirstOrDefault(ci => ci.ProductId == productId && ci.ProductOptionId == optionId
+                                              && (optionPrice == null || ci.Price == optionPrice));
+
+                    if (existingCartItem != null)
+                    {
+                        // If the item exists, increase the quantity
+                        existingCartItem.Quantity += 1;
+                    }
+                    else
+                    {
+                        // If the item does not exist, add a new item to the cart
+                        var cartItem = new CartItem
+                        {
+                            Cart = cart,
+                            ProductId = productId,
+                            ProductOptionId = optionId,
+                            Quantity = 1,
+                            Price = optionPrice ?? product.Price
+                        };
+                        _context.CartItems.Add(cartItem);
+                    }
                 }
                 else
                 {
-                    cartItem = new CartItem
+                    // Product does not have options; check for item without option
+                    var existingCartItem = cart.CartItems
+                        .FirstOrDefault(ci => ci.ProductId == productId && ci.ProductOptionId == null);
+
+                    if (existingCartItem != null)
                     {
-                        Cart = cart,
-                        ProductId = id,
-                        Quantity = 1
-                    };
-                    _context.CartItems.Add(cartItem);
+                        // If the item exists, increase the quantity
+                        existingCartItem.Quantity += 1;
+                    }
+                    else
+                    {
+                        // If the item does not exist, add a new item to the cart
+                        var cartItem = new CartItem
+                        {
+                            Cart = cart,
+                            ProductId = productId,
+                            ProductOptionId = null,
+                            Quantity = 1,
+                            Price = product.Price
+                        };
+                        _context.CartItems.Add(cartItem);
+                    }
                 }
 
                 await _context.SaveChangesAsync();
@@ -167,39 +207,64 @@ namespace OnlineOrderingSystem.Controllers
         }
 
 
+
+
         public async Task<IActionResult> CheackOut()
         {
             var user = await _userManager.GetUserAsync(User);
             string userId = user.Id;
+
+            var userCart = _context.Carts
+                .Include(c => c.user)
+                .Include(c => c.CartItems)
+                    .ThenInclude(ci => ci.Product)
+                    .ThenInclude(p => p.ProductOptions)
+                .FirstOrDefault(c => c.UserId == userId);
+
+            if (userCart == null)
             {
-                var userCart = _context.Carts
-                    .Include(c => c.user)
-                    .Include(c => c.CartItems)
-                        .ThenInclude(ci => ci.Product)
-                    .FirstOrDefault(c => c.UserId == userId);
+                return NotFound();
+            }
 
-                if (userCart == null)
+            // Prepare CartViewModel with product options
+            var cartViewModel = new CartViewModel
+            {
+                Email = userCart.user.Email,
+                Avatar = userCart.user.Avatar,
+                CartItems = userCart.CartItems.Select(ci =>
                 {
-                    return NotFound();
-                }
+                    var productOptions = ci.Product.ProductOptions
+                        .Where(po => po.OptionPrice == ci.Price)
+                        .Select(po => new ProductOptionViewModel
+                        {
+                            
+                            OptionName = po.OptionName,
+                            OptionPrice = po.OptionPrice
+                        }).ToList();
 
-                var cartViewModel = new CartViewModel
-                {
-                    Email = userCart.user.Email,
-                    Avatar = userCart.user.Avatar,
-                    CartItems = userCart.CartItems.Select(ci => new CartItemViewModel
+                    return new CartItemViewModel
                     {
                         CartItemId = ci.Id,
                         ProductId = ci.ProductId,
                         ProductName = ci.Product.Name,
                         Quantity = ci.Quantity,
-                        Price = ci.Product.Price,
-                        Image = ci.Product.Image
-                    }).ToList()
-                };
+                        Price = ci.Price,
+                        Image = ci.Product.Image,
+                        ProductOptions = productOptions // Add ProductOptions to the CartItemViewModel
+                    };
+                }).ToList()
+            };
 
-                return View(cartViewModel);
-            }
+            // Prepare ProductOptions dictionary if needed for other purposes
+            var productOptionsDict = userCart.CartItems
+                .SelectMany(ci => ci.Product.ProductOptions)
+                .Where(po => userCart.CartItems.Any(ci => ci.Price == po.OptionPrice))
+                .Distinct()
+                .ToDictionary(po => po.Id, po => po.OptionName);
+
+            ViewBag.ProductOptions = productOptionsDict;
+
+            return View(cartViewModel);
         }
 
 

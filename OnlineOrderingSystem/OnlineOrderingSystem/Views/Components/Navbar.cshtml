@@ -4,51 +4,48 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <div class="container-fluid mb-5">
-        <div class="row justify-content-center border-top px-xl-5">
-            <div class="col-lg-9">
-                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-                    <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold">
-                            <span class="text-primary font-weight-bold border px-3 mr-1">S</span>Shopper
-                        </h1>
-                    </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon">sss</span>
-                    </button>
-                    <div class="custom-navbar-width collapse navbar-collapse justify-content-between bg-dark text-white" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto py-0">
-                            <a asp-area="" asp-controller="Home" asp-action="HomePage" class="text-light nav-item nav-link">HOME</a>
-                            <a asp-area="" asp-controller="ChatMessages" asp-action="Index" class="text-light nav-item nav-link">Chat</a>
+    <div class="container-fluid mb-5 w-100">
+    <div class="row justify-content-center border-top px-xl-5">
+        <div class="col-lg-9">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+            
 
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                if (User.IsInRole("Admin"))
-                                {
-                                    <a class="text-light nav-item nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
-                                }
-                                else
-                                {
-                                    <p>User is not in the Admin role.</p>
-                                }
-                            }
-                        </div>
+                <div class="custom-navbar-width collapse navbar-collapse justify-content-between bg-dark text-white w-100" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto py-0">
+                        <a asp-area="" asp-controller="Home" asp-action="HomePage" class="text-light nav-item nav-link">Home</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Shope" class="text-light nav-item nav-link">Shope</a>
+                        <a asp-area="" asp-controller="ChatMessages" asp-action="Index" class="text-light nav-item nav-link">Chat</a>
 
-                        <div class="navbar-nav ml-auto py-0">
-                            @if (User.Identity.IsAuthenticated)
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole("Admin"))
                             {
-                                <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                                    <button type="submit" class="text-dark nav-item nav-link">
-                                        Logout
-                                    </button>
-                                </form>
+                                <a class="text-light nav-item nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
                             }
-                           
-                        </div>
+                            else
+                            {
+                                <p>User is not in the Admin role.</p>
+                            }
+                        }
                     </div>
 
-                </nav>
-            </div>
+                    <div class="navbar-nav ml-auto py-0">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                                <button type="submit" class="text-dark nav-item nav-link">
+                                    Logout
+                                </button>
+                            </form>
+                        }
+
+                    </div>
+                </div>
+
+            </nav>
         </div>
     </div>
+</div>
+
 }

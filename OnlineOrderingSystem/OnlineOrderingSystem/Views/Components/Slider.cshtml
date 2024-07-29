@@ -1,0 +1,53 @@
+﻿@model OnlineOrderingSystem.ViewModels.SliderModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<div class="container-fluid px-0">
+    <div class="slider-container position-relative overflow-hidden" style="height: calc(100vh - 80px);">
+        <div id="slider" class="d-flex transition-transform duration-1000 w-100">
+            @foreach (var slide in Model.Slides)
+            {
+                <div class="@slide.Bg w-100 d-flex flex-column flex-xl-row gap-3 p-3" style="min-width: 100%;">
+                    <div class="d-flex flex-column align-items-center justify-content-center text-center flex-grow-1">
+                        <h2 class="h3">@slide.Description</h2>
+                        <h1 class="display-4 font-weight-bold">@slide.Title</h1>
+                        <a href="@slide.Url">
+                            <button class="btn btn-dark mt-3">
+                                <a asp-area="" class="" asp-controller="Account" asp-action="Login">Shop Now</a>
+
+                            </button>
+                        </a>
+                    </div>
+                    <div class="d-flex flex-grow-1 position-relative">
+                        <img src="@slide.Img" alt="@slide.Title" class="img-fluid   h-100 object-cover" />
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="position-absolute d-flex gap-2" style="bottom: 20px; left: 50%; transform: translateX(-50%);">
+            @for (var i = 0; i < Model.Slides.Count; i++)
+            {
+                <div class="rounded-circle border border-secondary cursor-pointer" onclick="setCurrentSlide(@i)" style="width: 12px; height: 12px;">
+                    <div class="bg-secondary rounded-circle w-100 h-100"></div>
+                </div>
+            }
+        </div>
+    </div>  
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = @Html.Raw(Json.Serialize(Model.Slides));
+
+    function setCurrentSlide(index) {
+        currentSlide = index;
+        document.getElementById('slider').style.transform = `translateX(-${currentSlide * 100}vw)`;
+    }
+
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        setCurrentSlide(currentSlide);
+    }, 3000);
+</script>

@@ -1,0 +1,130 @@
+﻿@model OnlineOrderingSystem.Models.Product
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Create Product</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateProducts" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HowMany" class="control-label"></label>
+                <input asp-for="HowMany" class="form-control" />
+                <span asp-validation-for="HowMany" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HasDiscount" class="control-label"></label>
+                <input asp-for="HasDiscount" class="form-control" type="checkbox" />
+                <span asp-validation-for="HasDiscount" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="discountPriceDiv" style="display: none;">
+                <label asp-for="DiscountPrice" class="control-label"></label>
+                <input asp-for="DiscountPrice" class="form-control" />
+                <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Image" class="control-label">Cover Image</label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductImages" class="control-label">Additional Images</label>
+                <input asp-for="ProductImages" class="form-control" type="file" name="ImageFiles" multiple />
+                <span asp-validation-for="ProductImages" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Product Options</label>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Option Name</th>
+                            <th>Option Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="productOptionsTable">
+                        <tr>
+                            <td>
+                                <input name="ProductOptions[0].OptionName" class="form-control" />
+                            </td>
+                            <td>
+                                <input name="ProductOptions[0].OptionPrice" class="form-control" />
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger" onclick="removeOptionRow(this)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-primary" onclick="addOptionRow()">Add Option</button>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <partial name="../Categories/Create" />
+</div>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#HasDiscount').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#discountPriceDiv').show();
+                } else {
+                    $('#discountPriceDiv').hide();
+                }
+            });
+        });
+
+        function addOptionRow() {
+            var rowCount = $('#productOptionsTable tr').length;
+            var newRow = `<tr>
+                        <td>
+                            <input name="ProductOptions[${rowCount}].OptionName" class="form-control" />
+                        </td>
+                        <td>
+                            <input name="ProductOptions[${rowCount}].OptionPrice" class="form-control" />
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" onclick="removeOptionRow(this)">Remove</button>
+                        </td>
+                    </tr>`;
+            $('#productOptionsTable').append(newRow);
+        }
+
+        function removeOptionRow(button) {
+            $(button).closest('tr').remove();
+        }
+    </script>
+

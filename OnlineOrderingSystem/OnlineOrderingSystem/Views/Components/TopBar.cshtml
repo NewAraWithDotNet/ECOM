@@ -1,46 +1,23 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
 <div class="container-fluid">
-    <div class="row bg-secondary py-2 px-xl-5">
-        <div class="col-lg-6 d-none d-lg-block">
-            <div class="d-inline-flex align-items-center">
-                <a class="text-dark" href="">FAQs</a>
-                <span class="text-muted px-2">|</span>
-                <a class="text-dark" href="">Help</a>
-                <span class="text-muted px-2">|</span>
-                <a class="text-dark" href="">Support</a>
-            </div>
-        </div>
-        <div class="col-lg-6 text-center text-lg-right">
-            <div class="d-inline-flex align-items-center">
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a class="text-dark px-2" href="">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a class="text-dark pl-2" href="">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </div>
-        </div>
-    </div>
     <div class="row align-items-center py-3 px-xl-5">
-        <div class="col-lg-3 d-none d-lg-block">
+
+
+        <!-- Logo Section -->
+        <div class="col-lg-3 col-12 d-flex justify-content-lg-start justify-content-center">
             <a href="" class="text-decoration-none">
-                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">S</span>Shopper</h1>
+                <h1 class="m-0 display-5 font-weight-semi-bold">
+                    <span class="text-primary font-weight-bold border px-3 mr-1">S</span>Shopper
+                </h1>
             </a>
         </div>
-        <div class="col-lg-6 col-6 text-left">
+
+
+        <!-- Search Bar Section -->
+        <div class="col-lg-6 col-12 d-flex justify-content-center">
             <form action="" onsubmit="return false;">
                 <div class="input-group">
                     <input type="text" id="searchBox" class="form-control" placeholder="Search for products" onkeyup="searchProducts()">
@@ -50,12 +27,11 @@
                         </span>
                     </div>
                 </div>
-                <div id="searchResults" class="mt-3 ContinerSearch">
+                <div id="searchResults" class="mt-3 ContinerSearch" style="display: none;">
                     <!-- Search results will be displayed here -->
                 </div>
             </form>
         </div>
-
 
         <script>
             function searchProducts() {
@@ -84,26 +60,26 @@
                         var productHtml = `
 
 
-                                           <div class="SearchBar col-lg-6 col-6">
-                                            <div class="SearchItem bg-light">
-                                               <div class="border p-0 product-pic">
-                                                                                                                                                                    <img src="/images/${product.image}" alt="${product.name}" >
-                                                                                                                                                                                </div>
-                                                                                                                                                                                <div class="product-data">
-                                                                                                                                                                                    <a href="${product.detailsUrl}" class="text-decoration-none">
-                                                                                                                                                                                        <h6 class="text-truncate mb-3">${product.name}</h6>
-                                                                                                                                                                                    </a>
-                                                                                                                                                                                    <div class="d-flex justify-content-center">
-                                                                                                                                                                                        <h6><strong>Price:</strong> ${product.price}</h6>
-                                                                                                                                                                                    </div>
-                                                                                                                                                                                </div>
-                                                                                                                                                                                <div class="bg-light border product-button">
-                                                                                                                                                                                    <a href="${product.detailsUrl}" class="btn btn-sm text-dark p-0">
-                                                                                                                                                                                        <i class="fas fa-eye text-primary mr-1"></i>View Detail
-                                                                                                                                                                                             </a>
-                                                                                                                                                                                </div>
-                                                                                                                                                                            </div>
-                                                                                                                                                                       </div>`;
+                                                       <div class="SearchBar col-lg-6 col-6">
+                                                        <div class="SearchItem bg-light">
+                                                           <div class="border p-0 product-pic">
+                                                                                                                                                                                <img src="/images/${product.image}" alt="${product.name}" >
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <div class="product-data">
+                                                                                                                                                                                                <a href="${product.detailsUrl}" class="text-decoration-none">
+                                                                                                                                                                                                    <h6 class="text-truncate mb-3">${product.name}</h6>
+                                                                                                                                                                                                </a>
+                                                                                                                                                                                                <div class="d-flex justify-content-center">
+                                                                                                                                                                                                    <h6><strong>Price:</strong> ${product.price}</h6>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                            <div class="bg-light border product-button">
+                                                                                                                                                                                                <a href="${product.detailsUrl}" class="btn btn-sm text-dark p-0">
+                                                                                                                                                                                                    <i class="fas fa-eye text-primary mr-1"></i>View Detail
+                                                                                                                                                                                                         </a>
+                                                                                                                                                                                            </div>
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                   </div>`;
                         $searchResults.append(productHtml);
                     });
                 } else {
@@ -129,19 +105,24 @@
             });
 
         </script>
-      
+
 
 
         <div class="col-lg-3 col-6 text-right">
 
             @if (User.Identity.IsAuthenticated)
             {
-                 <partial name="../Home/Userp"/>
+                <div>
+                    <partial name="../Home/Userp" />
+                </div>
+
+
 
 
                 <div class="dropdown" id="cartLink">
                     <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown button
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+
                     </button>
                     <div class="dropdown-menu cartModalContainer" aria-labelledby="dropdownMenuButton">
                     </div>

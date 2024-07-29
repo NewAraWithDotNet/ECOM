@@ -30,14 +30,38 @@ namespace OnlineOrderingSystem.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction(nameof(HomePage));
+                return RedirectToAction("HomePage");
             }
-            List<Category> categories = _context.Categories.ToList();
-            ViewBag.Categories = categories;
-            return View();
+            var model = new SliderModel();
+            model.OnGet();
+            return View(model);
         }
 
         public async Task<IActionResult> HomePage()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user != null)
+            {
+                ViewBag.Email = user.Email;
+                ViewBag.UserName = user.UserName;
+                ViewBag.Avatar = user.Avatar;
+            }
+            var topProducts = await _context.Wishlists
+                  .GroupBy(w => w.ProductId)
+                  .OrderByDescending(g => g.Count())
+                  .Select(g => g.Key)
+                  .Take(10)
+                  .ToListAsync();
+
+            var products = await _context.Products
+                .Where(p => topProducts.Contains(p.Id))
+                .ToListAsync();
+
+            return View(products);
+        }
+        public async Task<IActionResult> Shope()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await _userManager.FindByIdAsync(userId);
@@ -74,6 +98,13 @@ namespace OnlineOrderingSystem.Controllers
             return View();
         }
 
+        public IActionResult Slider()
+        {
+            var model = new SliderModel();
+            model.OnGet();
+            ViewBag.Slider = model;
+            return View();
+        }
         // My Account 
 
         public async Task<IActionResult> MyAccount()

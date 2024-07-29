@@ -106,11 +106,55 @@ namespace OnlineOrderingSystem.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
+
             catch (Exception ex)
             {
                 ModelState.AddModelError("", $"An error occurred: {ex.Message}");
                 return View(user);
             }
+        }
+
+        public IActionResult AdminSearch(ProductSearchViewModel model)
+        {
+            var query = _context.Products.AsQueryable();
+
+            if (!string.IsNullOrEmpty(model.Name))
+            {
+                query = query.Where(p => p.Name.Contains(model.Name));
+            }
+
+            if (model.MinPrice.HasValue)
+            {
+                query = query.Where(p => p.Price >= model.MinPrice.Value);
+            }
+
+            if (model.MaxPrice.HasValue)
+            {
+                query = query.Where(p => p.Price <= model.MaxPrice.Value);
+            }
+
+            if (!string.IsNullOrEmpty(model.Category))
+            {
+                query = query.Where(p => p.Category.Name.Contains(model.Category));
+            }
+
+            model.Results = query.ToList();
+            return View(model);
+        }
+
+
+
+
+        public IActionResult SalesAnalytics()
+        {
+            var completeOrders = _context.Orders.Where(o => o.Status == "Complete").ToList();
+
+            ViewBag.TotalCarts = _context.Carts.Count();
+            ViewBag.TotalUsers = _context.Users.Count();
+            ViewBag.TotalOrders = completeOrders.Count();
+            ViewBag.TotalPrice = completeOrders.Sum(o => o.TotalPrice); 
+
+            return View();
         }
 
     }

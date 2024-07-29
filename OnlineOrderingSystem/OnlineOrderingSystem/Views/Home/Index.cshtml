@@ -1,13 +1,12 @@
-﻿ @model Category
+﻿@model OnlineOrderingSystem.ViewModels.SliderModel
 @{
     ViewData["Title"] = "Home";
 }
 
 
 <div>
-    <div class="">
-        <div id="cartModalContainer"></div>
 
-        <partial name="../Categories/Index" model="ViewBag.Categories" />
-    </div>
+    <partial name="../Components/Slider"  />
+
+ 
 </div>

@@ -185,7 +185,13 @@ namespace OnlineOrderingSystem.Migrations
                     b.Property<int>("CartId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductOptionId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -196,6 +202,8 @@ namespace OnlineOrderingSystem.Migrations
                     b.HasIndex("CartId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("ProductOptionId");
 
                     b.ToTable("CartItems");
                 });
@@ -418,6 +426,12 @@ namespace OnlineOrderingSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("DiscountPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("HasDiscount")
+                        .HasColumnType("bit");
+
                     b.Property<int>("HowMany")
                         .HasColumnType("int");
 
@@ -457,6 +471,31 @@ namespace OnlineOrderingSystem.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("OnlineOrderingSystem.Models.ProductOption", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("OptionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("OptionPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductOptions");
                 });
 
             modelBuilder.Entity("OnlineOrderingSystem.Models.User", b =>
@@ -628,9 +667,15 @@ namespace OnlineOrderingSystem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OnlineOrderingSystem.Models.ProductOption", "ProductOption")
+                        .WithMany()
+                        .HasForeignKey("ProductOptionId");
+
                     b.Navigation("Cart");
 
                     b.Navigation("Product");
+
+                    b.Navigation("ProductOption");
                 });
 
             modelBuilder.Entity("OnlineOrderingSystem.Models.ChatMessage", b =>
@@ -745,7 +790,18 @@ namespace OnlineOrderingSystem.Migrations
             modelBuilder.Entity("OnlineOrderingSystem.Models.ProductImage", b =>
                 {
                     b.HasOne("OnlineOrderingSystem.Models.Product", "Product")
-                        .WithMany()
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("OnlineOrderingSystem.Models.ProductOption", b =>
+                {
+                    b.HasOne("OnlineOrderingSystem.Models.Product", "Product")
+                        .WithMany("ProductOptions")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -795,6 +851,10 @@ namespace OnlineOrderingSystem.Migrations
             modelBuilder.Entity("OnlineOrderingSystem.Models.Product", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("ProductImages");
+
+                    b.Navigation("ProductOptions");
                 });
 
             modelBuilder.Entity("OnlineOrderingSystem.Models.User", b =>

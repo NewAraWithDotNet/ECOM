@@ -18,5 +18,6 @@
         public decimal TotalPrice => Quantity * Price;
 
         public string? Image { get; internal set; }
+        public List<ProductOptionViewModel> ProductOptions { get; set; }
     }
 }

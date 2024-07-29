@@ -78,39 +78,27 @@
     #drawer-toggle {
         position: fixed;
         opacity: 0;
+        z-index: 1000;
     }
 
     #drawer-toggle-label {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        left: 1000px;
         height: 50px;
         width: 50px;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
         position: fixed;
-        background: rgba(255,255,255,.0);
-        z-index: 1;
+        top: 15px;
+        left: 1600px;
+        z-index: 1000;
     }
 
-        /* adds our "hamburger" menu icon */
-
-        #drawer-toggle-label:before {
-            content: '';
-            display: block;
-            position: absolute;
-            height: 2px;
-            width: 24px;
-            background: #8d8d8d;
-            top: 18px;
-            left: 20px;
-            box-shadow: 0 6px 0 #8d8d8d, 0 12px 0 #8d8d8d;
+        #drawer-toggle-label i {
+            color: black;
+            font-size: 24px; /* Custom size using CSS */
+            transition: color 0.3s ease, transform 0.3s ease;
         }
-
-
 
     /* drawer menu pane - note the 0px width */
 
@@ -121,7 +109,7 @@
         height: 100%;
         width: 300px;
         overflow-x: hidden;
-        overflow-y: hidden;
+        overflow-y: auto;
         padding: 20px;
         -webkit-overflow-scrolling: touch;
         z-index: 999;
@@ -150,13 +138,14 @@
     #drawer-toggle:checked ~ #page-content {
         margin-left: 300px;
     }
-
 </style>
 
 
 
 <input type="checkbox" id="drawer-toggle" name="drawer-toggle" />
-<label for="drawer-toggle" id="drawer-toggle-label"></label>
+<label for="drawer-toggle" id="drawer-toggle-label">
+    <i class="fas fa-user-circle"></i>
+</label>
 <nav id="drawer">
     <div class="UserContainer" id="User-container">
         <div class="user-dropdown-ctrl-off"></div>

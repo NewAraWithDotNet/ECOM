@@ -776,3 +776,4 @@ D:\ECOM\OnlineOrderingSystem\OnlineOrderingSystem\obj\Debug\net8.0\refint\Online
 D:\ECOM\OnlineOrderingSystem\OnlineOrderingSystem\obj\Debug\net8.0\OnlineOrderingSystem.pdb
 D:\ECOM\OnlineOrderingSystem\OnlineOrderingSystem\obj\Debug\net8.0\OnlineOrderingSystem.genruntimeconfig.cache
 D:\ECOM\OnlineOrderingSystem\OnlineOrderingSystem\obj\Debug\net8.0\ref\OnlineOrderingSystem.dll
+D:\PLAN B MERAKI_Academy\Projects\ECOM\OnlineOrderingSystem\OnlineOrderingSystem\bin\Debug\net8.0\libman.json

@@ -22,6 +22,7 @@ namespace OnlineOrderingSystem.Data
         public DbSet<Conversation> Conversations { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<ProductOption> ProductOptions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
