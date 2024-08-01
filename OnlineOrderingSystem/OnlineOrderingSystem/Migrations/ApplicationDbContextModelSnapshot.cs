@@ -318,6 +318,34 @@ namespace OnlineOrderingSystem.Migrations
                     b.ToTable("Conversations");
                 });
 
+            modelBuilder.Entity("OnlineOrderingSystem.Models.Discount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("DiscountPercentage")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Discount");
+                });
+
             modelBuilder.Entity("OnlineOrderingSystem.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -425,12 +453,6 @@ namespace OnlineOrderingSystem.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("DiscountPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("HasDiscount")
-                        .HasColumnType("bit");
 
                     b.Property<int>("HowMany")
                         .HasColumnType("int");
@@ -735,6 +757,17 @@ namespace OnlineOrderingSystem.Migrations
                     b.Navigation("User2");
                 });
 
+            modelBuilder.Entity("OnlineOrderingSystem.Models.Discount", b =>
+                {
+                    b.HasOne("OnlineOrderingSystem.Models.Category", "Category")
+                        .WithMany("Discounts")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("OnlineOrderingSystem.Models.Order", b =>
                 {
                     b.HasOne("OnlineOrderingSystem.Models.User", "User")
@@ -835,6 +868,8 @@ namespace OnlineOrderingSystem.Migrations
 
             modelBuilder.Entity("OnlineOrderingSystem.Models.Category", b =>
                 {
+                    b.Navigation("Discounts");
+
                     b.Navigation("Products");
                 });
 

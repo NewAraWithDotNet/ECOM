@@ -3,39 +3,37 @@
     ViewData["Title"] = "Home";
 }
 
-
-<div class="container-fluid px-0">
-    <div class="slider-container position-relative overflow-hidden" style="height: calc(100vh - 80px);">
-        <div id="slider" class="d-flex transition-transform duration-1000 w-100">
+    <div class="custom-container">
+        <div id="slider" class="slides-wrapper">
             @foreach (var slide in Model.Slides)
             {
-                <div class="@slide.Bg w-100 d-flex flex-column flex-xl-row gap-3 p-3" style="min-width: 100%;">
-                    <div class="d-flex flex-column align-items-center justify-content-center text-center flex-grow-1">
-                        <h2 class="h3">@slide.Description</h2>
-                        <h1 class="display-4 font-weight-bold">@slide.Title</h1>
+                <div class="@slide.Bg custom-slide">
+                    <div class="custom-slide-content">
+                        <h2 class="slide-description">@slide.Description</h2>
+                        <h1 class="slide-title">@slide.Title</h1>
                         <a href="@slide.Url">
-                            <button class="btn btn-dark mt-3">
-                                <a asp-area="" class="" asp-controller="Account" asp-action="Login">Shop Now</a>
-
+                            <button class="button-50">
+                                <a asp-area="" asp-controller="Account" asp-action="Login">Shop Now</a>
                             </button>
                         </a>
                     </div>
-                    <div class="d-flex flex-grow-1 position-relative">
-                        <img src="@slide.Img" alt="@slide.Title" class="img-fluid   h-100 object-cover" />
+                    <div class="custom-slide-img">
+                        <img src="@slide.Img" alt="@slide.Title" class="img-fluid custom-img" />
                     </div>
                 </div>
             }
         </div>
-        <div class="position-absolute d-flex gap-2" style="bottom: 20px; left: 50%; transform: translateX(-50%);">
+        <div class="custom-indicators">
             @for (var i = 0; i < Model.Slides.Count; i++)
             {
-                <div class="rounded-circle border border-secondary cursor-pointer" onclick="setCurrentSlide(@i)" style="width: 12px; height: 12px;">
-                    <div class="bg-secondary rounded-circle w-100 h-100"></div>
+                <div class="indicator-dot" onclick="setCurrentSlide(@i)">
+                    <div class="indicator-inner-dot"></div>
                 </div>
             }
         </div>
-    </div>  
-</div>
+    </div>
+
+
 
 <script>
     let currentSlide = 0;
@@ -51,3 +49,136 @@
         setCurrentSlide(currentSlide);
     }, 3000);
 </script>
+<style>
+
+    .custom-container {
+        height: calc(100vh - 70px);
+        overflow:hidden;
+    }
+
+    .slides-wrapper {
+        display: flex;
+        height: 100%;
+        width: max-content;
+        transition: all 1s ease-in-out;
+    }
+
+    .slider-transition {
+        display: flex;
+        transition: transform 1;
+    }
+
+    .custom-slide {
+        display: flex;
+        flex-direction: row;    
+        gap: 4rem;
+        width: 100vw;
+        align-items : center;
+        height: 100%;
+    }
+
+    .custom-slide-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-grow: 1;
+        gap: 2rem;
+        height: 100%;
+        width:100%;
+    }
+
+    .slide-description {
+        font-size: 1.75rem;
+    }
+
+    .slide-title {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    .custom-button {
+        margin-top: 1rem;
+    }
+
+    .custom-slide-img {
+        width:50%;
+       
+        position: relative;
+    }
+
+    .custom-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .custom-indicators {
+        position: absolute;
+        display: flex;
+        gap: 0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .indicator-dot {
+        border-radius: 50%;
+        border: 1px solid #6c757d;
+        cursor: pointer;
+        width: 12px;
+        height: 12px;
+    }
+
+    .indicator-inner-dot {
+        background-color: #6c757d;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+    }
+
+    .button-50 {
+        appearance: button;
+        background-color: #000;
+        background-image: none;
+        border: 1px solid #000;
+        border-radius: 4px;
+        box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        margin: 0 5px 10px 0;
+        overflow: visible;
+        padding: 12px 40px;
+        text-align: center;
+        text-transform: none;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+        .button-50:focus {
+            text-decoration: none;
+        }
+
+        .button-50:hover {
+            text-decoration: none;
+        }
+
+        .button-50:active {
+            box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+            outline: 0;
+        }
+
+        .button-50:not([disabled]):active {
+            box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+            transform: translate(2px, 2px);
+        }
+</style>

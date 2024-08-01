@@ -145,18 +145,61 @@ namespace OnlineOrderingSystem.Controllers
 
 
 
-        public IActionResult SalesAnalytics()
+        public async Task<IActionResult> SalesAnaltyics()
         {
             var completeOrders = _context.Orders.Where(o => o.Status == "Complete").ToList();
 
             ViewBag.TotalCarts = _context.Carts.Count();
             ViewBag.TotalUsers = _context.Users.Count();
             ViewBag.TotalOrders = completeOrders.Count();
-            ViewBag.TotalPrice = completeOrders.Sum(o => o.TotalPrice); 
+            ViewBag.TotalPrice = completeOrders.Sum(o => o.TotalPrice);
+
+            var categories = await _context.Categories
+                .Include(c => c.Discounts)
+                .Select(c => new
+                {
+                    Category = c,
+                    Discount = c.Discounts.FirstOrDefault()
+                })
+                .ToListAsync();
+
+            ViewBag.Categories = categories;
 
             return View();
         }
 
+
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateDiscounts(int[] categoryIds, decimal[] discountPercentages)
+        {
+            for (int i = 0; i < categoryIds.Length; i++)
+            {
+                var categoryId = categoryIds[i];
+                var discountPercentage = discountPercentages[i];
+
+                var discount = await _context.Discounts
+                    .FirstOrDefaultAsync(d => d.CategoryId == categoryId);
+
+                if (discount != null)
+                {
+                    discount.DiscountPercentage = discountPercentage;
+                }
+                else
+                {
+                    _context.Discounts.Add(new Discount
+                    {
+                        Name = $"Discount for Category {categoryId}",
+                        DiscountPercentage = discountPercentage,
+                        CategoryId = categoryId
+                    });
+                }
+            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
 

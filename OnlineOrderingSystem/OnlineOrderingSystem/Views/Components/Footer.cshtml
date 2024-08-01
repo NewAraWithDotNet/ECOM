@@ -3,25 +3,75 @@
 }
 <!-- dONT PLAY HERE-->
 
-<div class="content">
-    <div class="main">
-        <!-- Main content goes here -->
-    </div>
-    <div class="footer mt-auto">
-        <div class="container-fluid bg-secondary text-dark pt-5">
-            <div class="row border-top border-light mx-xl-5 py-4">
-                <div class="col-md-6 px-xl-0">
-                    <p class="mb-md-0 text-center text-md-left text-dark">
-                        &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
-                        by
-                        <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a><br>
-                        Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                    </p>
-                </div>
-                <div class="col-md-6 px-xl-0 text-center text-md-right">
-                    @*  <img class="img-fluid" src="img/payments.png" alt=""> *@
-                </div>
+<div class="footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-left">
+                <p class="footer-text">
+                    &copy; <a class="footer-link" href="#">Your Site Name</a>. All Rights Reserved. Designed
+                    by
+                    <a class="footer-link" href="https://htmlcodex.com">HTML Codex</a><br>
+                    Distributed By <a class="footer-link" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                </p>
+            </div>
+            <div class="footer-right">
+                @* <img class="payment-img" src="img/payments.png" alt=""> *@
             </div>
         </div>
     </div>
 </div>
+<style>
+    .footer {
+        margin-top: auto;
+        background-color: whitesmoke; /* bg-secondary */
+        color: #343a40; /* text-dark */
+        padding-top: 3rem; /* pt-5 */
+    }
+
+    .footer-container {
+        padding: 0 1rem; /* Replace mx-xl-5 padding */
+    }
+
+    .footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        border-top: 1px solid #e9ecef; /* border-top border-light */
+        padding: 1rem 0; /* py-4 */
+    }
+
+    .footer-left, .footer-right {
+        flex: 1;
+        padding: 0 1rem; /* Replace px-xl-0 */
+    }
+
+    .footer-left {
+        text-align: center;
+    }
+
+    .footer-right {
+        text-align: center;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .footer-text {
+        margin-bottom: 0;
+        color: #343a40; /* text-dark */
+    }
+
+    .footer-link {
+        color: #343a40; /* text-dark */
+        font-weight: 600; /* font-weight-semi-bold */
+        text-decoration: none;
+    }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+    .payment-img {
+        max-width: 100%;
+        height: auto;
+    }
+
+</style>

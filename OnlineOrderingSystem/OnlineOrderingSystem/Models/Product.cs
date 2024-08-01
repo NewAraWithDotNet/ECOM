@@ -22,8 +22,7 @@ namespace OnlineOrderingSystem.Models
         public bool CommentsEnabled { get; set; } = true;
         public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
 
-        public bool HasDiscount { get; set; }
-        public decimal DiscountPrice { get; set; }
+      
 
         public ICollection<ProductOption> ProductOptions { get; set; } = new List<ProductOption>();
 

@@ -6,7 +6,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
-
+.content {
+    flex: 1;
+     height: calc(100vh - 140px);
+    ;
+}   
 .ContinerSearch{
     z-index:999;
     position:absolute;

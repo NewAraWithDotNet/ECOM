@@ -12,6 +12,9 @@ namespace OnlineOrderingSystem.Models
         [NotMapped]
         [DisplayName("CategoryImage")]
         public IFormFile ImageFile { get; set; }
-        public required ICollection<Product> Products { get; set; }
+        public required ICollection<Product> Products { get; set; } = new List<Product>();
+
+        public ICollection<Discount> Discounts { get; set; } = new List<Discount>();
+
     }
 }

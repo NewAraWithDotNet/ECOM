@@ -5,10 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - OnlineOrderingSystem</title>
+
+    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
 
     <!-- jQuery -->
@@ -21,8 +25,13 @@
     <!-- Toastr CSS and JS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- Custom JS -->
     <script src="~/js/site.js"></script>
+
+    <!-- SignalR JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+
 
     <style>
       
@@ -30,16 +39,15 @@
         .wrapper {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
 
-        .content {
-            flex: 1;
-        }
+     
 
         .footer {
-            background-color: #343a40;
-            color: #6c757d;
+          
+        }
+        .containerPage {
+            overflow : hidden;
         }
     </style>
 </head>
@@ -49,8 +57,9 @@
     <div class="wrapper">
         <div class="content">
             @if (User.Identity.IsAuthenticated)
-            {
+            { 
                 <!-- Topbar -->
+
                 <partial name="../Components/TopBar" />
                 <!-- Navbar -->
                 <partial name="../Components/Navbar" />
@@ -60,14 +69,13 @@
                 <partial name="../Components/TopLine" />
             }
 
-            <div class="container-fluid">
+            <div class="containerPage">
                 @RenderBody()
             </div>
-        </div>
-
-        <!-- Footer Start -->
-        <div class="footer mt-auto">
-            <partial name="../Components/Footer" />
+            <!-- Footer Start -->
+            
+                <partial name="../Components/Footer" />
+            
         </div>
     </div>
 

@@ -82,15 +82,14 @@
     }
 
     #drawer-toggle-label {
-        height: 50px;
-        width: 50px;
+        
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        position: fixed;
-        top: 15px;
-        left: 1600px;
+        position: relative;
+        top: 8px;
+        left: 00px;
         z-index: 1000;
     }
 
@@ -122,8 +121,11 @@
 
     #drawer-toggle:checked ~ #drawer-toggle-label {
         height: 100%;
-        width: calc(100% - 300px);
+        width: calc(100% - 10px);
         background: rgba(255,255,255,.8);
+        position:fixed;
+        height: 1000px;
+        width: 1000px;
     }
 
     #drawer-toggle:checked ~ #drawer-toggle-label,
@@ -143,7 +145,7 @@
 
 
 <input type="checkbox" id="drawer-toggle" name="drawer-toggle" />
-<label for="drawer-toggle" id="drawer-toggle-label">
+<label  for="drawer-toggle" id="drawer-toggle-label">
     <i class="fas fa-user-circle"></i>
 </label>
 <nav id="drawer">

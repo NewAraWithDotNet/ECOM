@@ -24,6 +24,7 @@ namespace OnlineOrderingSystem.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ProductOption> ProductOptions { get; set; }
 
+        public DbSet<Discount> Discounts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

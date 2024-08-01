@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using OnlineOrderingSystem.Data;
@@ -27,7 +26,6 @@ namespace OnlineOrderingSystem.Controllers
             _context = context;
             _hostEnvironment = hostEnvironment;
             _userManager = userManager;
-
         }
 
         // GET: Products
@@ -77,6 +75,7 @@ namespace OnlineOrderingSystem.Controllers
                 c.Content
             }));
         }
+
         public IActionResult CreateProduct()
         {
             ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");
@@ -85,9 +84,7 @@ namespace OnlineOrderingSystem.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateProducts(Product product, IFormFile ImageFile, List<IFormFile> ImageFiles)
-
         {
-
             // Handle cover image upload
             if (ImageFile != null)
             {
@@ -121,24 +118,11 @@ namespace OnlineOrderingSystem.Controllers
                 }
             }
 
-            // Set the discount price if applicable
-            if (product.HasDiscount)
-            {
-                product.DiscountPrice = product.Price - (product.Price * product.DiscountPrice / 100);
-            }
-            else
-            {
-                product.DiscountPrice = product.Price;
-            }
-
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", "Admin");
-
-
         }
-
 
         public async Task<IActionResult> Wishlist()
         {
@@ -149,19 +133,16 @@ namespace OnlineOrderingSystem.Controllers
                 .ToListAsync();
 
             var userWishlists = await _context.Wishlists
-                                              .Where(w => w.UserId == userId)
-                                              .Include(w => w.Product)
-                                              .Include(w => w.User)
-                                              .ToListAsync();
+                .Where(w => w.UserId == userId)
+                .Include(w => w.Product)
+                .Include(w => w.User)
+                .ToListAsync();
 
             ViewBag.Products = products;
             ViewBag.UserWishlists = userWishlists;
 
             return View();
         }
-
-
-        // POST: Products/Edit/5
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -196,9 +177,6 @@ namespace OnlineOrderingSystem.Controllers
             return View(product);
         }
 
-
-
-
         [HttpPost]
         public IActionResult Search(string query)
         {
@@ -223,7 +201,6 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> CreateComment(string Content, int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -256,9 +233,7 @@ namespace OnlineOrderingSystem.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
-
-            public async Task<IActionResult> TopProuct()
-
+        public async Task<IActionResult> TopProuct()
         {
             var topProducts = await _context.Wishlists
                 .GroupBy(w => w.ProductId)
@@ -274,9 +249,7 @@ namespace OnlineOrderingSystem.Controllers
             return View(products);
         }
 
-
-
-
+       
 
         private bool ProductExists(int id)
         {

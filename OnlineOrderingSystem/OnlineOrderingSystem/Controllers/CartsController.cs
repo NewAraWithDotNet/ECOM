@@ -97,7 +97,7 @@ namespace OnlineOrderingSystem.Controllers
                     Order = order,
                     ProductId = cartItem.ProductId,
                     Quantity = cartItem.Quantity,
-                    Price = _context.Products.FirstOrDefault(p => p.Id == cartItem.ProductId).Price
+                    Price = cartItem.Price
                 };
                 _context.OrderItems.Add(orderItem);
             }

@@ -60,26 +60,26 @@
                         var productHtml = `
 
 
-                                                       <div class="SearchBar col-lg-6 col-6">
-                                                        <div class="SearchItem bg-light">
-                                                           <div class="border p-0 product-pic">
-                                                                                                                                                                                <img src="/images/${product.image}" alt="${product.name}" >
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                            <div class="product-data">
-                                                                                                                                                                                                <a href="${product.detailsUrl}" class="text-decoration-none">
-                                                                                                                                                                                                    <h6 class="text-truncate mb-3">${product.name}</h6>
-                                                                                                                                                                                                </a>
-                                                                                                                                                                                                <div class="d-flex justify-content-center">
-                                                                                                                                                                                                    <h6><strong>Price:</strong> ${product.price}</h6>
-                                                                                                                                                                                                </div>
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                            <div class="bg-light border product-button">
-                                                                                                                                                                                                <a href="${product.detailsUrl}" class="btn btn-sm text-dark p-0">
-                                                                                                                                                                                                    <i class="fas fa-eye text-primary mr-1"></i>View Detail
-                                                                                                                                                                                                         </a>
-                                                                                                                                                                                            </div>
-                                                                                                                                                                                        </div>
-                                                                                                                                                                                   </div>`;
+                                                                   <div class="SearchBar col-lg-6 col-6">
+                                                                    <div class="SearchItem bg-light">
+                                                                       <div class="border p-0 product-pic">
+                                                                                                                                                                                            <img src="/images/${product.image}" alt="${product.name}" >
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        <div class="product-data">
+                                                                                                                                                                                                            <a href="${product.detailsUrl}" class="text-decoration-none">
+                                                                                                                                                                                                                <h6 class="text-truncate mb-3">${product.name}</h6>
+                                                                                                                                                                                                            </a>
+                                                                                                                                                                                                            <div class="d-flex justify-content-center">
+                                                                                                                                                                                                                <h6><strong>Price:</strong> ${product.price}</h6>
+                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                        <div class="bg-light border product-button">
+                                                                                                                                                                                                            <a href="${product.detailsUrl}" class="btn btn-sm text-dark p-0">
+                                                                                                                                                                                                                <i class="fas fa-eye text-primary mr-1"></i>View Detail
+                                                                                                                                                                                                                     </a>
+                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                               </div>`;
                         $searchResults.append(productHtml);
                     });
                 } else {
@@ -108,38 +108,17 @@
 
 
 
-        <div class="col-lg-3 col-6 text-right">
+        <div class="col-lg-3 col-6 d-flex flex-row ">
+            <div>
+                <partial name="../Home/Userp" />
+            </div>
 
-            @if (User.Identity.IsAuthenticated)
-            {
-                <div>
-                    <partial name="../Home/Userp" />
-                </div>
-
-
-
-
-                <div class="dropdown" id="cartLink">
-                    <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-
-                    </button>
-                    <div class="dropdown-menu cartModalContainer" aria-labelledby="dropdownMenuButton">
-                    </div>
-
-                </div>
-
-
-            }
-            else
-            {
-                <div class="btn border">
-                    <a asp-area="" class="nav-item nav-link" asp-controller="Account" asp-action="Register">Register</a>
-                </div>
-                <div class="btn border">
-                    <a asp-area="" class="nav-item nav-link" asp-controller="Account" asp-action="Login">Login</a>
-                </div>
-            }
+            <div class="dropdown" id="cartLink">
+                <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown-menu cartModalContainer" aria-labelledby="dropdownMenuButton"></div>
+            </div>
         </div>
     </div>
 </div>
