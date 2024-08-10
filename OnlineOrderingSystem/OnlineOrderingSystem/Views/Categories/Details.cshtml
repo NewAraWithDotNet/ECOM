@@ -6,7 +6,6 @@
 @{
     Layout = null;
 }
-<h2>@Model.Name</h2>
 
 @if (Model.Products != null && Model.Products.Any())
 {
@@ -137,7 +136,9 @@ else
         color: #212529 !important;
     } 
     .productLists{
-
+        display:flex;
+        flex-direction:row;
+        gap:20px;
     }
 </style>
 <style>

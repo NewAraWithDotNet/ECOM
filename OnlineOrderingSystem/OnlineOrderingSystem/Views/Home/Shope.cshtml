@@ -13,10 +13,11 @@
 	color: #333;
 	}
 
-	.container {
+	.containers {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px;
+		height: calc(100vh - 30px);
 	}
 
 	.row {
@@ -151,6 +152,7 @@
 	margin-bottom: 20px;
 	border-radius: 5px;
 	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		height: calc(100vh - 30px);
 	}
 
 	.store-filter {
@@ -340,8 +342,9 @@
 
 </style>
 
+
 <div class="section">
-	<div class="container">
+	<div class="containers">
 		<div class="row">
 			<div id="aside" class="col-md-3">
 				<div class="aside">
@@ -350,8 +353,7 @@
 						@foreach (var category in categories)
 						{
 							<div class="input-checkbox">
-								<input type="checkbox" id="category-@category.Id" class="category-checkbox" data-category-id="@category.Id">
-								<label for="category-@category.Id">
+								<label for="category-@category.Id" class="category-checkbox" data-id="@category.Id" data-url="@Url.Action("Details", "Categories", new { id = category.Id })">
 									<span></span>
 									@category.Name
 									<small>(@category.Products.Count())</small>
@@ -373,10 +375,11 @@
 </div>
 <script>
 	$(document).ready(function () {
-		$('.category-checkbox').on('change', function () {
-			var categoryId = $(this).data('category-id');
+		$('.category-checkbox').on('click', function () {
+			var categoryId = $(this).data('id');
+			var url = $(this).data("url");
 			$.ajax({
-				url: '@Url.Action("Details", "Categories")',
+				url: url,
 				type: 'GET',
 				data: { categoryId: categoryId },
 				success: function (result) {
@@ -387,5 +390,10 @@
 				}
 			});
 		});
+
+		// Click the first category checkbox if there are any categories
+		if ($('.category-checkbox').length > 0) {
+			$('.category-checkbox').first().click();
+		}
 	});
 </script>

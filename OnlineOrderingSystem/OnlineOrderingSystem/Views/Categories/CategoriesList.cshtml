@@ -3,7 +3,7 @@
     <div class="categoryList">
         @foreach (var category in Model)
         {
-            <div class="category">
+            <div class="categorys">
                 <img class="category-image" src="~/images/@category.Image" alt="@category.Name" data-url="@Url.Action("Details", "Categories", new { id = category.Id })">
             </div>
         }
@@ -13,22 +13,25 @@
 
 
 <style>
+    .CategoryContainer{
+        display:flex;
+        gap:30px;
+        flex-direction:column;
+    }
     .categoryList {
         display: flex;
         flex-direction: row;
         gap: 20px;
         justify-content: center;
-        background-color: #f9f9f9;
     }
 
-    .category {
+    .categorys {
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
         border: 1px solid #ddd;
         border-radius: 50%;
         overflow: hidden;
-        background-color: #fff;
         align-items: center;
         justify-content: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -60,7 +63,10 @@
         height:300px;
         padding:20px;
         margin-top:10px;
-        
+       display:flex;
+       align-items:center;
+       justify-content:center;
+       flex-direction:column;
     } 
     .CategoryContainer{
         margin-bottom:30px;

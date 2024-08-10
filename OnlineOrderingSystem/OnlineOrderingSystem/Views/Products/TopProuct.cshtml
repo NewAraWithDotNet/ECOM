@@ -1,50 +1,60 @@
 ﻿@model IEnumerable<OnlineOrderingSystem.Models.Product>
 
 <div id="category-details-container" class="product-list">
-    <h6>Top product</h6>
-
-    @foreach (var product in Model)
-    {
-        <div class="product-card">
-            <div class="card product-item border-0 mb-4 w-100">
-                <div class="product-image-container">
-                    <img class="product-image" src="~/images/@product.Image" alt="@product.Name">
-                    <div class="footerend">
-                        <a href="@Url.Action("DetailsProducts", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0">
-                            <span class="icon-wrapper">
-                                <i class="fas fa-eye"></i>
-                            </span>
-                        </a>
-                    </div>
-
-                </div>
-                <div class="card-body">
-                    
-                    <div class="product-Name">
-                        <h6 class="text-truncate mb-3">@product.Name</h6>
-                    </div>
-                    <div class="product-price">
-
-
-                        <div class="price">
-                            <h6><p class="card-text"><strong>Price:</strong> <span id="price-@product.Id">@product.Price.ToString("C")</span></p></h6>
-                            <h6><p class="card-text">@product.HowMany pice</p></h6>
-
+    <div>
+        <h6>Top product</h6>
+    </div>
+    <div class="product-gorup">
+        @foreach (var product in Model)
+        {
+            <div class="product-card">
+                <div class="card product-item border-0 mb-4 w-100">
+                    <div class="product-image-container">
+                        <img class="product-image" src="~/images/@product.Image" alt="@product.Name">
+                        <div class="footerend">
+                            <a href="@Url.Action("DetailsProducts", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0">
+                                <span class="icon-wrapper">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </a>
                         </div>
 
                     </div>
+                    <div class="card-body">
+
+                        <div class="product-Name">
+                            <h6 class="text-truncate mb-3">@product.Name</h6>
+                        </div>
+                        <div class="product-price">
+
+
+                            <div class="price">
+                                <h6><p class="card-text"><strong>Price:</strong> <span id="price-@product.Id">@product.Price.ToString("C")</span></p></h6>
+                                <h6><p class="card-text">@product.HowMany pice</p></h6>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+
 </div>
 <style>
+
     .product-list {
         display: flex;
         gap: 2rem;
         justify-content: center;
+        flex-direction: column;
     }
 
+    .product-gorup{
+        display:flex;
+        gap:20px;
+    }
     .product-card {
         display: flex;
         flex-direction: row;
@@ -62,6 +72,7 @@
             opacity: 1;
             transform: translateY(0);
         }
+
     .product-image-container {
         position: relative;
         width: 100%;
@@ -142,7 +153,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("in-view");
-                    observer.unobserve(entry.target); 
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);

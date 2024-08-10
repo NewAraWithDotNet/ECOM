@@ -36,8 +36,15 @@ namespace OnlineOrderingSystem.Controllers
             var catList = await _context.Categories.ToListAsync();
             return View(catList);
         }
+		public IActionResult FilterProducts(List<int> categoryIds)
+		{
+			var category = _context.Products
+				.Where(p => categoryIds.Contains(p.CategoryId))
+				.ToList();
 
-        public ActionResult Details(int id)
+			return PartialView("Details", category);
+		}
+		public ActionResult Details(int id)
         {
             var category = _context.Categories.Include("Products")
                              .FirstOrDefault(c => c.Id == id);
