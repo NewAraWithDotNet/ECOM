@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineOrderingSystem.Data;
 using OnlineOrderingSystem.Models;
@@ -44,9 +45,9 @@ namespace OnlineOrderingSystem.Controllers
             return View(users);
         }
 
-        public IActionResult UserEdite(string id)
+        public IActionResult UserEdite(string Id)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Id == id);
+            var user = _context.Users.FirstOrDefault(u => u.Id == Id);
             if (user == null)
             {
                 return NotFound();
@@ -145,27 +146,15 @@ namespace OnlineOrderingSystem.Controllers
 
 
 
-        public async Task<IActionResult> SalesAnaltyics()
+        public async Task<IActionResult> SalesAnalytics()
         {
-            var completeOrders = _context.Orders.Where(o => o.Status == "Complete").ToList();
-
-            ViewBag.TotalCarts = _context.Carts.Count();
-            ViewBag.TotalUsers = _context.Users.Count();
-            ViewBag.TotalOrders = completeOrders.Count();
-            ViewBag.TotalPrice = completeOrders.Sum(o => o.TotalPrice);
-
-            var categories = await _context.Categories
-                .Include(c => c.Discounts)
-                .Select(c => new
-                {
-                    Category = c,
-                    Discount = c.Discounts.FirstOrDefault()
-                })
+            var completeOrders = await _context.Orders
+                .Where(o => o.Status == "Complete")
                 .ToListAsync();
 
-            ViewBag.Categories = categories;
+         
 
-            return View();
+            return View(completeOrders);
         }
 
 
@@ -200,6 +189,14 @@ namespace OnlineOrderingSystem.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+       
+
+        private bool ProductExists(int id)
+        {
+            return _context.Products.Any(e => e.Id == id);
+        }
     }
+
+    
 }
 

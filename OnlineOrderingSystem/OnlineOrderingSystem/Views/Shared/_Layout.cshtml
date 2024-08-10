@@ -32,22 +32,19 @@
     <!-- SignalR JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
 
-
     <style>
-      
 
         .wrapper {
             display: flex;
             flex-direction: column;
         }
 
-     
 
-        .footer {
-          
-        }
+
+
         .containerPage {
-            overflow : hidden;
+            overflow: hidden;
+            
         }
     </style>
 </head>
@@ -57,12 +54,12 @@
     <div class="wrapper">
         <div class="content">
             @if (User.Identity.IsAuthenticated)
-            { 
+            {
                 <!-- Topbar -->
+                <partial name="../Components/TopLine" />
+                <!-- Navbar -->
 
                 <partial name="../Components/TopBar" />
-                <!-- Navbar -->
-                <partial name="../Components/Navbar" />
             }
             else
             {
@@ -73,9 +70,11 @@
                 @RenderBody()
             </div>
             <!-- Footer Start -->
-            
+            <div class="footer">
                 <partial name="../Components/Footer" />
-            
+            </div>
+
+
         </div>
     </div>
 
@@ -118,7 +117,7 @@
             });
         });
 
-       
+
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)

@@ -58,26 +58,23 @@ namespace OnlineOrderingSystem.Controllers
             var products = await _context.Products
                 .Where(p => topProducts.Contains(p.Id))
                 .ToListAsync();
-
+             ViewBag.categorieslist = await _context.Categories.ToListAsync();
+            
             return View(products);
         }
         public async Task<IActionResult> Shope()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = await _userManager.FindByIdAsync(userId);
 
-            if (user != null)
-            {
-                ViewBag.Email = user.Email;
-                ViewBag.UserName = user.UserName;
-                ViewBag.Avatar = user.Avatar;
-            }
-            List<Category> categories = _context.Categories.ToList();
-            ViewBag.Categories = categories;
-            return View();
-        }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+            ViewBag.Categories = await _context.Categories.Include(c => c.Products).ToListAsync();
+				ViewBag.Products = new List<Product>();
+		
+
+			return View();
+
+		}
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

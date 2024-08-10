@@ -10,59 +10,53 @@
 
 @if (Model.Products != null && Model.Products.Any())
 {
-   <div class="col-lg-9 col-md-12">
-    <div class="row pb-3">
+    <div class="productLists">
         @foreach (var product in Model.Products)
         {
-            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
-                <div class="card product-item border-0 mb-4">
-                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="~/images/@product.Image" alt="@product.Name">
-                    </div>
-                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="text-decoration-none">
-                            <h6 class="text-truncate mb-3">@product.Name</h6>
-                        </a>
-                        <div class="d-flex justify-content-center">
-                            <h6><p class="card-text"><strong>Price:</strong> <span id="price-@product.Id">@product.Price.ToString("C")</span></p></h6>
-                        </div>
-                        <div class="product-options">
-                            @if (product.ProductOptions != null && product.ProductOptions.Count > 0)
-                            {
-                                <p><strong>Options:</strong></p>
-                                <ul class="list-unstyled">
-                                    @foreach (var option in product.ProductOptions)
-                                    {
-                                        <li>
-                                            <input type="radio" name="option-@product.Id" value="@option.OptionPrice" data-product-id="@product.Id" data-option-id="@option.Id" onchange="updatePrice(@product.Id, @option.OptionPrice)"> @option.OptionName: @option.OptionPrice.ToString("C")
-                                        </li>
-                                    }
-                                </ul>
+            <div class="product-cards">
+                <div class="card product-item border-0 mb-4 w-100">
+                    <div class="product-image-container">
+                        <img class="product-image" src="~/images/@product.Image" alt="@product.Name">
+                        <div class="footerend">
+                            <a href="@Url.Action("DetailsProducts", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0">
+                                <span class="icon-wrapper">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </a>
+                            @{
+                                var userWishlists = ViewBag.UserWishlists as List<Wishlist>;
+                                bool isInWishlist = userWishlists != null && userWishlists.Any(w => w.ProductId == product.Id);
+                                string iconClass = isInWishlist ? "fa fa-heart text-danger" : "fa fa-heart";
                             }
+
+                            <button id="btnWishlist_@product.Id" class="btn btn-sm text-dark p-0" onclick="toggleWishlist(@product.Id)">
+                                <span class="icon-wrapper">
+                                <i id="iconWishlist_@product.Id" class="@iconClass"></i>
+                                </span>
+                            </button>
+
+                            <button type="button" onclick="AddToCart(@product.Id)" class="btn btn-sm text-dark p-0">
+                                <span class="icon-wrapper">
+                                <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
                         </div>
-
                     </div>
-                    <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-
-                        @{
-                            var userWishlists = ViewBag.UserWishlists as List<Wishlist>;
-                            bool isInWishlist = userWishlists != null && userWishlists.Any(w => w.ProductId == product.Id);
-                            string iconClass = isInWishlist ? "fa fa-heart text-danger" : "fa fa-heart";
-                        }
-
-                        <button id="btnWishlist_@product.Id" class="btn btn-sm text-dark p-0 ml-2" onclick="toggleWishlist(@product.Id)">
-                            <i id="iconWishlist_@product.Id" class="@iconClass"></i>
-                        </button>
-
-                        <button type="button" onclick="AddToCart(@product.Id)" class="btn btn-sm text-dark p-0 ml-2">Add to Cart</button>
+                    <div class="card-body">
+                        <div class="product-Name">
+                            <h6 class="text-truncate mb-3">@product.Name</h6>
+                        </div>
+                        <div class="product-price">
+                            <div class="price">
+                                <h6><p class="card-text"><strong>Price:</strong> <span id="price-@product.Id">@product.Price.ToString("C")</span></p></h6>
+                                <h6><p class="card-text">@product.HowMany pice</p></h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         }
     </div>
-    </div>
-
 }
 else
 {
@@ -141,5 +135,95 @@ else
     .btn-wishlist-added {
         background-color: #ffc107 !important;
         color: #212529 !important;
+    } 
+    .productLists{
+
+    }
+</style>
+<style>
+    .product-list {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+    }
+
+    .product-cards {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        border: 2px solid rgba(228, 228, 288, 0.9);
+        border-radius: 15px;
+        width: 250px;
+        height: 300px;
+    
+    }
+
+       
+    .product-image-container {
+        position: relative;
+        width: 100%;
+        height: 20rem;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product-image {
+        padding: 20px;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+        .product-image:hover {
+            transform: scale(1.1);
+        }
+
+    .footerend {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .product-image-container:hover .footerend {
+        opacity: 1;
+    }
+
+    .product-details {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card-body {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        color: gray;
+        border-radius: 4px;
+        padding: 5px;
+        border: 2px solid rgba(228, 228, 288);
+    }
+
+        .icon-wrapper i {
+            color: gray;
+            margin-right: 5px;
+        }
+
+    .price {
+        display: flex;
+        justify-content: space-between;
     }
 </style>

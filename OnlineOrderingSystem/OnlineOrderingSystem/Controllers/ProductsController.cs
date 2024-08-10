@@ -248,8 +248,66 @@ namespace OnlineOrderingSystem.Controllers
 
             return View(products);
         }
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var item = await _context.Products.FindAsync(id);
+            if (item != null)
+            {
+                _context.Products.Remove(item);
+                await _context.SaveChangesAsync();
+            }
 
-       
+            return RedirectToAction("Index", "Admin");
+        }
+
+        public async Task<IActionResult> EditProducts(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .Include(p => p.Category) // Include related entities if needed
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            // Populate categories for dropdown
+            ViewBag.CategoryId = new SelectList(await _context.Categories.ToListAsync(), "Id", "Name", product.CategoryId);
+
+            return View(product);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProducts(int id, Product product)
+        {
+            if (id != product.Id)
+            {
+                return NotFound();
+            }
+
+            if (product.ImageFile != null && product.ImageFile.Length > 0)
+            {
+                var fileName = Path.GetFileName(product.ImageFile.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await product.ImageFile.CopyToAsync(stream);
+                }
+
+                product.Image = fileName;
+            }
+
+            _context.Update(product);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Admin");
+        }
 
         private bool ProductExists(int id)
         {

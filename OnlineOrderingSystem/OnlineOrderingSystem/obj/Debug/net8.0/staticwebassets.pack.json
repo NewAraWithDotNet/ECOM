@@ -5,6 +5,446 @@
       "PackagePath": "staticwebassets\\OnlineOrderingSystem.bundle.scp.css"
     },
     {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\bootstrap\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\assets1\\bootstrap\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\assets1\\css\\all.min.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\animate.css",
+      "PackagePath": "staticwebassets\\assets1\\css\\animate.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\magnific-popup.css",
+      "PackagePath": "staticwebassets\\assets1\\css\\magnific-popup.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\main.css",
+      "PackagePath": "staticwebassets\\assets1\\css\\main.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\meanmenu.min.css",
+      "PackagePath": "staticwebassets\\assets1\\css\\meanmenu.min.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\owl.carousel.css",
+      "PackagePath": "staticwebassets\\assets1\\css\\owl.carousel.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\responsive.css",
+      "PackagePath": "staticwebassets\\assets1\\css\\responsive.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\base\\_mixins.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\base\\_mixins.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\base\\_typography.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\base\\_typography.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\base\\_variables.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\base\\_variables.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\common\\_common.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\common\\_common.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\common\\_footer.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\common\\_footer.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\common\\_header.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\common\\_header.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\common\\_hover.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\common\\_hover.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\main.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\main.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\pages\\_404.css",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\pages\\_404.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\pages\\_404.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\pages\\_404.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\pages\\_about.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\pages\\_about.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\pages\\_contact.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\pages\\_contact.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\pages\\_shop.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\pages\\_shop.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\prepros-6.config",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\prepros-6.config"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\sections\\_about.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\sections\\_about.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\sections\\_cart-banner.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\sections\\_cart-banner.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\sections\\_hero.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\sections\\_hero.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\sections\\_list.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\sections\\_list.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\sections\\_news.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\sections\\_news.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\sections\\_shop-banner.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\sections\\_shop-banner.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\css\\scss\\sections\\_testimonials.scss",
+      "PackagePath": "staticwebassets\\assets1\\css\\scss\\sections\\_testimonials.scss"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\1.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\1.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\a.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\a.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\abt.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\abt.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\avaters\\avatar1.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\avaters\\avatar1.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\avaters\\avatar2.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\avaters\\avatar2.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\avaters\\avatar3.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\avaters\\avatar3.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\breadcrumb-bg.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\breadcrumb-bg.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\company-logos\\1.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\company-logos\\1.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\company-logos\\2.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\company-logos\\2.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\company-logos\\3.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\company-logos\\3.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\company-logos\\4.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\company-logos\\4.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\company-logos\\5.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\company-logos\\5.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\favicon.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\favicon.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\feature-bg.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\feature-bg.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\hero-bg-2.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\hero-bg-2.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\hero-bg-3.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\hero-bg-3.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\hero-bg.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\hero-bg.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\homepage-bg-pattern.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\homepage-bg-pattern.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\latest-news\\news-bg-1.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\latest-news\\news-bg-1.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\latest-news\\news-bg-2.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\latest-news\\news-bg-2.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\latest-news\\news-bg-3.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\latest-news\\news-bg-3.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\latest-news\\news-bg-4.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\latest-news\\news-bg-4.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\latest-news\\news-bg-5.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\latest-news\\news-bg-5.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\latest-news\\news-bg-6.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\latest-news\\news-bg-6.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\logo.png",
+      "PackagePath": "staticwebassets\\assets1\\img\\logo.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\products\\product-img-1.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\products\\product-img-1.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\products\\product-img-2.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\products\\product-img-2.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\products\\product-img-3.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\products\\product-img-3.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\products\\product-img-4.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\products\\product-img-4.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\products\\product-img-5.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\products\\product-img-5.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\products\\product-img-6.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\products\\product-img-6.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\team\\team-1.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\team\\team-1.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\team\\team-2.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\team\\team-2.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\img\\team\\team-3.jpg",
+      "PackagePath": "staticwebassets\\assets1\\img\\team\\team-3.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\form-validate.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\form-validate.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\jquery-1.11.3.min.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\jquery-1.11.3.min.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\jquery.countdown.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\jquery.countdown.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\jquery.isotope-3.0.6.min.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\jquery.isotope-3.0.6.min.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\jquery.magnific-popup.min.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\jquery.magnific-popup.min.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\jquery.meanmenu.min.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\jquery.meanmenu.min.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\main.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\main.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\owl.carousel.min.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\owl.carousel.min.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\sticker.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\sticker.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\js\\waypoints.js",
+      "PackagePath": "staticwebassets\\assets1\\js\\waypoints.js"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-brands-400.eot"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-brands-400.eot_",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-brands-400.eot_"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-brands-400.svg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-brands-400.woff"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-regular-400.eot"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-regular-400.eot_",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-regular-400.eot_"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-regular-400.svg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-regular-400.woff"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-solid-900.eot"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-solid-900.eot_",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-solid-900.eot_"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-solid-900.svg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-solid-900.woff"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets1\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\assets1\\webfonts\\fa-solid-900.woff2"
+    },
+    {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\assets\\css\\nucleo-icons.css",
       "PackagePath": "staticwebassets\\assets\\css\\nucleo-icons.css"
     },
@@ -1101,8 +1541,28 @@
       "PackagePath": "staticwebassets\\assets\\scss\\soft-ui-dashboard\\variables\\_virtual-reality.scss"
     },
     {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\css\\font-awesome.min.css",
+      "PackagePath": "staticwebassets\\css\\font-awesome.min.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\css\\nouislider.min.css",
+      "PackagePath": "staticwebassets\\css\\nouislider.min.css"
+    },
+    {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\css\\slick-theme.css",
+      "PackagePath": "staticwebassets\\css\\slick-theme.css"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\css\\slick.css",
+      "PackagePath": "staticwebassets\\css\\slick.css"
     },
     {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\css\\style.css",
@@ -1121,12 +1581,28 @@
       "PackagePath": "staticwebassets\\images\\0b1109b4-66c6-44c7-bf1a-26f169f07f67_Screenshot_2.png"
     },
     {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\0c08ef8b-887d-4101-bde1-0ec96ce60316_2.jpg",
+      "PackagePath": "staticwebassets\\images\\0c08ef8b-887d-4101-bde1-0ec96ce60316_2.jpg"
+    },
+    {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\10155dda-7a52-44c4-a204-9c2dc6abf934_Screenshot_5.png",
       "PackagePath": "staticwebassets\\images\\10155dda-7a52-44c4-a204-9c2dc6abf934_Screenshot_5.png"
     },
     {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\17c82647-f17f-4c9c-b8a3-6428cbe5f3cb_3.jpg",
+      "PackagePath": "staticwebassets\\images\\17c82647-f17f-4c9c-b8a3-6428cbe5f3cb_3.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\245f2323-e17c-4381-9c30-fe6a67582bc3_3.jpg",
+      "PackagePath": "staticwebassets\\images\\245f2323-e17c-4381-9c30-fe6a67582bc3_3.jpg"
+    },
+    {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\295cc828-c732-4c00-bc5b-8cbc8000f7c1_Capture.PNG",
       "PackagePath": "staticwebassets\\images\\295cc828-c732-4c00-bc5b-8cbc8000f7c1_Capture.PNG"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\3.jpg",
+      "PackagePath": "staticwebassets\\images\\3.jpg"
     },
     {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\33ac6b2d-e1e5-4301-bd39-43ce7549f0ec_wdwdwd.PNG",
@@ -1145,16 +1621,44 @@
       "PackagePath": "staticwebassets\\images\\513b8ab5-069a-4f9d-84c0-4a4251dda17c_Screenshot_1-7-2024_135315_www.bing.com.jpeg"
     },
     {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\6f8b8810-05ea-4e72-8fd0-5e973ba0d52b_81xlW-WgHKL.__AC_SX300_SY300_QL70_FMwebp_.webp",
+      "PackagePath": "staticwebassets\\images\\6f8b8810-05ea-4e72-8fd0-5e973ba0d52b_81xlW-WgHKL.__AC_SX300_SY300_QL70_FMwebp_.webp"
+    },
+    {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\88fdd452-7ffa-4cae-94cb-5925bdf0d7ef_ddwdwdw.PNG",
       "PackagePath": "staticwebassets\\images\\88fdd452-7ffa-4cae-94cb-5925bdf0d7ef_ddwdwdw.PNG"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\97e97549-cb4e-4adf-85b0-da16998611c6_2.jpg",
+      "PackagePath": "staticwebassets\\images\\97e97549-cb4e-4adf-85b0-da16998611c6_2.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\Samsung-Galaxy-A25-Official-Image-1.png",
+      "PackagePath": "staticwebassets\\images\\Samsung-Galaxy-A25-Official-Image-1.png"
     },
     {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\a42c1e32-8be9-4082-810f-36e9659d7ead_Screenshot_1-7-2024_135315_www.bing.com.jpeg",
       "PackagePath": "staticwebassets\\images\\a42c1e32-8be9-4082-810f-36e9659d7ead_Screenshot_1-7-2024_135315_www.bing.com.jpeg"
     },
     {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\b535bd4c-3d9e-4116-9f40-c8b6ed39fcb9_81xlW-WgHKL.__AC_SX300_SY300_QL70_FMwebp_.webp",
+      "PackagePath": "staticwebassets\\images\\b535bd4c-3d9e-4116-9f40-c8b6ed39fcb9_81xlW-WgHKL.__AC_SX300_SY300_QL70_FMwebp_.webp"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\b6f1defa-5a21-4b3a-ae3e-b784f8b28561_3.jpg",
+      "PackagePath": "staticwebassets\\images\\b6f1defa-5a21-4b3a-ae3e-b784f8b28561_3.jpg"
+    },
+    {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\b73e4466-0e5d-4e91-a741-7fd56a5f4878_Screenshot_1-7-2024_135315_www.bing.com.jpeg",
       "PackagePath": "staticwebassets\\images\\b73e4466-0e5d-4e91-a741-7fd56a5f4878_Screenshot_1-7-2024_135315_www.bing.com.jpeg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\bc8d99a5-a1ba-4865-b236-829af1fcdd7e_3.jpg",
+      "PackagePath": "staticwebassets\\images\\bc8d99a5-a1ba-4865-b236-829af1fcdd7e_3.jpg"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\c2aecabf-5b48-47ce-864f-181671cd9a4d_2.jpg",
+      "PackagePath": "staticwebassets\\images\\c2aecabf-5b48-47ce-864f-181671cd9a4d_2.jpg"
     },
     {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\cb0302df-be77-442f-8885-03c8e15667b5_Screenshot_3.png",
@@ -1173,12 +1677,76 @@
       "PackagePath": "staticwebassets\\images\\e484f7d9-9c7f-429f-84f1-6aa5e806f00c_222323.PNG"
     },
     {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\e685ef19-af35-44c8-9588-8259693df57a_3.jpg",
+      "PackagePath": "staticwebassets\\images\\e685ef19-af35-44c8-9588-8259693df57a_3.jpg"
+    },
+    {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\f2463866-8886-4ab3-87dd-ecfeb39c2f62_Screenshot_5.png",
       "PackagePath": "staticwebassets\\images\\f2463866-8886-4ab3-87dd-ecfeb39c2f62_Screenshot_5.png"
     },
     {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\images\\search.png",
       "PackagePath": "staticwebassets\\images\\search.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\05.png",
+      "PackagePath": "staticwebassets\\img\\05.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\hotdeal.png",
+      "PackagePath": "staticwebassets\\img\\hotdeal.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\logo.png",
+      "PackagePath": "staticwebassets\\img\\logo.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\product01.png",
+      "PackagePath": "staticwebassets\\img\\product01.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\product02.png",
+      "PackagePath": "staticwebassets\\img\\product02.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\product03.png",
+      "PackagePath": "staticwebassets\\img\\product03.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\product04.png",
+      "PackagePath": "staticwebassets\\img\\product04.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\product05.png",
+      "PackagePath": "staticwebassets\\img\\product05.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\product06.png",
+      "PackagePath": "staticwebassets\\img\\product06.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\product07.png",
+      "PackagePath": "staticwebassets\\img\\product07.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\product08.png",
+      "PackagePath": "staticwebassets\\img\\product08.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\product09.png",
+      "PackagePath": "staticwebassets\\img\\product09.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\shop01.png",
+      "PackagePath": "staticwebassets\\img\\shop01.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\shop02.png",
+      "PackagePath": "staticwebassets\\img\\shop02.png"
+    },
+    {
+      "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\img\\shop03.png",
+      "PackagePath": "staticwebassets\\img\\shop03.png"
     },
     {
       "Id": "D:\\ECOM\\OnlineOrderingSystem\\OnlineOrderingSystem\\wwwroot\\js\\main.js",

@@ -1,8 +1,8 @@
 ﻿@{
-    Layout = null;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <h2>Sales Analytics</h2>
-@* 
+
 <div>
     <div class="row">
         <div class="col-md-3">
@@ -56,30 +56,5 @@
             }
         </tbody>
     </table>
-    <h1>Manage Discounts</h1>
-
-    <form asp-action="UpdateDiscounts" method="post">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Discount Percentage</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (int i = 0; i < Model.Count(); i++)
-                {
-                    var item = Model.ElementAt(i);
-                    <tr>
-                        <td>@item.Category.Name</td>
-                        <td>
-                            <input type="number" step="0.01" name="discountPercentages" value="@item.Discount?.DiscountPercentage ?? 0" class="form-control" />
-                            <input type="hidden" name="categoryIds" value="@item.Category.Id" />
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form> *@
+  
 </div>

@@ -3,8 +3,150 @@
     ViewData["Title"] = "HomePage";
 }
 
+<div class="HomePageContainer">
+    <div class="panel">
+        <div class="image-container">
+            <img src="~/img/shop03.png" class="main-img" alt="Shop Image" />
+        </div>
+        <div class="text-container">
+            <h6>Explore item & product</h6>
+            <button class="shop-button">
+                Shop Now
+            </button>
+        </div>
+    </div>
+    <hr class="custom-color">
 
-<div>
-    <partial name="../Products/TopProuct" />
+    <partial name="../Categories/CategoriesList" model="@ViewBag.categorieslist" class="partial-categories" />
+    <hr class="custom-color">
+
+    <partial name="../Products/TopProuct" class="partial-categories" />
+    <hr class="custom-color">
 
 </div>
+<style>
+    hr.custom-color {
+       
+        width : 100%;
+        height: 1px;
+        background-color: rgba(228,228,228,.9);
+    }
+    .HomePageContainer {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        gap: 100px;
+        padding: 20px;
+        background-color: white;
+    }
+
+    .partial-categories {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid rgba(228, 228, 288, 0.9);
+    }
+
+    .partial-product {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-bottom: 2px solid rgba(228, 228, 288, 0.9);
+    }
+
+    .panel {
+        position: relative;
+        width: 1000px;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        background: rgba(228, 228, 228, 0.8); 
+    }
+
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://res.cloudinary.com/dmhvb05w3/image/upload/v1723105255/05_dr233z.png') no-repeat center center;
+            background-size: cover;
+            opacity: 0.5; 
+            z-index: -1; 
+        }
+
+
+      
+
+    .image-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-img {
+        max-width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+
+    .text-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+
+        .text-container h6 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+        }
+
+    .shop-button {
+        font-family: system-ui, sans-serif;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5em 1em;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        width: 200px;
+        height: 60px;
+        background-color: #229091;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+        .shop-button:hover {
+            background-color: #1a6b6d;
+            transform: scale(1.05);
+        }
+
+        .shop-button:active {
+            background-color: #134d4e;
+            transform: scale(1);
+        }
+
+        .shop-button:focus {
+            outline: 2px solid #134d4e;
+            outline-offset: 4px;
+        }
+
+</style>

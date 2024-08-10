@@ -2,12 +2,390 @@
 @{
     ViewData["Title"] = "HomePage";
 }
+@{
+	var categories = ViewBag.Categories as IEnumerable<OnlineOrderingSystem.Models.Category>;
+	var products = ViewBag.Products as IEnumerable<OnlineOrderingSystem.Models.Product>;
+}
+<style>
+	body {
+	font-family: Arial, sans-serif;
+	background-color: #f5f5f5;
+	color: #333;
+	}
 
+	.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 20px;
+	}
 
-<div>
-    <div class="">
-        <div id="cartModalContainer"></div>
+	.row {
+	display: flex;
+	flex-wrap: wrap;
+	}
 
-        <partial name="../Categories/Index" model="ViewBag.Categories" />
-    </div>
+	.col-md-3, .col-md-9, .col-md-4, .col-xs-6 {
+	box-sizing: border-box;
+	padding: 15px;
+	}
+
+	.col-md-3 {
+	width: 25%;
+	}
+
+	.col-md-9 {
+	width: 75%;
+	}
+
+	.col-md-4 {
+	width: 33.3333%;
+	}
+
+	.col-xs-6 {
+	width: 50%;
+	}
+
+	#aside {
+	background: #fff;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	}
+
+	.aside-title {
+	font-size: 18px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	}
+
+	.checkbox-filter .input-checkbox {
+	margin-bottom: 10px;
+	}
+
+	.checkbox-filter .input-checkbox input {
+	display: none;
+	}
+
+	.checkbox-filter .input-checkbox label {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	}
+
+	.checkbox-filter .input-checkbox label span {
+	width: 20px;
+	height: 20px;
+	border: 1px solid #ccc;
+	margin-right: 10px;
+	position: relative;
+	}
+
+	.checkbox-filter .input-checkbox input:checked + label span:before {
+	content: '\2714';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	background: #333;
+	border-radius: 50%;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+	}
+
+	.checkbox-filter small {
+	margin-left: auto;
+	color: #888;
+	}
+
+	.price-filter {
+	display: flex;
+	align-items: center;
+	}
+
+	.price-filter span {
+	margin: 0 10px;
+	}
+
+	.input-number {
+	position: relative;
+	width: 80px;
+	}
+
+	.input-number input {
+	width: 100%;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	text-align: center;
+	}
+
+	.input-number .qty-up, .input-number .qty-down {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	line-height: 18px;
+	background: #333;
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+	}
+
+	.input-number .qty-up {
+	top: 0;
+	right: 0;
+	border-radius: 0 5px 0 0;
+	}
+
+	.input-number .qty-down {
+	bottom: 0;
+	right: 0;
+	border-radius: 0 0 5px 0;
+	}
+
+	#store {
+	background: #fff;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	}
+
+	.store-filter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+	}
+
+	.store-sort label {
+	margin-right: 10px;
+	}
+
+	.store-sort .input-select {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	}
+
+	.store-grid {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	}
+
+	.store-grid li {
+	margin-left: 10px;
+	cursor: pointer;
+	}
+
+	.store-grid li.active i, .store-grid li a i {
+	color: #333;
+	}
+
+	.product {
+	background: #fff;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	overflow: hidden;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	margin-bottom: 20px;
+	transition: all 0.3s ease;
+	}
+
+	.product:hover {
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	}
+
+	.product-img {
+	position: relative;
+	overflow: hidden;
+	}
+
+	.product-img img {
+	width: 100%;
+	transition: all 0.3s ease;
+	}
+
+	.product-img:hover img {
+	transform: scale(1.1);
+	}
+
+	.product-label {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	}
+
+	.product-label span {
+	background: #333;
+	color: #fff;
+	padding: 5px 10px;
+	font-size: 12px;
+	border-radius: 5px;
+	margin-right: 5px;
+	}
+
+	.product-body {
+	padding: 15px;
+	text-align: center;
+	}
+
+	.product-category {
+	font-size: 12px;
+	color: #888;
+	}
+
+	.product-name {
+	font-size: 18px;
+	margin: 10px 0;
+	}
+
+	.product-name a {
+	color: #333;
+	text-decoration: none;
+	}
+
+	.product-price {
+	font-size: 16px;
+	color: #333;
+	}
+
+	.product-old-price {
+	text-decoration: line-through;
+	color: #888;
+	margin-left: 10px;
+	}
+
+	.product-rating {
+	margin: 10px 0;
+	}
+
+	.product-rating i {
+	color: #f8c52c;
+	}
+
+	.product-btns {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	}
+
+	.product-btns button {
+	background: none;
+	border: none;
+	color: #333;
+	margin: 0 5px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	}
+
+	.product-btns button:hover {
+	color: #f8c52c;
+	}
+
+	.add-to-cart {
+	text-align: center;
+	padding: 15px;
+	background: #f8c52c;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	}
+
+	.add-to-cart:hover {
+	background: #333;
+	color: #fff;
+	}
+
+	.add-to-cart-btn {
+	background: none;
+	border: none;
+	color: inherit;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	}
+
+	.store-qty {
+	display: block;
+	margin-bottom: 10px;
+	}
+
+	.store-pagination {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	}
+
+	.store-pagination li {
+	margin-right: 10px;
+	}
+
+	.store-pagination li a {
+	color: #333;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	text-decoration: none;
+	}
+
+	.store-pagination li a:hover, .store-pagination li a:focus {
+	background: #333;
+	color: #fff;
+	}
+
+</style>
+
+<div class="section">
+	<div class="container">
+		<div class="row">
+			<div id="aside" class="col-md-3">
+				<div class="aside">
+					<h3 class="aside-title">Categories</h3>
+					<div class="checkbox-filter">
+						@foreach (var category in categories)
+						{
+							<div class="input-checkbox">
+								<input type="checkbox" id="category-@category.Id" class="category-checkbox" data-category-id="@category.Id">
+								<label for="category-@category.Id">
+									<span></span>
+									@category.Name
+									<small>(@category.Products.Count())</small>
+								</label>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+			<!-- /ASIDE -->
+			<!-- STORE -->
+			<div id="store" class="col-md-9">
+				<div id="product-container">
+					<!-- Products will be loaded here -->
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<script>
+	$(document).ready(function () {
+		$('.category-checkbox').on('change', function () {
+			var categoryId = $(this).data('category-id');
+			$.ajax({
+				url: '@Url.Action("Details", "Categories")',
+				type: 'GET',
+				data: { categoryId: categoryId },
+				success: function (result) {
+					$('#product-container').html(result);
+				},
+				error: function () {
+					alert('Error loading products.');
+				}
+			});
+		});
+	});
+</script>

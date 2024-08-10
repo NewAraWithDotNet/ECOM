@@ -25,15 +25,18 @@ namespace OnlineOrderingSystem.Controllers
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
+        public async Task<IActionResult> CategoriesList()
+        {
+            var categorieslist = await _context.Categories.ToListAsync();
+            return View(categorieslist);
+        }
 
-        // GET: Categories
         public async Task<IActionResult> Index()
         {
             var catList = await _context.Categories.ToListAsync();
             return View(catList);
         }
 
-        // GET: Categories/Details/5
         public ActionResult Details(int id)
         {
             var category = _context.Categories.Include("Products")

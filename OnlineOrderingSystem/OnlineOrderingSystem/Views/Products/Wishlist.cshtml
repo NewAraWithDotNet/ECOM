@@ -5,6 +5,7 @@
 
 
 
+
 <script>
 
     function updatePrice(productId, optionPrice) {
@@ -23,7 +24,7 @@
             data: {
                 productId: productId,
                 optionId: optionId,
-                optionPrice: optionPrice 
+                optionPrice: optionPrice
             },
             success: function (response) {
                 if (response.success) {
@@ -71,44 +72,35 @@
 
 <style>
     .btn-wishlist-added {
-        background-color: #ffc107 !important; 
-        color: #212529 !important; 
+        background-color: #ffc107 !important;
+        color: #212529 !important;
     }
 </style>
 <div class="col-lg-9 col-md-12">
-    <div class="row pb-3">
-        @foreach (var product in ViewBag.Products as List<Product>) 
+    <div class="row pb-3 post-card">
+        @foreach (var product in ViewBag.Products as List<Product>)
         {
-            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+            <div class="product-card">
                 <div class="card product-item border-0 mb-4">
-                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="~/images/@product.Image" alt="@product.Name">
-                    </div>
-                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="text-decoration-none">
-                            <h6 class="text-truncate mb-3">@product.Name</h6>
-                        </a>
-                        <div class="d-flex justify-content-center">
-                            <h6><p class="card-text"><strong>Price:</strong> <span id="price-@product.Id">@product.Price.ToString("C")</span></p></h6>
-                        </div>
-                        <div class="product-options">
-                            @if (product.ProductOptions != null && product.ProductOptions.Count > 0)
-                            {
-                                <p><strong>Options:</strong></p>
-                                <ul class="list-unstyled">
-                                    @foreach (var option in product.ProductOptions)
-                                    {
-                                        <li>
-                                            <input type="radio" name="option-@product.Id" value="@option.OptionPrice" data-product-id="@product.Id" data-option-id="@option.Id" onchange="updatePrice(@product.Id, @option.OptionPrice)"> @option.OptionName: @option.OptionPrice.ToString("C")
-                                        </li>
-                                    }
-                                </ul>
-                            }
-                        </div>
+                    <img class="productImage w-100" src="~/images/@product.Image" alt="@product.Name">
 
+                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                        <h6 class="text-truncate mb-3">@product.Name</h6>
+                        <h6><p class="card-text"><strong>Price:</strong> <span id="price-@product.Id">@product.Price.ToString("C")</span></p></h6>
+                        @if (product.ProductOptions != null && product.ProductOptions.Count > 0)
+                        {
+                            <ul class="list-unstyled">
+                                @foreach (var option in product.ProductOptions)
+                                {
+                                    <li>
+                                        <input type="radio" name="option-@product.Id" value="@option.OptionPrice" data-product-id="@product.Id" data-option-id="@option.Id" onchange="updatePrice(@product.Id, @option.OptionPrice)"> @option.OptionName: @option.OptionPrice.ToString("C")
+                                    </li>
+                                }
+                            </ul>
+                        }
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="@Url.Action("DetailsProducts", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
 
                         @{
                             var userWishlists = ViewBag.UserWishlists as List<Wishlist>;
@@ -149,3 +141,38 @@
         </div>
     </div>
 </div>
+<style>
+    .post-card {
+        border: 1px solid black;
+        width: 900px;
+        margin-top: 3rem;
+        display: flex;
+        gap: 2rem;
+        padding: 20px;
+        box-shadow:
+    }
+
+    .product-card {
+        width: 16rem;
+        height: 32rem;
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .productImage {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0.9;
+        transition: opacity .2s ease-out;
+    }
+
+        .productImage:hover {
+            transition: opacity .3s ease-in;
+            opacity: 1;
+        }
+</style>

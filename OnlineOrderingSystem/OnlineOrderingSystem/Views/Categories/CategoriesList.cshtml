@@ -1,0 +1,89 @@
+﻿@model IEnumerable<OnlineOrderingSystem.Models.Category>
+<div class="CategoryContainer">
+    <div class="categoryList">
+        @foreach (var category in Model)
+        {
+            <div class="category">
+                <img class="category-image" src="~/images/@category.Image" alt="@category.Name" data-url="@Url.Action("Details", "Categories", new { id = category.Id })">
+            </div>
+        }
+    </div>
+    <div id="productsContainer"></div>
+</div>
+
+
+<style>
+    .categoryList {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        justify-content: center;
+        background-color: #f9f9f9;
+    }
+
+    .category {
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #fff;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        width: 100px;
+        height: 100px;
+    }
+
+        .category:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    .category-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 50%;
+    }
+
+    .category-name {
+        padding: 10px;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    #productsContainer{
+        width:1200px;
+        height:300px;
+        padding:20px;
+        margin-top:10px;
+        
+    } 
+    .CategoryContainer{
+        margin-bottom:30px;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        $(".category-image").click(function (event) {
+            event.preventDefault();
+            var url = $(this).data("url");
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (data) {
+                    $("#productsContainer").html(data);
+                },
+                error: function () {
+                    alert("Failed to load category details.");
+                }
+            });
+        });
+
+        $(".category-image").first().click();
+    });
+</script>

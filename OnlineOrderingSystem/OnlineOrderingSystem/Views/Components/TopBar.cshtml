@@ -2,8 +2,8 @@
     Layout = null;
 }
 
-<div class="container-fluid">
-    <div class="row align-items-center py-3 px-xl-5">
+<div class="TopBar">
+    <div class="row align-items-center containerNavBar ">
 
 
         <!-- Logo Section -->
@@ -15,17 +15,25 @@
             </a>
         </div>
 
+        <div class="col-lg-3 col-12 " id="navbarCollapse">
+            <div class="navbar-nav mr-auto py-0 NavBar">
+                <a asp-area="" asp-controller="Home" asp-action="HomePage" class="">Home</a>
+                <a asp-area="" asp-controller="Home" asp-action="Shope" class="">Shop</a>
+                <a asp-area="" asp-controller="ChatMessages" asp-action="Index" class="">Chat</a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="" asp-area="" asp-controller="Admin" asp-action="Index">Admin</a>
+                }
+            </div>
+        </div>
+
 
         <!-- Search Bar Section -->
-        <div class="col-lg-6 col-12 d-flex justify-content-center">
+        <div class="col-lg-4 col-12 d-flex justify-content-center">
             <form action="" onsubmit="return false;">
                 <div class="input-group">
-                    <input type="text" id="searchBox" class="form-control" placeholder="Search for products" onkeyup="searchProducts()">
-                    <div class="input-group-append">
-                        <span class="input-group-text bg-transparent text-primary">
-                            <i class="fa fa-search"></i>
-                        </span>
-                    </div>
+                    <input type="text" id="searchBox" class="Search" placeholder="Search for products" onkeyup="searchProducts()">
+                    
                 </div>
                 <div id="searchResults" class="mt-3 ContinerSearch" style="display: none;">
                     <!-- Search results will be displayed here -->
@@ -58,31 +66,29 @@
                 if (products.length > 0) {
                     products.forEach(function (product) {
                         var productHtml = `
-
-
-                                                                   <div class="SearchBar col-lg-6 col-6">
-                                                                    <div class="SearchItem bg-light">
-                                                                       <div class="border p-0 product-pic">
-                                                                                                                                                                                            <img src="/images/${product.image}" alt="${product.name}" >
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                        <div class="product-data">
-                                                                                                                                                                                                            <a href="${product.detailsUrl}" class="text-decoration-none">
-                                                                                                                                                                                                                <h6 class="text-truncate mb-3">${product.name}</h6>
-                                                                                                                                                                                                            </a>
-                                                                                                                                                                                                            <div class="d-flex justify-content-center">
-                                                                                                                                                                                                                <h6><strong>Price:</strong> ${product.price}</h6>
-                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                        <div class="bg-light border product-button">
-                                                                                                                                                                                                            <a href="${product.detailsUrl}" class="btn btn-sm text-dark p-0">
-                                                                                                                                                                                                                <i class="fas fa-eye text-primary mr-1"></i>View Detail
-                                                                                                                                                                                                                     </a>
-                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                    </div>
-                                                                                                                                                                                               </div>`;
+                        <div class="SearchBar col-lg-6 col-md-4 col-sm-12 mb-4">
+                            <div class="SearchItem bg-light border rounded shadow-sm">
+                                <div class="product-pic mb-3">
+                                    <img src="/images/${product.image}" alt="${product.name}" class="img-fluid rounded-top">
+                                </div>
+                                <div class="product-data p-3">
+                                    <a href="${product.detailsUrl}" class="text-decoration-none text-dark">
+                                        <h6 class="text-truncate mb-2">${product.name}</h6>
+                                    </a>
+                                    
+                                </div>
+                                <div class="bg-light border-top p-2 text-center">
+                                    <a href="${product.detailsUrl}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye mr-1"></i> View Detail
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`;
                         $searchResults.append(productHtml);
                     });
-                } else {
+                }
+
+                 else {
                     $searchResults.html("<p>No products found</p>");
                 }
             }
@@ -106,15 +112,13 @@
 
         </script>
 
-
-
-        <div class="col-lg-3 col-6 d-flex flex-row ">
+        <div class="col-lg-2 col-6 d-flex flex-row Icons">
             <div>
                 <partial name="../Home/Userp" />
             </div>
 
             <div class="dropdown" id="cartLink">
-                <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="CartButton dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                 </button>
                 <div class="dropdown-menu cartModalContainer" aria-labelledby="dropdownMenuButton"></div>
@@ -122,3 +126,71 @@
         </div>
     </div>
 </div>
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,600&display=swap');
+
+    .Icons {
+        gap: 30px;
+    }
+
+    .TopBar{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:20px 20px;
+        border-bottom: 2px solid rgba(228, 228, 288, 0.9);
+    }
+    .containerNavBar{
+        width:1200px;
+    }
+
+    .CartButton {
+        border: none;
+        background: transpernt;
+        margin-top: 10px;
+    }
+
+    .NavBar {
+        display: flex;
+        flex-direction: row;
+        color: black;
+        gap: 2px;
+        padding: 20px;
+        align-items: center; /* Center items vertically */
+    }
+
+        .NavBar a {
+            color: black;
+            font-family: "Kanit", sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            text-decoration: none;
+            padding: 10px 10px; /* Extra padding for better click area */
+            border-radius: 15px;
+            transition: background-color 0.3s, color 0.3s, padding 0.3s; /* Smooth transitions */
+        }
+
+            .NavBar a:hover {
+                background-color: black;
+                color: aliceblue;
+                padding: 10px 20px; /* Increased padding on hover */
+            }
+
+    .Search {
+        border: 2px solid gray;
+        padding: 10px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        width: 200px;
+    }
+
+        .Search.active {
+            border: 2px solid blue;
+            box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+        }
+
+    #searchResults {
+        background: white;
+    }
+
+</style>
