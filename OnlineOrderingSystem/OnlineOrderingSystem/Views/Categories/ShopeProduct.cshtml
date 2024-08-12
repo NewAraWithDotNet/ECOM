@@ -1,0 +1,266 @@
+﻿@model IEnumerable<OnlineOrderingSystem.Models.Product>
+@{
+    Layout = null;
+}
+@if (Model != null && Model.Any())
+{
+    <div class="productLists">
+        @foreach (var product in Model)
+        {
+            <div class="product-cards">
+                <div class="card product-item border-0 mb-4 w-100">
+                    <div class="product-image-container">
+                        <img class="product-image" src="~/images/@product.Image" alt="@product.Name">
+                        <div class="footerend">
+                            <a href="@Url.Action("DetailsProducts", "Products", new { id = product.Id })" class="btn btn-sm text-dark p-0">
+                                <span class="icon-wrapper">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </a>
+                            @{
+                                var userWishlists = ViewBag.UserWishlists as List<Wishlist>;
+                                bool isInWishlist = userWishlists != null && userWishlists.Any(w => w.ProductId == product.Id);
+                                string iconClass = isInWishlist ? "fa fa-heart text-danger" : "fa fa-heart";
+                            }
+
+                            <button id="btnWishlist_@product.Id" class="btn btn-sm text-dark p-0" onclick="toggleWishlist(@product.Id)">
+                                <span class="icon-wrapper">
+                                    <i id="iconWishlist_@product.Id" class="@iconClass"></i>
+                                </span>
+                            </button>
+
+                            <button type="button" onclick="AddToCart(@product.Id)" class="btn btn-sm text-dark p-0">
+                                <span class="icon-wrapper">
+                                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="product-Name">
+                            <h6 class="text-truncate mb-3">@product.Name</h6>
+                        </div>
+                        <div class="product-price">
+                            <div class="price">
+                                <h6><p class="card-text"><strong>Price:</strong> <span id="price-@product.Id">@product.Price.ToString("C")</span></p></h6>
+                                <h6><p class="card-text">@product.HowMany pieces</p></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No products available for this category.</p>
+}
+
+
+
+<script>
+
+    function updatePrice(productId, optionPrice) {
+        var priceElement = document.getElementById('price-' + productId);
+        priceElement.textContent = optionPrice.toFixed(2);
+    }
+
+    function AddToCart(productId) {
+        var selectedOption = document.querySelector('input[name="option-' + productId + '"]:checked');
+        var optionId = selectedOption ? selectedOption.getAttribute('data-option-id') : null;
+        var optionPrice = selectedOption ? parseFloat(selectedOption.value) : null;
+
+        $.ajax({
+            url: '@Url.Action("AddToCart", "Carts")',
+            type: 'POST',
+            data: {
+                productId: productId,
+                optionId: optionId,
+                optionPrice: optionPrice
+            },
+            success: function (response) {
+                if (response.success) {
+                    toastr.success(response.message);
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function (error) {
+                toastr.error('Failed to add product to cart', error);
+            }
+        });
+    }
+
+    function toggleWishlist(productId) {
+        var btn = $('#btnWishlist_' + productId);
+        var icon = $('#iconWishlist_' + productId);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("ToggleWishlist", "Wishlists")',
+            data: { productId: productId },
+            success: function (response) {
+                if (response.success) {
+                    if (response.isAdded) {
+                        icon.removeClass('fa fa-heart').addClass('fa fa-heart text-danger');
+                        toastr.success(response.message);
+                    } else {
+                        icon.removeClass('bi-calendar-heart-fill text-danger').addClass('bi-calendar-heart');
+                        toastr.success(response.message);
+                    }
+                } else {
+                    toastr.error(response.message);
+                }
+            },
+            error: function () {
+                toastr.error("An error occurred while toggling the product in the wishlist.");
+            }
+        });
+    }
+</script>
+
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Roboto', sans-serif; 
+        background-color: #f5f5f5; 
+        color: #333; 
+    }
+
+    .productLists {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        justify-items: center; 
+        align-items: start; 
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px; 
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    }
+
+    .product-cards {
+        border: 1px solid #ddd; 
+        border-radius: 15px;
+        width: 100%; 
+        height: auto; 
+        display: flex;
+        flex-direction: column;
+        background-color: #fff; 
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden; 
+    }
+
+        .product-cards:hover {
+            transform: translateY(-10px); /* Slight lift effect on hover */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+        }
+
+    .product-image-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        height: 20rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #ddd; /* Separate image from content */
+        flex-direction:column;
+    }
+
+    .product-image {
+        padding: 20px;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+        .product-image:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+    .footerend {
+      margin-left:100px;
+       transform: translateX(-50%);
+       opacity: 0;
+       transition: opacity 0.3s ease;
+    }
+
+    .product-image-container:hover .footerend {
+        opacity: 1; /* Show the buttons on hover */
+    }
+
+    .card-body {
+        padding: 15px; /* Add padding for better spacing */
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .product-Name h6 {
+        font-size: 1rem;
+        font-weight: 600; /* Slightly bolder text */
+        color: #333;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+    }
+
+        .product-Name h6:hover {
+            color: #007bff; /* Change color on hover */
+        }
+
+    .product-price {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .price h6 {
+        font-size: 1rem;
+        color: #28a745; /* Green for price */
+        margin-bottom: 0;
+    }
+
+    .icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        color: #333;
+        border-radius: 50%;
+        padding: 8px;
+        margin: 0 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        cursor: pointer;
+    }
+
+        .icon-wrapper i {
+            font-size: 1rem;
+        }
+
+        .icon-wrapper:hover {
+            background-color: #007bff; /* Highlight on hover */
+            color: #fff; /* Invert colors */
+        }
+
+    .btn-wishlist-added {
+        background-color: #ffc107 !important;
+        color: #212529 !important;
+    }
+
+    .footerend
+    {
+    }
+    .footerend a, .footerend button {
+        background-color: transparent;
+        border: none;
+        color: inherit;
+        font-size: inherit;
+        cursor: pointer;
+    }
+
+</style>

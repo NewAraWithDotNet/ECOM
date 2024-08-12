@@ -140,6 +140,52 @@
     #drawer-toggle:checked ~ #page-content {
         margin-left: 300px;
     }
+
+    .user-menu {
+        background-color: #f8f9fa; /* Light background for the menu */
+        border-radius: 8px; /* Rounded corners */
+        padding: 10px; /* Space inside the menu */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        width: 200px; /* Set a width for the menu */
+    }
+
+    .menu-list {
+        list-style: none; /* Remove default list styling */
+        padding: 0;
+        margin: 0;
+    }
+
+        .menu-list li {
+            margin: 0; /* Remove default margin */
+        }
+
+    .nav-item {
+        display: block; /* Make the links block elements for better layout */
+        text-decoration: none; /* Remove underline */
+        padding: 10px; /* Space inside each menu item */
+        color: #007bff; /* Link color */
+    }
+
+        .nav-item:hover {
+            background-color: #e9ecef; /* Background on hover */
+            border-radius: 4px; /* Rounded corners on hover */
+        }
+
+    .logout-form {
+        margin: 0; /* Remove default margin */
+    }
+
+    .logout-button {
+        border: none; /* Remove default button border */
+        background: none; /* Remove default button background */
+        color: #dc3545; /* Logout button color */
+        cursor: pointer; /* Pointer cursor on hover */
+    }
+
+        .logout-button:hover {
+            text-decoration: underline; /* Underline text on hover */
+        }
+
 </style>
 
 
@@ -165,18 +211,19 @@
                 </div>
             </div>
             <div class="user-menu">
-                <ul>
+                <ul class="menu-list">
                     <li><a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="MyAccount"><span>My Account</span></a></li>
                     <li><a class="nav-item nav-link" asp-area="" asp-controller="Orders" asp-action="UserOrder"><span>My Orders</span></a></li>
-                    <li><a href="" icon="request_quote"><span>Top Up</span></a></li>
-                    <li><a href="" icon="credit_card" ga-data="2013" ga-data-playload="My Cards"><span>My Cards</span></a></li>
-                    <li><a href="" icon="account_balance" ga-data="2014" ga-data-playload="Credit History"><span>Transaction History</span></a></li>
-                    <li><a href="" icon="local_activity" ga-data="0000" ga-data-playload="My Coupons"><span>My Coupons</span></a></li>
-                    <li><a href="" icon="stars" target="_blank" ga-data="2014" ga-data-playload="My STAR"><span>My STAR</span></a></li>
-                    <li><a href="" icon="favorite_outline" ga-data="2012" ga-data-playload="My Favourite"><span>My Favorite</span></a></li>
-                    <li><a href="" icon="notifications" data-msg-counter="2" ga-data="2015" ga-data-playload="Notifications"><span>Notifications</span></a></li>
+                    <li>
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="logout-form">
+                            <button type="submit" class="nav-item nav-link logout-button">
+                                <span>Logout</span>
+                            </button>
+                        </form>
+                    </li>
                 </ul>
             </div>
+
         </div>
     </div>
 </nav>

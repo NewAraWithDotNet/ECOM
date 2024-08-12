@@ -62,25 +62,25 @@ namespace OnlineOrderingSystem.Controllers
             
             return View(products);
         }
-        public async Task<IActionResult> Shope()
-        {
-
-
-            ViewBag.Categories = await _context.Categories.Include(c => c.Products).ToListAsync();
-				ViewBag.Products = new List<Product>();
-		
-
-			return View();
-
+        public async Task<IActionResult> Shope(int? catid)
+        {        
+			var categories = _context.Categories.Include(c => c.Products).ToList();
+            ViewBag.catid=catid;
+			return View(categories);
 		}
+
+
+
+
+
+
+
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-
         public IActionResult UserP()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -94,7 +94,6 @@ namespace OnlineOrderingSystem.Controllers
 
             return View();
         }
-
         public IActionResult Slider()
         {
             var model = new SliderModel();
@@ -103,7 +102,6 @@ namespace OnlineOrderingSystem.Controllers
             return View();
         }
         // My Account 
-
         public async Task<IActionResult> MyAccount()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -121,7 +119,6 @@ namespace OnlineOrderingSystem.Controllers
 
             return View(model);
         }
-
         [HttpPost]
         public async Task<IActionResult> UpdateUsername(ManageViewModel model)
         {
@@ -134,7 +131,6 @@ namespace OnlineOrderingSystem.Controllers
             
             return RedirectToAction("Index");
         }
-
         [HttpPost]
         public async Task<IActionResult> UpdateEmail(ManageViewModel model)
         {
@@ -147,7 +143,6 @@ namespace OnlineOrderingSystem.Controllers
             
             return RedirectToAction("Index");
         }
-
         [HttpPost]
         public async Task<IActionResult> UpdatePassword(ManageViewModel model)
         {
@@ -160,8 +155,6 @@ namespace OnlineOrderingSystem.Controllers
             
             return RedirectToAction("Index");
         }
-
-
         [HttpPost]
         public async Task<IActionResult> UpdateAvatar(ManageViewModel model)
         {
@@ -195,8 +188,5 @@ namespace OnlineOrderingSystem.Controllers
             
             return RedirectToAction("Index");
         }
-
     }
-
-
 }

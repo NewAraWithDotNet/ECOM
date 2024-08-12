@@ -4,13 +4,52 @@
         @foreach (var category in Model)
         {
             <div class="categorys">
-                <img class="category-image" src="~/images/@category.Image" alt="@category.Name" data-url="@Url.Action("Details", "Categories", new { id = category.Id })">
+                <img class="category-image" src="~/images/@category.Image" alt="@category.Name" 
+                     data-url="@Url.Action("CategoryProduct", "Categories", new { id = category.Id })"
+                     data-category-id="@category.Id">
             </div>
         }
     </div>
     <div id="productsContainer"></div>
+    <button id="showMoreButton" data-category-id="">Show more</button>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $(".category-image").click(function (event) {
+            event.preventDefault();
+            var url = $(this).data("url");
+            var categoryId = $(this).data("category-id");
+            
+            // Update the Show More button's data-category-id
+            $("#showMoreButton").data("category-id", categoryId);
+
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (data) {
+                    $("#productsContainer").html(data);
+                },
+                error: function () {
+                    alert("Failed to load category details.");
+                }
+            });
+        });
+
+        $("#showMoreButton").click(function () {
+            var categoryId = $(this).data("category-id");
+            if (categoryId) {
+                window.location.href = '@Url.Action("Shope", "Home")?catid=' + categoryId;
+            } else {
+                alert("Please select a category first.");
+            }
+        });
+
+        if ($(".category-image").length > 0) {
+            $(".category-image").first().click();
+        }
+    });
+</script>
 
 <style>
     .CategoryContainer{
@@ -39,7 +78,7 @@
         height: 100px;
     }
 
-        .category:hover {
+        .categorys:hover {
             transform: scale(1.05);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -59,7 +98,7 @@
     }
 
     #productsContainer{
-        width:1200px;
+       width:1200px;
         height:300px;
         padding:20px;
         margin-top:10px;
@@ -71,25 +110,35 @@
     .CategoryContainer{
         margin-bottom:30px;
     }
+
+    #showMoreButton {
+        padding: 10px 20px;
+        font-size: 1em;
+        font-weight: bold;
+        color: #fff;
+        background-color: #229091;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        align-self: center; 
+        margin-top: 20px;
+    }
+
+        #showMoreButton:hover {
+            background-color: #1a6b6d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #showMoreButton:active {
+            background-color: #134d4e;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #showMoreButton:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5);
+        }
+
 </style>
 
-<script>
-    $(document).ready(function () {
-        $(".category-image").click(function (event) {
-            event.preventDefault();
-            var url = $(this).data("url");
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function (data) {
-                    $("#productsContainer").html(data);
-                },
-                error: function () {
-                    alert("Failed to load category details.");
-                }
-            });
-        });
-
-        $(".category-image").first().click();
-    });
-</script>

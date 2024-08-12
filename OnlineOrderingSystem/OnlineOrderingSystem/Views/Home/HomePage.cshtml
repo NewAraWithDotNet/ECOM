@@ -26,12 +26,15 @@
 </div>
 
 <style>
+    @@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,600&family=Oswald:wght@200..700&display=swap');
+
+   
     hr.custom-color {
-       
-        width : 90%;
+        width: 90%;
         height: 1px;
         background-color: rgba(228,228,228,.9);
     }
+
     .HomePageContainer {
         display: flex;
         flex-direction: column;
@@ -41,6 +44,11 @@
         gap: 100px;
         padding: 20px;
         background-color: white;
+        font-family: 'Kanit', sans-serif;
+        font-weight: 600; /* Ensure the correct weight is applied */
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #333;
     }
 
     .partial-categories {
@@ -71,13 +79,9 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         overflow: hidden;
-        background: rgba(228, 228, 228, 0.8); 
-        margin-top:35px;
+        background: rgba(228, 228, 228, 0.8);
+        margin-top: 35px;
     }
-
-       
-
-      
 
     .image-container {
         flex: 1;
@@ -85,6 +89,8 @@
         justify-content: center;
         align-items: center;
     }
+
+        
 
     .main-img {
         max-width: 100%;
@@ -102,11 +108,11 @@
     }
 
         .text-container h6 {
+            font-family: 'Kanit', sans-serif;
+            font-weight: 600; 
             font-size: 1.5rem;
             margin-bottom: 20px;
             color: #333;
-            font-family: 'Arial', sans-serif;
-            font-size: 24px;
         }
 
     .shop-button {

@@ -1,4 +1,4 @@
-﻿@model OnlineOrderingSystem.Models.Category
+﻿@model IEnumerable<OnlineOrderingSystem.Models.Product>
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 @{
     var afToken = Antiforgery.GetAndStoreTokens(Context).RequestToken;
@@ -7,10 +7,10 @@
     Layout = null;
 }
 
-@if (Model.Products != null && Model.Products.Any())
+@if (Model != null && Model.Any())  
 {
     <div class="productLists">
-        @foreach (var product in Model.Products)
+        @foreach (var product in Model) 
         {
             <div class="product-cards">
                 <div class="card product-item border-0 mb-4 w-100">
@@ -139,6 +139,7 @@ else
         display:flex;
         flex-direction:row;
         gap:20px;
+        width:100%;
     }
 </style>
 <style>
@@ -190,6 +191,7 @@ else
         transform: translateX(-50%);
         opacity: 0;
         transition: opacity 0.5s ease;
+        width:100%;
     }
 
     .product-image-container:hover .footerend {
