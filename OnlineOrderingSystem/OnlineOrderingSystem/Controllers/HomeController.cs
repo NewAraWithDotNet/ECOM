@@ -48,19 +48,20 @@ namespace OnlineOrderingSystem.Controllers
                 ViewBag.UserName = user.UserName;
                 ViewBag.Avatar = user.Avatar;
             }
-            var topProducts = await _context.Wishlists
-                  .GroupBy(w => w.ProductId)
-                  .OrderByDescending(g => g.Count())
-                  .Select(g => g.Key)
-                  .Take(10)
-                  .ToListAsync();
+            var topProductIds = await _context.Wishlists
+                 .GroupBy(w => w.ProductId)
+                 .OrderByDescending(g => g.Count())
+                 .Select(g => g.Key)
+                 .Take(5)
+                 .ToListAsync();
 
-            var products = await _context.Products
-                .Where(p => topProducts.Contains(p.Id))
+            var topProducts = await _context.Products
+                .Where(p => topProductIds.Contains(p.Id))
+                .Take(5)
                 .ToListAsync();
-             ViewBag.categorieslist = await _context.Categories.ToListAsync();
+            ViewBag.categorieslist = await _context.Categories.ToListAsync();
             
-            return View(products);
+            return View(topProducts);
         }
         public async Task<IActionResult> Shope(int? catid)
         {        

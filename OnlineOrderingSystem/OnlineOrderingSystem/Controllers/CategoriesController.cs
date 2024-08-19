@@ -171,20 +171,14 @@ namespace OnlineOrderingSystem.Controllers
 
 
 
-		public IActionResult CategoryProduct(int id)
-		{
-			var category = _context.Categories
-				.Include(c => c.Products)
-				.FirstOrDefault(c => c.Id == id);
+		public IActionResult CategoryProduct(int id, int count = 4)
+        {
+            var products = _context.Products
+                          .Where(p => p.CategoryId == id)
+                          .Take(count)
+                          .ToList();
 
-			if (category == null)
-			{
-				return NotFound();
-			}
-
-			var FiveProducts = category.Products.Take(5).ToList();
-
-			return PartialView("Details", FiveProducts);
+            return View("CategoryProduct", products);
 		}
 		public IActionResult ShopeProduct(int categoryId)
 		{

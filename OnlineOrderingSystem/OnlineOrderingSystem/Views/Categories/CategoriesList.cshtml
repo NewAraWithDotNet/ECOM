@@ -1,143 +1,98 @@
 ﻿@model IEnumerable<OnlineOrderingSystem.Models.Category>
-<div class="CategoryContainer">
-    <div class="categoryList">
-        @foreach (var category in Model)
-        {
-            <div class="categorys">
-                <img class="category-image" src="~/images/@category.Image" alt="@category.Name" 
-                     data-url="@Url.Action("CategoryProduct", "Categories", new { id = category.Id })"
-                     data-category-id="@category.Id">
+
+<div class="category-container">
+    @foreach (var category in Model)
+    {
+        <div class="category-box">
+            <div class="category-header">
+                <h3>@category.Name</h3>
             </div>
-        }
-    </div>
-    <div id="productsContainer"></div>
-    <button id="showMoreButton" data-category-id="">Show more</button>
+            <div class="category-products" id="productsContainer-@category.Id">
+                <!-- Products will be loaded here via AJAX -->
+            </div>
+            <button class="show-more-button" data-category-id="@category.Id">Show more</button>
+        </div>
+    }
 </div>
 
 <script>
     $(document).ready(function () {
-        $(".category-image").click(function (event) {
-            event.preventDefault();
-            var url = $(this).data("url");
-            var categoryId = $(this).data("category-id");
-            
-            // Update the Show More button's data-category-id
-            $("#showMoreButton").data("category-id", categoryId);
+        $(".category-box").each(function () {
+            var categoryId = $(this).find(".show-more-button").data("category-id");
+            var productsContainer = $(this).find(".category-products");
 
+            // Load the first four products for each category via AJAX
             $.ajax({
-                url: url,
+                url: '@Url.Action("CategoryProduct", "Categories")?id=' + categoryId + '&count=4',
                 type: "GET",
                 success: function (data) {
-                    $("#productsContainer").html(data);
+                    productsContainer.html(data);
                 },
                 error: function () {
-                    alert("Failed to load category details.");
+                    alert("Failed to load products.");
                 }
             });
         });
 
-        $("#showMoreButton").click(function () {
+        $(".show-more-button").click(function () {
             var categoryId = $(this).data("category-id");
-            if (categoryId) {
-                window.location.href = '@Url.Action("Shope", "Home")?catid=' + categoryId;
-            } else {
-                alert("Please select a category first.");
-            }
+            window.location.href = '@Url.Action("Shope", "Home")?catid=' + categoryId;
         });
-
-        if ($(".category-image").length > 0) {
-            $(".category-image").first().click();
-        }
     });
 </script>
 
+
 <style>
-    .CategoryContainer{
-        display:flex;
-        gap:30px;
-        flex-direction:column;
-    }
-    .categoryList {
+    /* Container for the entire category section */
+    .category-container {
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
         gap: 20px;
-        justify-content: center;
+        padding: 20px;
+        background-color: #f5f5f5;
     }
 
-    .categorys {
-        display: flex;
-        flex-direction: column;
+    /* Individual category box */
+    .category-box {
+        width: calc(25% - 20px); /* Adjust width as needed */
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 15px;
         box-sizing: border-box;
-        border: 1px solid #ddd;
-        border-radius: 50%;
-        overflow: hidden;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        width: 100px;
-        height: 100px;
     }
 
-        .categorys:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-    .category-image {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 50%;
-    }
-
-    .category-name {
-        padding: 10px;
+    /* Header with category title */
+    .category-header {
+        margin-bottom: 10px;
         text-align: center;
-        font-size: 1.2em;
+        font-size: 18px;
         font-weight: bold;
+        color: #333;
     }
 
-    #productsContainer{
-       width:1200px;
-        height:300px;
-        padding:20px;
-        margin-top:10px;
-       display:flex;
-       align-items:center;
-       justify-content:center;
-       flex-direction:column;
-    } 
-    .CategoryContainer{
-        margin-bottom:30px;
+    /* Container for products inside each category box */
+    .category-products {
+        min-height: 100px; /* Adjust based on content */
+        margin-bottom: 15px;
     }
 
-    #showMoreButton {
-        padding: 10px 20px;
-        font-size: 1em;
-        font-weight: bold;
+    /* Show More button styling */
+    .show-more-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
         color: #fff;
-        background-color: #229091;
+        text-align: center;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        align-self: center; 
-        margin-top: 20px;
+        transition: background-color 0.3s ease;
     }
 
-        #showMoreButton:hover {
-            background-color: #1a6b6d;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        #showMoreButton:active {
-            background-color: #134d4e;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        #showMoreButton:focus {
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5);
+        .show-more-button:hover {
+            background-color: #0056b3;
         }
 
 </style>

@@ -87,10 +87,7 @@
 	$(document).ready(function () {
 		var catid = '@ViewBag.catid';
 
-
 		function loadCategoryProducts(categoryId, url) {
-			
-
 			$.ajax({
 				url: url,
 				type: 'GET',
@@ -107,20 +104,24 @@
 		$('.category-checkbox').on('click', function () {
 			var categoryId = $(this).data('id');
 			var url = $(this).data("url");
-
 			loadCategoryProducts(categoryId, url);
 		});
 
 		if (catid) {
 			var categoryElement = $('.category-checkbox[data-id="' + catid + '"]');
-			console.log("Category element found:", categoryElement.length > 0);
-
 			if (categoryElement.length > 0) {
 				var categoryId = categoryElement.data('id');
 				var url = categoryElement.data("url");
-				loadCategoryProducts(categoryId, url); // Directly load products
+				loadCategoryProducts(categoryId, url); 
 			} else {
 				console.log("No category element found with the given catid.");
+			}
+		} else {
+			var firstCategoryCheckbox = $('.category-checkbox').first();
+			if (firstCategoryCheckbox.length > 0) {
+				firstCategoryCheckbox.click();
+			} else {
+				console.log("No category checkboxes found.");
 			}
 		}
 	});

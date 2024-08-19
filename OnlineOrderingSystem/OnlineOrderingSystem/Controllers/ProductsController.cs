@@ -48,16 +48,22 @@ namespace OnlineOrderingSystem.Controllers
                 .Include(p => p.Comments)
                 .ThenInclude(c => c.user)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (product == null)
             {
                 return NotFound();
             }
-
+            var loadCounts = 20;
+            // Get similar products based on the category
+            var similarProducts = await _context.Products
+                .Where(p => p.CategoryId == product.CategoryId && p.Id != id)
+                .Take(4)
+                .ToListAsync();
             var comments = product.Comments.Take(loadCount).ToList();
             ViewBag.TotalComments = product.Comments.Count;
             ViewBag.LoadCount = loadCount;
             ViewBag.Comments = comments;
-
+            ViewBag.SimilarProducts = similarProducts;
             return View("DetailsProducts", product);
         }
 
@@ -72,7 +78,8 @@ namespace OnlineOrderingSystem.Controllers
             return Ok(comments.Select(c => new
             {
                 c.user.UserName,
-                c.Content
+                c.Content,
+                c.user.Avatar
             }));
         }
 
@@ -83,45 +90,30 @@ namespace OnlineOrderingSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProducts(Product product, IFormFile ImageFile, List<IFormFile> ImageFiles)
+        public async Task<IActionResult> CreateProducts(Product product)
         {
-            // Handle cover image upload
-            if (ImageFile != null)
-            {
-                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + ImageFile.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+            
+                // Handle image upload
+                if (product.ImageFile != null)
                 {
-                    await ImageFile.CopyToAsync(fileStream);
-                }
+                    var fileName = Path.GetFileNameWithoutExtension(product.ImageFile.FileName);
+                    var extension = Path.GetExtension(product.ImageFile.FileName);
+                    product.Image = fileName + "_" + DateTime.Now.ToString("yyyyMMddHHmmss") + extension;
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", product.Image);
 
-                product.Image = uniqueFileName;
-            }
-
-            // Handle additional images upload
-            if (ImageFiles != null && ImageFiles.Count > 0)
-            {
-                foreach (var imageFile in ImageFiles)
-                {
-                    string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "images");
-                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    using (var fileStream = new FileStream(path, FileMode.Create))
                     {
-                        await imageFile.CopyToAsync(fileStream);
+                        await product.ImageFile.CopyToAsync(fileStream);
                     }
-
-                    product.ProductImages.Add(new ProductImage { ImageUrl = uniqueFileName });
                 }
-            }
 
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+                // Add product to the database
+                _context.Add(product);
+                await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "Admin");
+            
+
         }
 
         public async Task<IActionResult> Wishlist()
@@ -232,22 +224,39 @@ namespace OnlineOrderingSystem.Controllers
 
             return RedirectToAction("Index", "Admin");
         }
+        [HttpPost]
+        public IActionResult ToggleShowFlag(int id)
+        {
+            var product = _context.Products.Find(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            product.ShowFlag = !product.ShowFlag;
+            _context.SaveChanges();
+
+            return RedirectToAction("AdminProducts", "Admin");
+        }
 
         public async Task<IActionResult> TopProuct()
         {
-            var topProducts = await _context.Wishlists
+            var topProductIds = await _context.Wishlists
                 .GroupBy(w => w.ProductId)
                 .OrderByDescending(g => g.Count())
                 .Select(g => g.Key)
-                .Take(10)
+                .Take(5)
                 .ToListAsync();
 
-            var products = await _context.Products
-                .Where(p => topProducts.Contains(p.Id))
+            var topProducts = await _context.Products
+                .Where(p => topProductIds.Contains(p.Id))
+                .Take(5)  
                 .ToListAsync();
 
-            return View(products);
+            return View(topProducts);
         }
+
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var item = await _context.Products.FindAsync(id);
@@ -310,7 +319,7 @@ namespace OnlineOrderingSystem.Controllers
         }
 
 
-     
+
 
         private bool ProductExists(int id)
         {

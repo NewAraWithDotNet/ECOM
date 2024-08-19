@@ -4,139 +4,107 @@
 
 }
 
-
-<nav id="navigation">
-    <div class="container">
-        <div id="responsive-nav">
-            <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Hot Deals</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Cameras</a></li>
-                <li><a href="#">Accessories</a></li>
+<div class="container-fluid py-5 Details">
+    <div class="Top">
+        <div class="right">
+            <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active imageContainer">
+                        <img class="product-iamge" src="~/images/@Model.Image" alt="@Model.Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="left">
+            <h3>@Model.Name</h3>
+            <h3>$@Model.Price</h3>
+            <p>@Model.Description</p>
+            <div>
+                <button class="button-89" role="button"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+    
+            </div>
+        </div>
+    </div>
+    <div class="row px-xl-5 bottom">
+        <div class="col">
+            <!-- Tab Navigation -->
+            <ul class="nav nav-tabs justify-content-center border-secondary mb-4">
+                <li class="nav-item">
+                    <a class="nav-link active" id="reviews-tab" data-toggle="tab" href="#tab-pane-1">Reviews (@ViewBag.Comments.Count) </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="add-review-tab" data-toggle="tab" href="#tab-pane-2">Add Reviews</a>
+                </li>
             </ul>
-        </div>
-    </div>
-</nav>
 
-<div id="breadcrumb" class="section">
-    <!-- container -->
-    <div class="container">
-        <!-- row -->
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="breadcrumb-tree">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">All Categories</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Headphones</a></li>
-                    <li class="active">Product name goes here</li>
-                </ul>
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Reviews Tab -->
+                <div class="tab-pane fade show active" id="tab-pane-1">
+                    @if (Model.CommentsEnabled)
+                    {
+                        @if (ViewBag.Comments != null && ViewBag.Comments.Count > 0)
+                        {
+                            <ul id="comments-list" class="comments-list">
+                                @foreach (var comment in ViewBag.Comments)
+                                {
+                                    <li class="comment-item">
+                                        <img src="@comment.user.Avatar" class="comment-avatar" alt="@comment.user" />
+                                        <div class="comment-content">
+                                            <p>@comment.Content</p>
+                                            <strong class="comment-user">@comment.user</strong>
+                                        </div>
+                                    </li>   
+                                }
+                            </ul>
+                            @if (ViewBag.TotalComments > ViewBag.LoadCount)
+                            {
+                                <button id="show-more" class="btn-show-more" data-id="@Model.Id" data-loaded="@ViewBag.LoadCount">Show more</button>
+                            }
+                        }
+                        else
+                        {
+                            <p>No comments yet.</p>
+                        }
+                    }
+                    else
+                    {
+                        <div><p>User has hidden the comments.</p></div>
+                    }
+                </div>
+
+                <!-- Add Reviews Tab -->
+                <div class="tab-pane fade" id="tab-pane-2">
+                    <div class="write-review-area" style="margin-top: 30px;">
+                        <div class="row">
+                            <div class="col-md-6" style="padding: 20px;">
+                                <form asp-action="CreateComment" asp-controller="Products" method="post">
+                                    <div style="margin-bottom: 15px;">
+                                        <label for="Content" style="display: block; font-weight: bold; margin-bottom: 5px;">Your Review</label>
+                                        <input id="Content" name="Content" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" />
+                                    </div>
+                                    <input type="hidden" name="id" value="@Model.Id" />
+                                    <div>
+                                        <input type="submit" value="Leave Your Review" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; width:70%" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
-        <!-- /row -->
+        <hr class="custom-color">
+
+        <div>
+            <p>smiler Product</p>
+            <partial name="../Categories/Details" model="ViewBag.SimilarProducts" />
+        </div>
     </div>
-    <!-- /container -->
+
+
 </div>
-
-
-
-
-
-
-<!-- SECTION -->
-<div class="section">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-2  col-md-pull-5">
-                <div id="product-imgs">
-                    <div class="product-preview">
-                        <img src="./img/product01.png" alt="">
-                    </div>
-
-
-                </div>
-            </div>
-
-            <div class="col-md-5">
-                <div class="product-details">
-                    <h2 class="product-name">product name goes here</h2>
-
-                    <div>
-                        <h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
-                        <span class="product-available">In Stock</span>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-                    <div class="product-options">
-                    </div>
-
-                    <div class="add-to-cart">
-                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                    </div>
-
-                    <ul class="product-btns">
-                        <li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-                    </ul>
-
-                    <ul class="product-links">
-                        <li>Category:</li>
-
-                    </ul>
-
-                    <ul class="product-links">
-                        <li>Share:</li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                    </ul>
-
-                </div>
-            </div>
-
-            <div class="col-md-12">
-                <div id="product-tab">
-                    <ul class="tab-nav">
-                        <li><a data-toggle="tab" href="#tab1">Description</a></li>
-                        <li><a data-toggle="tab" href="#tab2">Details</a></li>
-                        <li><a data-toggle="tab" href="#tab3">Reviews</a></li>
-                    </ul>
-
-                    <div class="tab-content">
-                        <div id="tab1" class="tab-pane fade in active">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="tab2" class="tab-pane fade in">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="tab3" class="tab-pane fade in">
-                            <div class="row">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
 
 
 
@@ -147,23 +115,21 @@
             var productId = $(this).data('id');
             var loadedCount = $(this).data('loaded');
             var button = $(this);
-
-            console.log("Show more button clicked");
-            console.log("Product ID:", productId);
-            console.log("Loaded count:", loadedCount);
-
             $.ajax({
                 url: '@Url.Action("GetMoreComments", "Products")',
                 data: { productId: productId, loadCount: loadedCount },
                 success: function (response) {
-                    console.log("Response received:", response);
 
                     var newCommentsHtml = '';
                     response.forEach(function (comment) {
-                        newCommentsHtml += '<div class="comment">';
-                        newCommentsHtml += '<p><strong>' + comment.userName + ':</strong> ' + comment.content + '</p>';
-                        newCommentsHtml += '</div>';
+                        newCommentsHtml += '<li class="comment-item">';
+                        newCommentsHtml += `<img src="${comment.avatar}" class="comment-avatar" alt="${comment.userName}" />`;
+                        newCommentsHtml += `<div class="comment-content">`;
+                        newCommentsHtml += '<p><strong class="comment-user">' + comment.userName + ':</strong> ' + comment.content + '</p>';
+                        newCommentsHtml += `</div>`;
+                        newCommentsHtml += '</li>';
                     });
+
 
                     $('#comments-list').append(newCommentsHtml);
 
@@ -182,3 +148,227 @@
     });
 
 </script>
+
+
+<style>
+    hr.custom-color {
+        width: 90%;
+        height: 1px;
+        background-color: rgba(228,228,228,.9);
+    }
+
+    .Details {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap:40px;
+    }
+
+    .Top {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        width: 1000px;
+        gap:100px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color:rgba(228,228,228,.2)
+    }
+
+    .addToCart {
+        
+    }
+    .right, .left {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+        gap:10px;
+    }
+
+    .imageContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-iamge {
+        padding: 20px;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+    .bottom 
+    {
+        width:1200px;
+        dispaly:flex;
+        flex-direction:column;
+    }
+    /* General Styles */
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    /* Tabs Navigation */
+    .nav-tabs {
+        border-bottom: 2px solid #ddd;
+    }
+
+        .nav-tabs .nav-link {
+            font-weight: bold;
+            color: #333;
+            border: 1px solid transparent;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+            .nav-tabs .nav-link.active {
+                background-color: #f8f9fa;
+                color: #007bff;
+                border-color: #007bff #007bff #f8f9fa;
+            }
+
+    /* Comment Section */
+    .product-review-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .Comments {
+        display: felx;
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+    }
+
+    .comments-list {
+        list-style: none;
+        display: felx;
+        justify-content: center;
+        align-items:center;
+        width:400px;
+    }
+
+    .comment-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .comment-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .comment-content {
+        max-width: calc(100% - 65px);
+    }
+
+    .comment-user {
+        display: block;
+        font-weight: bold;
+        margin-top: 10px;
+        color: #007bff;
+    }
+
+    .comment-content p {
+        margin: 0;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    /* Show More Button */
+    .btn-show-more {
+        display: block;
+        width: 20%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-left:450px;
+    }
+
+        .btn-show-more:hover {
+            background-color: #0056b3;
+        }
+
+    /* Write a Review Area */
+    .write-review-area h4 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .write-review-area label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+        color: #555;
+    }
+
+    .write-review-area input[type="text"],
+    .write-review-area input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 15px;
+    }
+
+    .write-review-area input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .write-review-area input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+   
+    .button-89 {
+        --b: 3px;
+        --s: .45em;
+        --color: #373B44;
+        padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+        color: var(--color);
+        --_p: var(--s);
+        background: conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+        transition: .3s linear, color 0s, background-color 0s;
+        outline: var(--b) solid #0000;
+        outline-offset: .6em;
+        font-size: 16px;
+        border: 0;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+        .button-89:hover,
+        .button-89:focus-visible {
+            --_p: 0px;
+            outline-color: var(--color);
+            outline-offset: .05em;
+        }
+
+        .button-89:active {
+            background: var(--color);
+            color: #fff;
+        }
+
+        .button-89:hover {
+            background-color: #d0d0d0;
+        }
+</style>

@@ -17,199 +17,203 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = OnlineOrderingSystem
 build_property.RootNamespace = OnlineOrderingSystem
-build_property.ProjectDir = D:\PLAN B MERAKI_Academy\Projects\dot new\ECOM\OnlineOrderingSystem\OnlineOrderingSystem\
+build_property.ProjectDir = D:\ECOM\OnlineOrderingSystem\OnlineOrderingSystem\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\PLAN B MERAKI_Academy\Projects\dot new\ECOM\OnlineOrderingSystem\OnlineOrderingSystem
+build_property.MSBuildProjectDirectory = D:\ECOM\OnlineOrderingSystem\OnlineOrderingSystem
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Account/Login.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Account/Register.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/AdminProducts.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/AdminProducts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Qcm9kdWN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/AdminSearch.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/AdminSearch.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5TZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/Index.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/SalesAnalytics.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/SalesAnalytics.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cU2FsZXNBbmFseXRpY3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/UserEdite.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/UserEdite.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlckVkaXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/UserSitting.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Admin/UserSitting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlclNpdHRpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Carts/CartMenu.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Carts/CartMenu.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydHNcQ2FydE1lbnUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Carts/CheackOut.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Carts/CheackOut.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydHNcQ2hlYWNrT3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/CategoriesList.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/CategoriesList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDYXRlZ29yaWVzTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/Create.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/CategoryProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDYXRlZ29yeVByb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/Details.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/Index.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/ShopeProduct.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Categories/ShopeProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xTaG9wZVByb2R1Y3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/ChatMessages/Conversation.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/ChatMessages/Conversation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdE1lc3NhZ2VzXENvbnZlcnNhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/ChatMessages/Index.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/ChatMessages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdE1lc3NhZ2VzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/Footer.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1xGb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/Navbar.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/Navbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1xOYXZiYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/Slider.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/Slider.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1xTbGlkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/TopBar.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/TopBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1xUb3BCYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/TopLine.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Components/TopLine.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50c1xUb3BMaW5lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/HomePage.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/HomePage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lUGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/Index.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/MyAccount.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/MyAccount.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxNeUFjY291bnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/Shope.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/Shope.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaG9wZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/UserP.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Home/UserP.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2VyUC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Orders/Index.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Orders/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Orders/OrderDetails.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Orders/OrderDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXE9yZGVyRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Orders/UserOrder.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Orders/UserOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXFVzZXJPcmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/CreateProduct.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/CreateProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlUHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/DetailsProducts.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/DetailsProducts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRGV0YWlsc1Byb2R1Y3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/EditProducts.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/EditProducts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcRWRpdFByb2R1Y3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/GetMoreComments.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/GetMoreComments.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcR2V0TW9yZUNvbW1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/TopProuct.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/TopProuct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcVG9wUHJvdWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/Wishlist.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Products/Wishlist.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcV2lzaGxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Shared/Error.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Shared/_AdminLayout.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Shared/_AdminLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Create.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lzaGxpc3RzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Delete.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lzaGxpc3RzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Details.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lzaGxpc3RzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Edit.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lzaGxpc3RzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Index.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Wishlists/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lzaGxpc3RzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/_ViewImports.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/_ViewStart.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/PLAN B MERAKI_Academy/Projects/dot new/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Shared/_Layout.cshtml]
+[D:/ECOM/OnlineOrderingSystem/OnlineOrderingSystem/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-mxfanabt2z

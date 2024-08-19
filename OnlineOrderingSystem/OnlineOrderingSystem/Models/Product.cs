@@ -11,7 +11,7 @@ namespace OnlineOrderingSystem.Models
         public decimal Price { get; set; }
         public string? Image { get; set; }
         [NotMapped]
-        [DisplayName("CategoryImage")]
+        [DisplayName("Image")]
         public IFormFile ImageFile { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
@@ -20,6 +20,8 @@ namespace OnlineOrderingSystem.Models
         public int HowMany { get; set; }
 
         public bool CommentsEnabled { get; set; } = true;
+        public bool ShowFlag { get; set; } = false;
+
         public ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
 
       

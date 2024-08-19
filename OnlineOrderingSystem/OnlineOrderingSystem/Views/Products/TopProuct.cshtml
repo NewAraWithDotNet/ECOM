@@ -3,6 +3,7 @@
 <div id="category-details-container" class="product-list">
     <div>
         <h6>Top product</h6>
+
     </div>
     <div class="product-gorup">
         @foreach (var product in Model)
@@ -44,17 +45,20 @@
 </div>
 <style>
 
+
     .product-list {
         display: flex;
         gap: 2rem;
         justify-content: center;
         flex-direction: column;
+        width:100%;
     }
 
-    .product-gorup{
-        display:flex;
-        gap:20px;
+    .product-gorup {
+        display: flex;
+        gap: 20px;
     }
+
     .product-card {
         display: flex;
         flex-direction: row;
@@ -141,6 +145,8 @@
         justify-content: space-between;
     }
 </style>
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let observerOptions = {

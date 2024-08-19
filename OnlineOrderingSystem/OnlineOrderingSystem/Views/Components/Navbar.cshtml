@@ -7,10 +7,8 @@
     <div class="container-fluid mb-5 w-100">
     <div class="row justify-content-center border-top px-xl-5">
         <div class="col-lg-9">
-            <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-            
-
-                <div class="custom-navbar-width collapse navbar-collapse justify-content-between bg-dark text-white w-100" id="navbarCollapse">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 sticky-navbar" id="navbar">
+                    <div class="custom-navbar-width collapse navbar-collapse justify-content-between bg-dark text-white w-100" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
                         <a asp-area="" asp-controller="Home" asp-action="HomePage" class="text-light nav-item nav-link">Home</a>
                         <a asp-area="" asp-controller="Home" asp-action="Shope" class="text-light nav-item nav-link">Shope</a>
@@ -49,3 +47,36 @@
 </div>
 
 }
+<style>
+    /* Sticky navbar */
+    .sticky-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: all 0.3s ease-in-out;
+    }
+
+        /* Adjust width on scroll */
+        .sticky-navbar.smaller {
+            padding: 10px 0; /* Adjust as needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Optional: change background color */
+        }
+
+</style>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            console.log("Scroll event fired");
+            if ($(this).scrollTop() > 50) {
+                $('#navbar').addClass('smaller');
+                console.log("Navbar class added");
+            } else {
+                $('#navbar').removeClass('smaller');
+                console.log("Navbar class removed");
+            }
+        });
+    });
+
+</script>

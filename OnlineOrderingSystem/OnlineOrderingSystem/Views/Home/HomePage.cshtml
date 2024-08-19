@@ -4,15 +4,17 @@
 }
 
 <div class="HomePageContainer">
-    <div class="panel">
-        <div class="image-container">
-            <img src="~/img/shop03.png" class="main-img" alt="Shop Image" />
-        </div>
-        <div class="text-container">
-            <h6>Explore item & product</h6>
-            <button class="shop-button">
-                Shop Now
-            </button>
+    <div class="panel-wrapper">
+        <div class="panel">
+            <div class="image-container">
+                <img src="~/img/shop03.png" class="main-img" alt="Shop Image" />
+            </div>
+            <div class="text-container">
+                <h6>Explore item & product</h6>
+                <button class="shop-button">
+                    Shop Now
+                </button>
+            </div>
         </div>
     </div>
     <hr class="custom-color">
@@ -28,7 +30,7 @@
 <style>
     @@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,600&family=Oswald:wght@200..700&display=swap');
 
-   
+
     hr.custom-color {
         width: 90%;
         height: 1px;
@@ -69,6 +71,7 @@
     }
 
     .panel {
+        /* Basic panel styling */
         position: relative;
         width: 1000px;
         display: flex;
@@ -76,21 +79,45 @@
         justify-content: center;
         align-items: center;
         gap: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+       
         border-radius: 10px;
         overflow: hidden;
-        background: rgba(228, 228, 228, 0.8);
+        background: rgba(228, 228, 228, 0.1);
         margin-top: 35px;
     }
 
+    .panel-wrapper {
+        /* Initial state for slide-in */
+        opacity: 0;
+        transform: translateX(-100%);
+        animation: slideIn 0.8s ease-out forwards;
+    }
+    @@keyframes slideIn {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @@keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
     .image-container {
+        animation: float 3s ease-in-out infinite;
         flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-        
+
 
     .main-img {
         max-width: 100%;
@@ -109,7 +136,7 @@
 
         .text-container h6 {
             font-family: 'Kanit', sans-serif;
-            font-weight: 600; 
+            font-weight: 600;
             font-size: 1.5rem;
             margin-bottom: 20px;
             color: #333;

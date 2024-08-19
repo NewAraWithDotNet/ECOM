@@ -1,0 +1,69 @@
+﻿@model IEnumerable<OnlineOrderingSystem.Models.Product>
+
+@{
+    Layout = null;
+}
+
+@if (Model != null && Model.Any())
+{
+    <div class="productLists">
+        @foreach (var product in Model)
+        {
+            <div class="productCards">
+                <div class="card product-item border-0 mb-4 w-100">
+                    <div class="productImageContainer">
+                        <img class="productImage" src="~/images/@product.Image" alt="@product.Name">                     
+                    </div>               
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No products available for this category.</p>
+}
+
+
+
+
+
+
+
+
+
+<style>
+    .productLists {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .productCards {
+        border: 2px solid rgba(228, 228, 228, 0.9);
+        border-radius: 15px;
+        overflow: hidden;
+        text-align: center;
+        background-color: #fff;
+    }
+
+    .productImageContainer {
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .productImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+        .product-image:hover {
+            transform: scale(1.1);
+        }
+</style>
